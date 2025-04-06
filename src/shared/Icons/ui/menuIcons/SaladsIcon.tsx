@@ -2,7 +2,6 @@ import { Icon } from '@chakra-ui/react';
 
 export const SaladsIcon = () => (
     <Icon viewBox='0 0 24 24' fill='none' w={6} h={6}>
-        <title>Иконка салатов</title>
         <rect width='24' height='24' fill='url(#pattern0_5002_136471)' />
         <defs>
             <pattern

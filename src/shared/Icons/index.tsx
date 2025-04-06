@@ -1,4 +1,14 @@
 export { LogoIcon } from './ui/LogoIcon';
+export { BeveragesIcon } from './ui/menuIcons/BeveragesIcon';
+export { BlanksIcon } from './ui/menuIcons/BlanksIcon';
 export { ChildrensMealsIcon } from './ui/menuIcons/ChildrensMealsIcon';
+export { DessertsIcon } from './ui/menuIcons/DessertsIcon';
+export { FirstCourses } from './ui/menuIcons/FirstCourses';
+export { GrilledDishesIcon } from './ui/menuIcons/GrilledDishesIcon';
+export { NationalIcon } from './ui/menuIcons/NationalIcon';
 export { SaladsIcon } from './ui/menuIcons/SaladsIcon';
+export { SaucesIcon } from './ui/menuIcons/SaucesIcon';
+export { SecondCourses } from './ui/menuIcons/SecondCourses';
+export { SnacksIcon } from './ui/menuIcons/SnacksIcon';
+export { TherapeuticFoodIcon } from './ui/menuIcons/TherapeuticFoodIcon';
 export { VeganIcon } from './ui/menuIcons/VeganIcon';

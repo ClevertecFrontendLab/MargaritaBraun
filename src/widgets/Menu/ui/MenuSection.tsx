@@ -16,6 +16,7 @@ export const MenuSection = () => {
             display='flex'
             flexDirection='column'
             justifyContent='space-between'
+            height='100%'
         >
             <p>leys {pop}</p>
             <NavMenu />

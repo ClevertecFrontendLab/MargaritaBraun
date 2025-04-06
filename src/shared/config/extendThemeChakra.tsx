@@ -5,6 +5,7 @@ const theme = extendTheme({
         global: {
             'html, body': {
                 backgroundColor: '#FFFFFF',
+                overflow: 'hidden',
             },
             fonts: {
                 body: 'Inter, sans-serif',
