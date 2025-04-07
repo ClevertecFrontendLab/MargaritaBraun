@@ -12,3 +12,8 @@ export { SecondCourses } from './ui/menuIcons/SecondCourses';
 export { SnacksIcon } from './ui/menuIcons/SnacksIcon';
 export { TherapeuticFoodIcon } from './ui/menuIcons/TherapeuticFoodIcon';
 export { VeganIcon } from './ui/menuIcons/VeganIcon';
+export { BsPeopleIcon } from './ui/pageIcons/BsPeopleIcon';
+export { FavoritesIcon } from './ui/pageIcons/FavoritesIcon';
+export { FiltersIcon } from './ui/pageIcons/FiltersIcon';
+export { LikeyIcon } from './ui/pageIcons/LikeyIcon';
+export { WriteRecipeIcon } from './ui/pageIcons/WriteRecipeIcon';

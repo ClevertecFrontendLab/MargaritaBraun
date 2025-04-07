@@ -18,7 +18,7 @@ export type MenuProps = Array<{
     label: string;
     uri: string;
     name: string;
-    icon?: React.ElementType;
+    icon: React.ElementType;
     subitems?: Array<{ label: string; uri: string }>;
 }>;
 
@@ -30,15 +30,19 @@ const navigationData: MenuProps = [
         icon: SaladsIcon,
         subitems: [
             {
-                label: 'Закуски',
+                label: 'Мясные салаты',
                 uri: '#',
             },
             {
-                label: 'Первые блюда',
+                label: 'Рыбные салаты',
                 uri: '#',
             },
             {
-                label: 'Вторые блюда',
+                label: 'Овощные салаты',
+                uri: '#',
+            },
+            {
+                label: 'Теплые салаты',
                 uri: '#',
             },
         ],
@@ -50,15 +54,27 @@ const navigationData: MenuProps = [
         icon: SnacksIcon,
         subitems: [
             {
-                label: 'Закуски',
+                label: 'Мясные закуски',
                 uri: '#',
             },
             {
-                label: 'Первые блюда',
+                label: 'Рыбные закуски',
                 uri: '#',
             },
             {
-                label: 'Вторые блюда',
+                label: 'Овощные закуски',
+                uri: '#',
+            },
+            {
+                label: 'Теплые закуски',
+                uri: '#',
+            },
+            {
+                label: 'Бутерброды',
+                uri: '#',
+            },
+            {
+                label: 'Фастфуд',
                 uri: '#',
             },
         ],
@@ -70,15 +86,23 @@ const navigationData: MenuProps = [
         icon: FirstCourses,
         subitems: [
             {
-                label: 'Закуски',
+                label: 'Мясные супы',
                 uri: '#',
             },
             {
-                label: 'Первые блюда',
+                label: 'Овощные супы',
                 uri: '#',
             },
             {
-                label: 'Вторые блюда',
+                label: 'Бульоны',
+                uri: '#',
+            },
+            {
+                label: 'Холодные супы',
+                uri: '#',
+            },
+            {
+                label: 'Диетические супы',
                 uri: '#',
             },
         ],
@@ -90,15 +114,51 @@ const navigationData: MenuProps = [
         icon: SecondCourses,
         subitems: [
             {
-                label: 'Закуски',
+                label: 'Мясные',
                 uri: '#',
             },
             {
-                label: 'Первые блюда',
+                label: 'Рыбные',
                 uri: '#',
             },
             {
-                label: 'Вторые блюда',
+                label: 'Овощные',
+                uri: '#',
+            },
+            {
+                label: 'Из птицы',
+                uri: '#',
+            },
+            {
+                label: 'Из грибов',
+                uri: '#',
+            },
+            {
+                label: 'Из субпродуктов',
+                uri: '#',
+            },
+            {
+                label: 'На пару',
+                uri: '#',
+            },
+            {
+                label: 'Пельмени, вареники',
+                uri: '#',
+            },
+            {
+                label: 'Мучные гарниры',
+                uri: '#',
+            },
+            {
+                label: 'Овощные гарниры ',
+                uri: '#',
+            },
+            {
+                label: 'Пицца',
+                uri: '#',
+            },
+            {
+                label: 'Суши',
                 uri: '#',
             },
         ],
@@ -110,15 +170,55 @@ const navigationData: MenuProps = [
         icon: DessertsIcon,
         subitems: [
             {
-                label: 'Закуски',
+                label: 'Блины и оладьи',
                 uri: '#',
             },
             {
-                label: 'Первые блюда',
+                label: 'Пироги и пончики',
                 uri: '#',
             },
             {
-                label: 'Вторые блюда',
+                label: 'Торты',
+                uri: '#',
+            },
+            {
+                label: 'Рулеты',
+                uri: '#',
+            },
+            {
+                label: 'Кексы и маффины',
+                uri: '#',
+            },
+            {
+                label: 'Сырники и ватрушки',
+                uri: '#',
+            },
+            {
+                label: 'Из слоеного теста',
+                uri: '#',
+            },
+            {
+                label: 'Из заварного теста',
+                uri: '#',
+            },
+            {
+                label: 'Из дрожжевого теста',
+                uri: '#',
+            },
+            {
+                label: 'Булочки и сдоба',
+                uri: '#',
+            },
+            {
+                label: 'Хлеб',
+                uri: '#',
+            },
+            {
+                label: 'Тесто на пиццу',
+                uri: '#',
+            },
+            {
+                label: 'Кремы',
                 uri: '#',
             },
         ],
@@ -130,15 +230,27 @@ const navigationData: MenuProps = [
         icon: GrilledDishesIcon,
         subitems: [
             {
-                label: 'Закуски',
+                label: 'Говядина',
                 uri: '#',
             },
             {
-                label: 'Первые блюда',
+                label: 'Свинина',
                 uri: '#',
             },
             {
-                label: 'Вторые блюда',
+                label: 'Птица',
+                uri: '#',
+            },
+            {
+                label: 'Рыба',
+                uri: '#',
+            },
+            {
+                label: 'Грибы',
+                uri: '#',
+            },
+            {
+                label: 'Овощи',
                 uri: '#',
             },
         ],
@@ -191,15 +303,35 @@ const navigationData: MenuProps = [
         uri: '#',
         subitems: [
             {
-                label: 'Закуски',
-                uri: '#',
-            },
-            {
                 label: 'Первые блюда',
                 uri: '#',
             },
             {
                 label: 'Вторые блюда',
+                uri: '#',
+            },
+            {
+                label: 'Гарниры',
+                uri: '#',
+            },
+            {
+                label: 'Выпечка',
+                uri: '#',
+            },
+            {
+                label: 'Без глютена',
+                uri: '#',
+            },
+            {
+                label: 'Без сахара',
+                uri: '#',
+            },
+            {
+                label: 'Без аллергенов',
+                uri: '#',
+            },
+            {
+                label: 'Блюда для прикорма',
                 uri: '#',
             },
         ],
@@ -220,6 +352,18 @@ const navigationData: MenuProps = [
             },
             {
                 label: 'Вторые блюда',
+                uri: '#',
+            },
+            {
+                label: 'Без сахара',
+                uri: '#',
+            },
+            {
+                label: 'Без глютена',
+                uri: '#',
+            },
+            {
+                label: 'Без аллергенов',
                 uri: '#',
             },
         ],

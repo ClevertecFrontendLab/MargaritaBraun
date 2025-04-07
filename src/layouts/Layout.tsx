@@ -1,6 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react';
 import { Outlet } from 'react-router';
 
+import { Aside } from '~/widgets/Aside';
 import { Header } from '~/widgets/Header';
 import { MenuSection } from '~/widgets/Menu';
 
@@ -13,17 +14,16 @@ const Layout = () => (
             gridTemplateRows='auto 1fr auto'
             gridTemplateColumns='repeat(12, 1fr)'
             h='100%'
-            gap='6'
-            minHeight='100vh'
+            column-gap='7'
+            row-gap='0'
+            minHeight='100svh'
         >
             <Header />
             <MenuSection />
-            <GridItem pl='2' bg='#d8b4fe' area='main' colSpan={8}>
+            <GridItem as='main' bg='#d8b4fe' area='main' colSpan={8} height='calc(100svh - 80px)'>
                 <Outlet />
             </GridItem>
-            <GridItem pl='2' bg='#99f6e4' area='aside' colSpan={2}>
-                Right
-            </GridItem>
+            <Aside />
         </Grid>
     </>
 );
