@@ -52,6 +52,7 @@ export const CardSlider = ({
                         zIndex='2'
                         top='2'
                         left='2'
+                        color='black'
                     >
                         <CategoryIcon />
                         <Text fontSize='14px' fontWeight='500' lineHeight='20px'>

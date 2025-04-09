@@ -18,7 +18,7 @@ const theme = extendTheme({
                 display: 'none',
             },
             div: {
-                scrollbarColor: '#d4d4d8 transparent',
+                // scrollbarColor: '#d4d4d8 transparent',
                 scrollbarWidth: 'thin',
             },
             body: {

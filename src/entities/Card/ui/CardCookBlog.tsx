@@ -19,6 +19,7 @@ export const CardCookBlog = ({
                     fontWeight='500'
                     fontFamily='Inter'
                     lineHeight={['20px', '28px']}
+                    noOfLines={1}
                 >
                     {titleName}
                 </Heading>

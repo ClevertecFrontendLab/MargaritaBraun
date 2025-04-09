@@ -11,8 +11,8 @@ export const Aside = () => (
         colSpan={1}
         flexDirection='column'
         justifyContent='space-between'
-        height='calc(100svh - 80px)'
-        display={{ base: 'none', md: 'flex' }}
+        height='calc(98svh - 80px)'
+        display={{ base: 'none', lg: 'flex' }}
         maxW='280px'
         minW='200px'
     >

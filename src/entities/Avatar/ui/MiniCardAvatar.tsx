@@ -15,7 +15,7 @@ export const MiniCardAvatar = () => {
             justify='flex-end'
             gap='12px'
             bg='#FFFFD3'
-            display={{ base: 'none', md: 'flex' }}
+            display={{ md: 'none', lg: 'flex' }}
         >
             <Image
                 objectFit='cover'

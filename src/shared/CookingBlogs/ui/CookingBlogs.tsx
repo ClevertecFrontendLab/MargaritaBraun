@@ -12,9 +12,10 @@ export const CookingBlogs = () => (
         justify='space-between'
         gap='6'
         overflow='hidden'
-        pt={[0, 5]}
+        // pt={[0, 5]}
         bg='lime.300'
         borderRadius='4'
+        p={[3, 6]}
     >
         <Flex>
             <Flex justify='space-between' w='100%'>

@@ -15,7 +15,7 @@ export const Breadcrumbs = () => {
     const location = useLocation();
     const pathnames = location.pathname.split('/').filter((x) => x);
     return (
-        <Flex flexGrow='1' pl='112px' display={{ base: 'none', md: 'flex' }}>
+        <Flex flexGrow='1' pl='112px' display={{ base: 'none', lg: 'flex' }}>
             <Breadcrumb>
                 <BreadcrumbItem>
                     <BreadcrumbLink href='/'>{title}</BreadcrumbLink>

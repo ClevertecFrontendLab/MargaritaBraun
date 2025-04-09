@@ -8,15 +8,12 @@ export const FooterMenu = () => {
     const out = 'Выйти';
     return (
         <Flex direction='column' gap='4' p='0px 24px 32px 24px'>
-            {/* <p> </p> */}
             <Text fontSize='12px' lineHeight='16px' color='blackAlpha.400'>
                 {version}
             </Text>
             <Text fontSize='12px' lineHeight='16px' color='blackAlpha.700'>
                 {text}
             </Text>
-            {/* <p> {out}</p> */}
-            {/* <IconButton aria-label={''}>{out}</IconButton> */}
             <Button
                 leftIcon={<SighOutIcon />}
                 variant='ghost'

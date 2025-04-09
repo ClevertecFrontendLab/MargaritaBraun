@@ -8,13 +8,13 @@ export const ProfileNotification = () => {
     const isLiked = 587;
     return (
         <Flex
-            direction={{ base: 'row', md: 'column' }}
+            direction={{ base: 'row', lg: 'column' }}
             justify='flex-end'
             top='102px'
             right='56px'
             gap={{ sm: '0', md: '6', xl: '6', '2xl': '6' }}
             flexGrow='1'
-            position={{ base: 'static', md: 'absolute' }}
+            position={{ md: 'static', lg: 'absolute' }}
         >
             <Flex align='center' gap={[1.5, 2]} px={[3, 4]} py={[0, 1.5]}>
                 <FavoritesIcon />

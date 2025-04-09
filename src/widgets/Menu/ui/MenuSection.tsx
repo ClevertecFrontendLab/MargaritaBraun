@@ -12,9 +12,10 @@ export const MenuSection = () => (
         colSpan={1}
         w='256px'
         as='section'
-        display={['none', 'flex']}
+        // display={{ md:'none', xl: 'flex' }}
+        display={{ base: 'none', lg: 'flex' }}
         flexDirection='column'
-        height='calc(100svh - 80px)'
+        height='calc(98svh - 80px)'
     >
         <NavMenu />
         <FooterMenu />

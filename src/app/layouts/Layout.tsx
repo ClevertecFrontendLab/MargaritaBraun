@@ -27,8 +27,8 @@ const Layout = () => (
                 as='main'
                 bg='#d8b4fe'
                 area='main'
-                colSpan={[12, 10]}
-                height={{ base: 'calc(100svh - 64px - 84px)', md: 'calc(100svh - 80px)' }}
+                colSpan={[12, 12, 12, 12, 10]}
+                height={{ base: 'calc(98svh - 64px - 84px)', md: 'calc(98svh - 80px)' }}
                 overflowX='auto'
                 p={{ base: '0 16px', md: '0 20px', xl: '0 0 0 24px' }}
                 w='100%'
