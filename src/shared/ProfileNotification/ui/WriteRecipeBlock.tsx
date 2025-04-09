@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, IconButton, Text } from '@chakra-ui/react';
 
 import { WriteRecipeIcon } from '~/shared/Icons';
 
@@ -12,7 +12,15 @@ export const WriteRecipeBlock = () => {
             bg='radial-gradient(50% 50% at 50% 50%, rgba(196, 255, 97, 0.70) 0%, rgba(255, 255, 255, 0.00) 100%)'
             p='6'
         >
-            <WriteRecipeIcon />
+            <IconButton
+                size='ld'
+                isRound={true}
+                variant='ghost'
+                aria-label='Write Recipe'
+                icon={<WriteRecipeIcon />}
+                color='white'
+                bg='black'
+            />
             <Text
                 color='blackAlpha.700'
                 fontSize='12px'

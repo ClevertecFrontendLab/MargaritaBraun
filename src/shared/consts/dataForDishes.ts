@@ -9,7 +9,7 @@ export interface dataForDishesProps {
 
 const dataForDishes: dataForDishesProps[] = [
     {
-        imageUrl: './recipeImage/potatoes-stewed.png',
+        imageUrl: '../public/recipeImage/potatoes-stewed.png',
         category: 'Национальные',
         isFavorites: 85,
         isLiked: 152,
@@ -18,7 +18,7 @@ const dataForDishes: dataForDishesProps[] = [
             'Картошка, тушенная с болгарским перцем, фасолью, морковью и луком, -  вариант сытного блюда на каждый день. Фасоль в данном случае заменяет  мясо, делая рагу сытным и питательным. Чтобы сократить время  приготовления, возьмём консервированную фасоль. Блюдо хоть и простое, но в полной мере наполнено ароматами и имеет выразительный вкус за счёт  добавления томатной пасты.',
     },
     {
-        imageUrl: './recipeImage/potato-rolls.png',
+        imageUrl: '../public/recipeImage/potato-rolls.png',
         category: 'Детские блюда',
         isFavorites: 85,
         isLiked: 152,

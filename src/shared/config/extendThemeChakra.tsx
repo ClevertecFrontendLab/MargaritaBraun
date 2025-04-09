@@ -36,6 +36,24 @@ const theme = extendTheme({
         },
     },
     textStyles: {
+        h1: {
+            fontSize: ['20px', '48px'],
+            fontFamily: 'Inter',
+            fontWeight: '700',
+            lineHeight: ['32px', '48px'],
+            fontStyle: 'normal',
+        },
+        h3: {
+            fontSize: ['16px', '20px'],
+            // fontWeight: 'semibold',
+            // lineHeight: '110%',
+            // fontFamily: 'Inter, sans-serif',
+            fontFamily: 'Inter',
+            // fontSize: '20px',
+            fontWeight: '500',
+            lineHeight: '28px',
+            fontStyle: 'normal',
+        },
         textParagraph: {
             fontFamily: 'Inter, sans-serif',
             fontSize: '16px',
@@ -43,10 +61,29 @@ const theme = extendTheme({
             lineHeight: '24px',
             fontStyle: 'normal',
         },
+        titleCard: {
+            fontFamily: 'Inter, sans-serif',
+            fontSize: '20px',
+            fontWeight: '500',
+            lineHeight: '28px',
+            fontStyle: 'normal',
+        },
+        profileNotific: {
+            fontSize: ['12px', '16px'],
+            fontFamily: 'Inter',
+            fontWeight: '600',
+            lineHeight: ['16px', '24px'],
+            fontStyle: 'normal',
+            color: 'lime.600',
+        },
     },
+
     colors: {
         lime: {
             50: '#FFFFD3',
+            150: '#D7FF94',
+            300: '#C4FF61',
+            400: '#B1FF2E',
             600: '#2DB100',
             800: '#134B00',
         },

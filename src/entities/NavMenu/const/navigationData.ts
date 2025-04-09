@@ -16,242 +16,242 @@ import {
 
 export type MenuProps = Array<{
     label: string;
-    uri: string;
+    url: string;
     name: string;
     icon: React.ElementType;
-    subitems?: Array<{ label: string; uri: string }>;
+    subitems?: Array<{ label: string; url: string }>;
 }>;
 
 const navigationData: MenuProps = [
     {
         label: 'Салаты',
         name: 'Salads',
-        uri: 'vegan-cuisine',
+        url: 'salads',
         icon: SaladsIcon,
         subitems: [
             {
                 label: 'Мясные салаты',
-                uri: '#',
+                url: '/salads/meat',
             },
             {
                 label: 'Рыбные салаты',
-                uri: '#',
+                url: '/salads/fish',
             },
             {
                 label: 'Овощные салаты',
-                uri: '#',
+                url: '/salads/veggie',
             },
             {
                 label: 'Теплые салаты',
-                uri: '#',
+                url: '/salads/warm',
             },
         ],
     },
     {
         label: 'Закуски',
         name: 'Snacks',
-        uri: 'vegan-cuisine',
+        url: 'snacks',
         icon: SnacksIcon,
         subitems: [
             {
                 label: 'Мясные закуски',
-                uri: '#',
+                url: '/snacks/meat',
             },
             {
                 label: 'Рыбные закуски',
-                uri: '#',
+                url: '/snacks/fish',
             },
             {
                 label: 'Овощные закуски',
-                uri: '#',
+                url: '/snacks/vegetable',
             },
             {
                 label: 'Теплые закуски',
-                uri: '#',
+                url: '/snacks/warm',
             },
             {
                 label: 'Бутерброды',
-                uri: '#',
+                url: '/snacks/sandwiches',
             },
             {
                 label: 'Фастфуд',
-                uri: '#',
+                url: '/snacks/fastfood',
             },
         ],
     },
     {
         label: 'Первые блюда',
         name: 'First courses',
-        uri: '#',
+        url: 'first-courses',
         icon: FirstCourses,
         subitems: [
             {
                 label: 'Мясные супы',
-                uri: '#',
+                url: '/first-courses/meat-soup',
             },
             {
                 label: 'Овощные супы',
-                uri: '#',
+                url: '/first-courses/vegetable-soup',
             },
             {
                 label: 'Бульоны',
-                uri: '#',
+                url: '/first-courses/broths',
             },
             {
                 label: 'Холодные супы',
-                uri: '#',
+                url: '/first-courses/cold-soups',
             },
             {
                 label: 'Диетические супы',
-                uri: '#',
+                url: '/first-courses/diet-soups',
             },
         ],
     },
     {
         label: 'Вторые блюда',
         name: 'Second courses',
-        uri: '#',
+        url: 'second-courses',
         icon: SecondCourses,
         subitems: [
             {
                 label: 'Мясные',
-                uri: '#',
+                url: '/second-courses/meat',
             },
             {
                 label: 'Рыбные',
-                uri: '#',
+                url: '/second-courses/fish',
             },
             {
                 label: 'Овощные',
-                uri: '#',
+                url: '/second-courses/veggie',
             },
             {
                 label: 'Из птицы',
-                uri: '#',
+                url: '/second-courses/chicken',
             },
             {
                 label: 'Из грибов',
-                uri: '#',
+                url: '/second-courses/mushrooms',
             },
             {
                 label: 'Из субпродуктов',
-                uri: '#',
+                url: '/second-courses/offal',
             },
             {
                 label: 'На пару',
-                uri: '#',
+                url: '/second-courses/steamed',
             },
             {
                 label: 'Пельмени, вареники',
-                uri: '#',
+                url: '/second-courses/dumplings',
             },
             {
                 label: 'Мучные гарниры',
-                uri: '#',
+                url: '/second-courses/flour-side-dishes',
             },
             {
                 label: 'Овощные гарниры ',
-                uri: '#',
+                url: '/second-courses/veggie-side-dishes',
             },
             {
                 label: 'Пицца',
-                uri: '#',
+                url: '/second-courses/pizza',
             },
             {
                 label: 'Суши',
-                uri: '#',
+                url: '/second-courses/sushi',
             },
         ],
     },
     {
         label: 'Десерты, выпечка',
         name: 'Desserts, pastries',
-        uri: '#',
+        url: 'desserts-pastries',
         icon: DessertsIcon,
         subitems: [
             {
                 label: 'Блины и оладьи',
-                uri: '#',
+                url: '/desserts-pastries/pancakes',
             },
             {
                 label: 'Пироги и пончики',
-                uri: '#',
+                url: '/desserts-pastries/pies-donuts',
             },
             {
                 label: 'Торты',
-                uri: '#',
+                url: '/desserts-pastries/cakes',
             },
             {
                 label: 'Рулеты',
-                uri: '#',
+                url: '/desserts-pastries/rolls',
             },
             {
                 label: 'Кексы и маффины',
-                uri: '#',
+                url: '/desserts-pastries/muffins',
             },
             {
                 label: 'Сырники и ватрушки',
-                uri: '#',
+                url: '/desserts-pastries/cottage-cheese-pastries',
             },
             {
                 label: 'Из слоеного теста',
-                uri: '#',
+                url: '/desserts-pastries/puff-pastry',
             },
             {
                 label: 'Из заварного теста',
-                uri: '#',
+                url: '/desserts-pastries/choux-pastry',
             },
             {
                 label: 'Из дрожжевого теста',
-                uri: '#',
+                url: '/desserts-pastries/yeast-dough',
             },
             {
                 label: 'Булочки и сдоба',
-                uri: '#',
+                url: '/desserts-pastries/buns',
             },
             {
                 label: 'Хлеб',
-                uri: '#',
+                url: '/desserts-pastries/bread',
             },
             {
                 label: 'Тесто на пиццу',
-                uri: '#',
+                url: '/desserts-pastries/pizza-dough',
             },
             {
                 label: 'Кремы',
-                uri: '#',
+                url: '/desserts-pastries/creams',
             },
         ],
     },
     {
         label: 'Блюда на гриле',
         name: 'Grilled dishes',
-        uri: 'juiciest',
+        url: 'grilled-dishes',
         icon: GrilledDishesIcon,
         subitems: [
             {
                 label: 'Говядина',
-                uri: '#',
+                url: '/grilled-dishes/beef',
             },
             {
                 label: 'Свинина',
-                uri: '#',
+                url: '/grilled-dishes/pork',
             },
             {
                 label: 'Птица',
-                uri: '#',
+                url: '/grilled-dishes/chicken',
             },
             {
                 label: 'Рыба',
-                uri: '#',
+                url: '/grilled-dishes/fish',
             },
             {
                 label: 'Грибы',
-                uri: '#',
+                url: '/grilled-dishes/mushrooms',
             },
             {
                 label: 'Овощи',
-                uri: '#',
+                url: '/grilled-dishes/vegetables',
             },
         ],
     },
@@ -259,80 +259,79 @@ const navigationData: MenuProps = [
         label: 'Веганская кухня',
         name: 'Vegan cuisine',
         icon: VeganIcon,
-        uri: 'vegan-cuisine',
-        // data-test-id='vegan-cuisine'
+        url: 'vegan-cuisine',
         subitems: [
             {
                 label: 'Закуски',
-                uri: 'vegan-cuisine',
+                url: '/vegan-cuisine/snacks',
             },
             {
                 label: 'Первые блюда',
-                uri: '#',
+                url: '/vegan-cuisine/first-courses',
             },
             {
                 label: 'Вторые блюда',
-                uri: '#',
+                url: '/vegan-cuisine/main-courses',
             },
             {
                 label: 'Гарниры',
-                uri: '#',
+                url: '/vegan-cuisine/side-dishes',
             },
             {
                 label: 'Десерты',
-                uri: '#',
+                url: '/vegan-cuisine/desserts',
             },
             {
                 label: 'Выпечка',
-                uri: '#',
+                url: '/vegan-cuisine/baking',
             },
             {
                 label: 'Сыроедческие блюда',
-                uri: '#',
+                url: '/vegan-cuisine/raw-dishes',
             },
             {
                 label: 'Напитки',
-                uri: '#',
+                url: '/vegan-cuisine/drinks',
             },
         ],
     },
     {
         label: 'Детские блюда',
         name: 'Childrens meals',
+        url: 'childrens-meals',
         icon: ChildrensMealsIcon,
-        uri: '#',
         subitems: [
             {
                 label: 'Первые блюда',
-                uri: '#',
+                url: '/childrens-meals/first-courses',
             },
             {
                 label: 'Вторые блюда',
-                uri: '#',
+                url: '/childrens-meals/second-courses',
             },
             {
                 label: 'Гарниры',
-                uri: '#',
+                url: '/childrens-meals/side-dishes',
             },
             {
                 label: 'Выпечка',
-                uri: '#',
+                url: '/childrens-meals/baking',
             },
             {
                 label: 'Без глютена',
-                uri: '#',
+                url: '/childrens-meals/gluten-free',
             },
             {
                 label: 'Без сахара',
-                uri: '#',
+                url: '/childrens-meals/sugar-free',
             },
             {
                 label: 'Без аллергенов',
-                uri: '#',
+                url: '/childrens-meals/allergen-free',
             },
             {
                 label: 'Блюда для прикорма',
-                uri: '#',
+                url: '/childrens-meals/first-food',
             },
         ],
     },
@@ -340,31 +339,75 @@ const navigationData: MenuProps = [
         label: 'Лечебное питание',
         name: 'Therapeutic food',
         icon: TherapeuticFoodIcon,
-        uri: 'vegan-cuisine',
+        url: 'therapeutic-food',
         subitems: [
             {
-                label: 'Закуски',
-                uri: '#',
+                label: 'Детская диета',
+                url: '/therapeutic-food/childrens-diet',
             },
             {
-                label: 'Первые блюда',
-                uri: '#',
+                label: 'Диета №1',
+                url: '/therapeutic-food/diet-1',
             },
             {
-                label: 'Вторые блюда',
-                uri: '#',
+                label: 'Диета №2',
+                url: '/therapeutic-food/diet-2',
             },
             {
-                label: 'Без сахара',
-                uri: '#',
+                label: 'Диета №3',
+                url: '/therapeutic-food/diet-3',
+            },
+            {
+                label: 'Диета №4',
+                url: '/therapeutic-food/diet-4',
+            },
+            {
+                label: 'Диета №5',
+                url: '/therapeutic-food/diet-5',
+            },
+            {
+                label: 'Диета №6',
+                url: '/therapeutic-food/diet-6',
+            },
+            {
+                label: 'Диета №7',
+                url: '/therapeutic-food/diet-7',
+            },
+            {
+                label: 'Диета №8',
+                url: '/therapeutic-food/diet-8',
+            },
+            {
+                label: 'Диета №9',
+                url: '/therapeutic-food/diet-9',
+            },
+            {
+                label: 'Диета №10',
+                url: '/therapeutic-food/diet-10',
+            },
+            {
+                label: 'Диета №11',
+                url: '/therapeutic-food/diet-11',
+            },
+            {
+                label: 'Диета №12',
+                url: '/therapeutic-food/diet-12',
+            },
+            {
+                label: 'Диета №13',
+                url: '/therapeutic-food/diet-13',
+            },
+            {
+                label: 'Диета №14',
+                url: '/therapeutic-food/diet-14',
             },
             {
                 label: 'Без глютена',
-                uri: '#',
+                url: '/therapeutic-food/gluten-free',
             },
             {
                 label: 'Без аллергенов',
-                uri: '#',
+                url: '/therapeutic-food/allergen-free',
             },
         ],
     },
@@ -372,19 +415,63 @@ const navigationData: MenuProps = [
         label: 'Национальные',
         name: 'National',
         icon: NationalIcon,
-        uri: 'vegan-cuisine',
+        url: 'national-cuisines',
         subitems: [
             {
-                label: 'Закуски',
-                uri: '#',
+                label: 'Американская кухня',
+                url: '/national-cuisines/american',
             },
             {
-                label: 'Первые блюда',
-                uri: '#',
+                label: 'Армянская кухня',
+                url: '/national-cuisines/armenian',
             },
             {
-                label: 'Вторые блюда',
-                uri: '#',
+                label: 'Греческая кухня',
+                url: '/national-cuisines/greek',
+            },
+            {
+                label: 'Грузинская кухня',
+                url: '/national-cuisines/georgian',
+            },
+            {
+                label: 'Итальянская кухня',
+                url: '/national-cuisines/italian',
+            },
+            {
+                label: 'Китайская кухня',
+                url: '/national-cuisines/chinese',
+            },
+            {
+                label: 'Мексиканская кухня',
+                url: '/national-cuisines/mexican',
+            },
+            {
+                label: 'Паназиатская кухня',
+                url: '/national-cuisines/pan-asian',
+            },
+            {
+                label: 'Русская кухня',
+                url: '/national-cuisines/russian',
+            },
+            {
+                label: 'Турецкая кухня',
+                url: '/national-cuisines/turkish',
+            },
+            {
+                label: 'Французская кухня',
+                url: '/national-cuisines/french',
+            },
+            {
+                label: 'Шведская кухня',
+                url: '/national-cuisines/swedish',
+            },
+            {
+                label: 'Японская кухня',
+                url: '/national-cuisines/japanese',
+            },
+            {
+                label: 'Другая кухня',
+                url: '/national-cuisines/other',
             },
         ],
     },
@@ -392,19 +479,19 @@ const navigationData: MenuProps = [
         label: 'Соусы',
         name: 'Sauces',
         icon: SaucesIcon,
-        uri: 'vegan-cuisine',
+        url: 'sauces',
         subitems: [
             {
-                label: 'Закуски',
-                uri: '#',
+                label: 'Соусы мясные',
+                url: '/sauces/meat-sauces',
             },
             {
-                label: 'Первые блюда',
-                uri: '#',
+                label: 'Соусы сырные',
+                url: '/sauces/cheese-sauces',
             },
             {
-                label: 'Вторые блюда',
-                uri: '#',
+                label: 'Маринады',
+                url: '/sauces/marinades',
             },
         ],
     },
@@ -412,19 +499,39 @@ const navigationData: MenuProps = [
         label: 'Напитки',
         name: 'Beverages',
         icon: BeveragesIcon,
-        uri: 'vegan-cuisine',
+        url: 'beverages',
         subitems: [
             {
-                label: 'Закуски',
-                uri: '#',
+                label: 'Соки и фреши',
+                url: '/beverages/juices',
             },
             {
-                label: 'Первые блюда',
-                uri: '#',
+                label: 'Смузи',
+                url: '/beverages/smoothies',
             },
             {
-                label: 'Вторые блюда',
-                uri: '#',
+                label: 'Компоты',
+                url: '/beverages/compotes',
+            },
+            {
+                label: 'Кисели',
+                url: '/beverages/jellies',
+            },
+            {
+                label: 'Кофе',
+                url: '/beverages/coffee',
+            },
+            {
+                label: 'Квас',
+                url: '/beverages/kvas',
+            },
+            {
+                label: 'Коктейли',
+                url: '/beverages/cocktails',
+            },
+            {
+                label: 'Алкогольные',
+                url: '/beverages/alcoholic',
             },
         ],
     },
@@ -432,19 +539,39 @@ const navigationData: MenuProps = [
         label: 'Заготовки',
         name: 'Blanks',
         icon: BlanksIcon,
-        uri: 'vegan-cuisine',
+        url: 'blanks',
         subitems: [
             {
-                label: 'Закуски',
-                uri: '#',
+                label: 'Мясные заготовки',
+                url: '/blanks/meat-blanks',
             },
             {
-                label: 'Первые блюда',
-                uri: '#',
+                label: 'Рыбные заготовки',
+                url: '/blanks/fish-blanks',
             },
             {
-                label: 'Вторые блюда',
-                uri: '#',
+                label: 'Из огурцов',
+                url: '/blanks/cucumber-blanks',
+            },
+            {
+                label: 'Из томатов',
+                url: '/blanks/tomato-blanks',
+            },
+            {
+                label: 'Из грибов',
+                url: '/blanks/mushroom-blanks',
+            },
+            {
+                label: 'Овощные заготовки',
+                url: '/blanks/veggie-blanks',
+            },
+            {
+                label: 'Салаты, икра',
+                url: '/blanks/salads-caviar',
+            },
+            {
+                label: 'Из фруктов и ягод',
+                url: '/blanks/fruit-berry-blanks',
             },
         ],
     },

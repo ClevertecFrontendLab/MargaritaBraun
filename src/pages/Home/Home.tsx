@@ -1,18 +1,24 @@
-import { PageHeaderWithFilters, RecipesSections } from '~/widgets/Content';
-// import { RecipesSections } from "~/widgets/Content";
+import { Flex } from '@chakra-ui/react';
+
+import { KitchenSection } from '~/entities/KitchenSection';
+import { SliderNewRecipes } from '~/entities/Slider';
+import { CookingBlogs } from '~/shared/CookingBlogs';
+import { HomeJuiciest, PageHeaderWithFilters } from '~/widgets/Content';
 import { PageHeaderWithFiltersProps } from '~/widgets/Content/ui/PageHeaderWithFilters';
-// import { RecipesSections } from "~/widgets/Content/ui/RecipesSections";
-// const title = 'Приятного аппетита';
+
 const dataForPage: PageHeaderWithFiltersProps = {
-    title: 'Приятного аппетита',
-    // subtitle: 'Интересны не только убеждённым вегетарианцам, но и тем, кто хочет  попробовать вегетарианскую диету и готовить вкусные  вегетарианские блюда.'
+    title: 'Приятного аппетита!',
 };
 
 const Home = () => (
     <>
         <PageHeaderWithFilters {...dataForPage}></PageHeaderWithFilters>
-        {/* <NavigationTabs category='Веганская кухня'></NavigationTabs> */}
-        <RecipesSections></RecipesSections>
+        <Flex direction='column' gap='10'>
+            <SliderNewRecipes />
+            <HomeJuiciest />
+            <CookingBlogs />
+            <KitchenSection />
+        </Flex>
     </>
 );
 export default Home;

@@ -2,20 +2,21 @@ import { GridItem } from '@chakra-ui/react';
 
 import { NavMenu } from '~/entities/NavMenu';
 
-import { Block } from './Block';
+import { FooterMenu } from './FooterMenu';
 
 export const MenuSection = () => (
     <GridItem
-        pl='2'
+        pt='6'
         bg='#f9a8d4'
         area='nav-menu'
-        colSpan={3}
+        colSpan={1}
+        w='256px'
         as='section'
-        display='flex'
+        display={['none', 'flex']}
         flexDirection='column'
         height='calc(100svh - 80px)'
     >
         <NavMenu />
-        <Block />
+        <FooterMenu />
     </GridItem>
 );

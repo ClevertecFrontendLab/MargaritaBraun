@@ -1,6 +1,6 @@
-import { GridItem } from '@chakra-ui/react';
+import { Box, GridItem } from '@chakra-ui/react';
 
-import { ProfileNotification, WriteRecipeBlock } from '~/shared/ProfileNotification';
+import { WriteRecipeBlock } from '~/shared/ProfileNotification';
 
 export const Aside = () => (
     <GridItem
@@ -8,13 +8,15 @@ export const Aside = () => (
         p='2'
         bg='#99f6e4'
         area='aside'
-        colSpan={2}
+        colSpan={1}
         flexDirection='column'
         justifyContent='space-between'
         height='calc(100svh - 80px)'
         display={{ base: 'none', md: 'flex' }}
+        maxW='280px'
+        minW='200px'
     >
-        <ProfileNotification></ProfileNotification>
+        <Box flexGrow='1' position='relative' />
         <WriteRecipeBlock></WriteRecipeBlock>
     </GridItem>
 );

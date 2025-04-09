@@ -25,7 +25,14 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
     return (
         <Flex direction='column' align='center' gap='8' py='8'>
             <Flex gap='3' direction='column' align='center'>
-                <Heading>{title}</Heading>
+                <Heading
+                    as='h1'
+                    fontFamily='Inter'
+                    fontSize={{ base: '24px', md: '48px' }}
+                    lineHeight={{ base: '32px', md: '48px' }}
+                >
+                    {title}
+                </Heading>
                 {subtitle && (
                     <Text
                         textStyle='textParagraph'
@@ -37,22 +44,19 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     </Text>
                 )}
             </Flex>
-            {/* <p>pop {text}</p> */}
             <Flex gap='3'>
                 <IconButton
                     variant='outline'
-                    // colorScheme='teal'
                     bg='transparent'
                     color='black'
-                    aria-label='Call Sage'
-                    fontSize='20px'
+                    aria-label='Filters Button'
+                    colorScheme='blackAlpha'
+                    size='lg'
                     icon={<FiltersIcon />}
+                    borderColor='blackAlpha.600'
                 />
-                <InputGroup w='458px'>
-                    {/* <InputLeftElement pointerEvents='none' color='gray.300' fontSize='1.2em'>
-                    $
-                </InputLeftElement> */}
-                    <Input placeholder={placeholderForInput} />
+                <InputGroup w='458px' size='lg' colorScheme='grey' borderColor='blackAlpha.600'>
+                    <Input placeholder={placeholderForInput} _placeholder={{ color: 'lime.800' }} />
                     <InputRightElement>
                         <SearchIcon color='black' />
                     </InputRightElement>
@@ -78,7 +82,7 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     </FormLabel>
                     <Switch id='exclude-my-allergens' />
                 </FormControl>
-                <Select placeholder='Выберите из списка...'>
+                <Select placeholder='Выберите из списка...' size='lg'>
                     <option value='option1'>Option 1</option>
                     <option value='option2'>Option 2</option>
                     <option value='option3'>Option 3</option>

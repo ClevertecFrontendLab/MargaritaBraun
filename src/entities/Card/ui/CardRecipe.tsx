@@ -1,4 +1,5 @@
 import {
+    Box,
     Button,
     Card,
     CardBody,
@@ -27,16 +28,26 @@ export const CardRecipe = ({
     const categoryData = navigationData.filter((item) => item.label === category);
     const CategoryIcon = categoryData[0].icon;
     return (
-        <Card direction='row' variant='outline' flexBasis={{ md: '100%', xl: '46%' }}>
-            <Flex flexBasis='47%' flexShrink='1' overflow='hidden' position='relative'>
-                <Image objectFit='cover' w='100%' src={imageUrl} alt={title} />
+        <Card
+            direction='row'
+            variant='outline'
+            flexBasis={{ base: '45%', sm: '45%', md: '45%', xl: '100%', '2xl': '49%' }}
+        >
+            <Flex flexBasis='45%' flexShrink='2' overflow='hidden' position='relative'>
+                <Image
+                    objectFit='cover'
+                    w='100%'
+                    src={imageUrl}
+                    alt={title}
+                    borderLeftRadius='8px'
+                />
             </Flex>
             <Flex
                 direction='column'
                 justify='space-between'
                 padding='20px 24px'
                 gap='6'
-                flex='1 1 50%'
+                flex='1 2 50%'
             >
                 <CardHeader display='flex' justifyContent='space-between' p='0'>
                     <Flex
@@ -51,10 +62,10 @@ export const CardRecipe = ({
                         top='2'
                         left='2'
                     >
+                        <CategoryIcon />
                         <Text fontSize='14px' fontWeight='500' lineHeight='20px'>
                             {category}
                         </Text>
-                        <CategoryIcon />
                     </Flex>
                     <Flex>
                         <Flex align='center' gap='2'>
@@ -87,10 +98,9 @@ export const CardRecipe = ({
                     <Heading fontSize='20px' as='h3' noOfLines={[2, 2, 1]} lineHeight='7'>
                         {title}
                     </Heading>
-
-                    <Text noOfLines={[1, 3]} h={{ base: 'auto', sm: '0', md: 'auto' }}>
-                        {description}
-                    </Text>
+                    <Box display={{ base: 'none', md: 'block' }}>
+                        <Text noOfLines={3}>{description}</Text>
+                    </Box>
                 </CardBody>
 
                 <CardFooter display='flex' gap='3' justify='flex-end' p='0'>

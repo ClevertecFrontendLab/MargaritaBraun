@@ -19,7 +19,7 @@ export const dataForSlider: dataForSliderProps[] = [
     },
     {
         imageUrl: './slider/cabbage-patties.png',
-        category: 'Веганские блюда',
+        category: 'Веганская кухня',
         isFavorites: 2,
         isLiked: 1,
         title: 'Капустные котлеты',
