@@ -1,3 +1,19 @@
+/* #root {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+} */
+
+/* #root {
+    display: flex;
+    flex-direction: column;
+    /* height: 99.9svh;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+    flex: 2 2 100%;
+} */
+
 /* *,
 *::before,
 *::after {

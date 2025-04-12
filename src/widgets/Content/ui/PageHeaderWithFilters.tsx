@@ -23,13 +23,14 @@ export interface PageHeaderWithFiltersProps {
 export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFiltersProps) => {
     const placeholderForInput = 'Название или ингредиент...';
     return (
-        <Flex direction='column' align='center' gap='8' py='8'>
+        <Flex direction='column' align='center' gap='8' py='8' flex='1 1 auto'>
             <Flex gap='3' direction='column' align='center'>
                 <Heading
                     as='h1'
                     fontFamily='Inter'
                     fontSize={{ base: '24px', md: '48px' }}
                     lineHeight={{ base: '32px', md: '48px' }}
+                    textAlign='center'
                 >
                     {title}
                 </Heading>
@@ -37,32 +38,38 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     <Text
                         textStyle='textParagraph'
                         color='blackAlpha.600'
-                        maxW='696px'
+                        // maxW='696px'
                         textAlign='center'
                     >
                         {subtitle}
                     </Text>
                 )}
             </Flex>
-            <Flex gap='3'>
+            <Flex gap='3' align='center' justify='center'>
                 <IconButton
                     variant='outline'
                     bg='transparent'
                     color='black'
                     aria-label='Filters Button'
+                    p={['0 10px', '0 10px', '0 12px']}
                     colorScheme='blackAlpha'
-                    size='lg'
+                    size={['sm', 'lg']}
                     icon={<FiltersIcon />}
                     borderColor='blackAlpha.600'
                 />
-                <InputGroup w='458px' size='lg' colorScheme='grey' borderColor='blackAlpha.600'>
+                <InputGroup
+                    size={['sm', 'lg']}
+                    colorScheme='grey'
+                    borderColor='blackAlpha.600'
+                    maxW={['100%', null, null, '458px']}
+                >
                     <Input placeholder={placeholderForInput} _placeholder={{ color: 'lime.800' }} />
                     <InputRightElement>
                         <SearchIcon color='black' />
                     </InputRightElement>
                 </InputGroup>
             </Flex>
-            <Flex gap='4' mt='-16px'>
+            <Flex gap='4' display={['none', 'flex']}>
                 <FormControl
                     display='flex'
                     alignItems='center'

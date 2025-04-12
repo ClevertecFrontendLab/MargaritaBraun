@@ -15,10 +15,9 @@ export const CardSlider = ({
     const categoryData = navigationData.filter((item) => item.label === category);
     const CategoryIcon = categoryData[0].icon;
     return (
-        <Card variant='outline' w='100%' flexBasis='100%'>
+        <Card variant='outline' maxW={{ base: '158px', lg: '279px', xl: '322px' }}>
             <Image
-                objectFit='cover'
-                w='100%'
+                objectFit='contain'
                 src={imageUrl}
                 alt={title}
                 borderTopRadius='8px'
@@ -27,8 +26,8 @@ export const CardSlider = ({
             <Flex
                 direction='column'
                 justify='space-between'
-                padding='16px 24px 20px 24px'
-                gap='6'
+                p={{ base: '8px 8px 4px 8px', lg: '16px 24px 20px 24px' }}
+                gap={{ base: '2', lg: '6' }}
                 flex='1 1 43%'
             >
                 <CardBody p='0' display='flex' gap='2' flexDirection='column'>
@@ -46,7 +45,7 @@ export const CardSlider = ({
                         borderRadius='md'
                         px='2'
                         py='0.5'
-                        align-items='center'
+                        align='center'
                         gap='2'
                         position={{ base: 'absolute', md: 'static', xl: 'static' }}
                         zIndex='2'
@@ -55,13 +54,13 @@ export const CardSlider = ({
                         color='black'
                     >
                         <CategoryIcon />
-                        <Text fontSize='14px' fontWeight='500' lineHeight='20px'>
+                        <Text fontSize='14px' fontWeight='500' lineHeight='20px' noOfLines={1}>
                             {category}
                         </Text>
                     </Flex>
-                    <Flex>
+                    <Flex gap={{ base: '2' }}>
                         {isFavorites && (
-                            <Flex align='center' gap='2'>
+                            <Flex align='center' gap={{ base: '1.5', md: '2' }}>
                                 <FavoritesIcon />
 
                                 <Text

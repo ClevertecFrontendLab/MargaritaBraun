@@ -31,9 +31,10 @@ export const CardRecipe = ({
         <Card
             direction='row'
             variant='outline'
-            flexBasis={{ base: '45%', sm: '45%', md: '45%', xl: '100%', '2xl': '49%' }}
+            // minH='128px'
+            // flexBasis={{ base: '100%', sm: '100%', md: '100%', xl: '100%', '2xl': '49%' }}
         >
-            <Flex flexBasis='45%' flexShrink='2' overflow='hidden' position='relative'>
+            <Flex flexBasis='55%' flexShrink='2' overflow='hidden' position='relative'>
                 <Image
                     objectFit='cover'
                     w='100%'
@@ -45,9 +46,14 @@ export const CardRecipe = ({
             <Flex
                 direction='column'
                 justify='space-between'
-                padding='20px 24px'
-                gap='6'
-                flex='1 2 50%'
+                // padding='20px 24px'
+                // padding={{ base: '8px 8px 4px 8px', sm: '8px 8px 4px 8px', td: '20px 24px', '2xl': '20px 24px' }}
+                // gap='6'
+                padding={['8px 8px 4px 8px', '20px 24px']}
+                gap={{ base: '0', sm: '0', '2xl': '6' }}
+                // flex='1 2 50%'
+                // flex={{ base: '1 0 0', '2xl': '1 2 50%' }}
+                flex='1 0 0'
             >
                 <CardHeader display='flex' justifyContent='space-between' p='0'>
                     <Flex
@@ -55,15 +61,27 @@ export const CardRecipe = ({
                         borderRadius='md'
                         px='2'
                         py='0.5'
-                        align-items='center'
-                        gap='2'
-                        position={{ base: 'absolute', md: 'static', xl: 'static' }}
+                        align='center'
+                        gap={['0', null, '2']}
+                        // position={{ base: 'absolute', md: 'static', xl: 'static' }}
+                        // position={['static', null, null, 'absolute']}
+                        // position={['absolute', 'absolute', 'absolute', 'static']}
+                        position={['absolute', 'absolute', 'static']}
                         zIndex='2'
                         top='2'
                         left='2'
                     >
-                        <CategoryIcon />
-                        <Text fontSize='14px' fontWeight='500' lineHeight='20px'>
+                        <CategoryIcon
+                            // boxSize={{ base: '14px' }}
+                            w='30px'
+                            h='30px'
+                        />
+                        <Text
+                            fontSize='14px'
+                            fontWeight='500'
+                            lineHeight='20px'
+                            whiteSpace='nowrap'
+                        >
                             {category}
                         </Text>
                     </Flex>
@@ -94,23 +112,35 @@ export const CardRecipe = ({
                         </Flex>
                     </Flex>
                 </CardHeader>
-                <CardBody p='0' display='flex' gap='3' flexDirection='column'>
-                    <Heading fontSize='20px' as='h3' noOfLines={[2, 2, 1]} lineHeight='7'>
+                <CardBody p='0' display='flex' gap='3' flexDirection='column' minH='68px'>
+                    <Heading
+                        fontSize={['16px', null, '20px']}
+                        as='h3'
+                        noOfLines={[2, 2, 1]}
+                        lineHeight={['5', null, '7']}
+                    >
                         {title}
                     </Heading>
-                    <Box display={{ base: 'none', md: 'block' }}>
+                    <Box display={{ base: 'none', lg: 'block' }}>
                         <Text noOfLines={3}>{description}</Text>
                     </Box>
                 </CardBody>
 
                 <CardFooter display='flex' gap='3' justify='flex-end' p='0'>
-                    <Button variant='outline' display='flex' gap='2'>
+                    <Button variant='outline' display='flex' gap='2' size={['xs', null, 'sm']}>
                         <FavoritesIcon />
                         <Text as='span' display={{ base: 'none', md: 'block' }}>
                             {btnSave}
                         </Text>
                     </Button>
-                    <Button variant='solid' bg='black' color='white' colorScheme='blackAlpha'>
+                    {/* size: xs */}
+                    <Button
+                        variant='solid'
+                        bg='black'
+                        color='white'
+                        colorScheme='blackAlpha'
+                        size={['xs', null, 'sm']}
+                    >
                         {btnCooking}
                     </Button>
                 </CardFooter>

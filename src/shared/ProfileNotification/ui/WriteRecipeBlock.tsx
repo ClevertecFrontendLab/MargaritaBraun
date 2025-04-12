@@ -11,6 +11,8 @@ export const WriteRecipeBlock = () => {
             align='center'
             bg='radial-gradient(50% 50% at 50% 50%, rgba(196, 255, 97, 0.70) 0%, rgba(255, 255, 255, 0.00) 100%)'
             p='6'
+            position='fixed'
+            bottom='52px'
         >
             <IconButton
                 size='ld'

@@ -1,23 +1,24 @@
-import { GridItem } from '@chakra-ui/react';
+import { Flex, Hide } from '@chakra-ui/react';
 
 import { NavMenu } from '~/entities/NavMenu';
 
 import { FooterMenu } from './FooterMenu';
 
 export const MenuSection = () => (
-    <GridItem
-        pt='6'
-        bg='#f9a8d4'
-        area='nav-menu'
-        colSpan={1}
-        w='256px'
-        as='section'
-        // display={{ md:'none', xl: 'flex' }}
-        display={{ base: 'none', lg: 'flex' }}
-        flexDirection='column'
-        height='calc(98svh - 80px)'
-    >
-        <NavMenu />
-        <FooterMenu />
-    </GridItem>
+    <Hide below='lg'>
+        <Flex
+            flexDirection='column'
+            as='nav'
+            pt='6'
+            // height='calc(100vh - 80px)'
+            // height='calc(100% - 80px)'
+            height='100%'
+            bg='#f9a8d4'
+            flex='1 1 auto'
+            justify='space-between'
+        >
+            <NavMenu />
+            <FooterMenu />
+        </Flex>
+    </Hide>
 );

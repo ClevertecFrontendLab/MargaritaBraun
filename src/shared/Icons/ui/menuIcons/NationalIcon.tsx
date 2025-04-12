@@ -1,7 +1,7 @@
 import { Icon } from '@chakra-ui/react';
 
 export const NationalIcon = () => (
-    <Icon viewBox='0 0 24 24' fill='none' w={6} h={6}>
+    <Icon viewBox='0 0 24 24' fill='none' boxSize={{ base: '16px', md: '24px' }}>
         <rect width='24' height='24' fill='url(#pattern0_5002_136911)' />
         <defs>
             <pattern

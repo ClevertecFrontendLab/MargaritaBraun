@@ -16,14 +16,8 @@ import { AccordionIcon } from '~/shared/Icons';
 import navigationData from '../const/navigationData';
 
 export const NavMenu = () => (
-    <Flex
-        overflow='auto'
-        direction='column'
-        flex='1 1 auto'
-        height='100%'
-        padding='10px 16px 10px 10px'
-    >
-        <Accordion allowToggle overflow='auto' height='100%' p='0'>
+    <Flex direction='column' flex='1 1 auto' overflow='hidden' padding='10px 16px 10px 10px'>
+        <Accordion allowToggle height='100%' p='0'>
             {navigationData.map((item) => (
                 <AccordionItem key={item.label} border='none'>
                     {({ isExpanded }) => (
@@ -52,7 +46,12 @@ export const NavMenu = () => (
                                     gap='3'
                                     whiteSpace='nowrap'
                                 >
-                                    {item.icon && <item.icon />}
+                                    {item.icon && (
+                                        <item.icon
+                                            boxSize={{ base: '12px', md: '24px', lg: '24px' }}
+                                            objectFit='cover'
+                                        />
+                                    )}
                                     <Box w='100%' textAlign='left'>
                                         {item.label}
                                     </Box>

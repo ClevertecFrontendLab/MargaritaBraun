@@ -1,7 +1,7 @@
 import { Icon } from '@chakra-ui/react';
 
 export const FirstCourses = () => (
-    <Icon viewBox='0 0 24 24' fill='none' w={6} h={6}>
+    <Icon viewBox='0 0 24 24' fill='none' boxSize={{ base: '16px', md: '24px' }}>
         <path fill='url(#prefix__pattern0_5002_136563)' d='M0 0h24v24H0z' />
         <defs>
             <pattern

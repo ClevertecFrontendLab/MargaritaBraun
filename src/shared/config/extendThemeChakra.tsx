@@ -3,6 +3,9 @@ import { extendTheme } from '@chakra-ui/react';
 const theme = extendTheme({
     styles: {
         global: {
+            // html: {
+            //     width: '100%',
+            // },
             '::-webkit-scrollbar': {
                 width: '8px',
                 height: '8px',
@@ -23,8 +26,7 @@ const theme = extendTheme({
             },
             body: {
                 backgroundColor: '#FFFFFF',
-                overflow: 'hidden',
-                height: '100svh',
+                width: '100%',
                 maxWidth: '1920px',
                 margin: '0 auto',
                 fontFamily: 'Inter, sans-serif',
@@ -94,6 +96,12 @@ const theme = extendTheme({
         xl: '1440px',
         '2xl': '1920px',
     },
+    // breakpoints: {
+    //     // base: '0em',
+    //     sm: '361px',
+    //     xl: '1441px',
+    //     '2xl': '1921px',
+    // },
     // breakpoints: {
     //     base: '0em',
     //     sm: '360px',

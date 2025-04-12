@@ -1,22 +1,22 @@
 import { Icon } from '@chakra-ui/react';
 
 export const SecondCourses = () => (
-    <Icon viewBox='0 0 24 24' fill='none' w={6} h={6}>
-        <path fill='url(#prefix__prefix__pattern0_5002_136619)' d='M0 0h24v24H0z' />
+    <Icon viewBox='0 0 24 24' fill='none' boxSize={{ base: '16px', md: '24px' }}>
+        <path fill='url(#prefix__prefix__pattern0_5329_19565)' d='M0 0h24v24H0z' />
         <defs>
             <pattern
-                id='prefix__prefix__pattern0_5002_136619'
+                id='prefix__prefix__pattern0_5329_19565'
                 patternContentUnits='objectBoundingBox'
                 width='1'
                 height='1'
             >
                 <use
-                    xlinkHref='#prefix__prefix__image0_5002_136619'
+                    xlinkHref='#prefix__prefix__image0_5329_19565'
                     transform='translate(.154 .125) scale(.00781)'
                 />
             </pattern>
             <image
-                id='prefix__prefix__image0_5002_136619'
+                id='prefix__prefix__image0_5329_19565'
                 width='96'
                 height='96'
                 preserveAspectRatio='none'

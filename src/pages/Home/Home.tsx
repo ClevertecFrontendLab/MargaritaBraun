@@ -13,7 +13,7 @@ const dataForPage: PageHeaderWithFiltersProps = {
 const Home = () => (
     <>
         <PageHeaderWithFilters {...dataForPage}></PageHeaderWithFilters>
-        <Flex direction='column' gap='10'>
+        <Flex direction='column' gap={['8', null, '10']} flex='1 1 auto'>
             <SliderNewRecipes />
             <HomeJuiciest />
             <CookingBlogs />

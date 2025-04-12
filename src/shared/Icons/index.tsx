@@ -1,3 +1,5 @@
+export { PotLogoIcon } from './ui/logo/PotLogoIcon';
+export { TextLogoIcon } from './ui/logo/TextLogoIcon';
 export { LogoIcon } from './ui/LogoIcon';
 export { BeveragesIcon } from './ui/menuIcons/BeveragesIcon';
 export { BlanksIcon } from './ui/menuIcons/BlanksIcon';
@@ -21,3 +23,5 @@ export { HomeIcon } from './ui/pageIcons/HomeIcon';
 export { LikeyIcon } from './ui/pageIcons/LikeyIcon';
 export { SighOutIcon } from './ui/pageIcons/SighOutIcon';
 export { WriteRecipeIcon } from './ui/pageIcons/WriteRecipeIcon';
+
+// export {PotIcon}

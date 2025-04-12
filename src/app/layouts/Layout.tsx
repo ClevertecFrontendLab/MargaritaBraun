@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { Outlet } from 'react-router';
 
 import { Aside } from '~/widgets/Aside';
@@ -8,36 +8,26 @@ import { MenuSection } from '~/widgets/Menu';
 
 const Layout = () => (
     <>
-        <Grid
-            templateAreas={`"header header header"
-                "nav-menu main aside"
-                "nav-menu main aside"
-                "footer footer footer"
-                `}
-            gridTemplateRows='auto 1fr auto'
-            gridTemplateColumns='repeat(12, 1fr)'
-            h='100%'
-            column-gap='7'
-            row-gap='0'
-            minHeight='100svh'
+        <Header />
+        <Flex
+            as='main'
+            bg='#d8b4fe'
+            // w='100%'
+            // height='100%'
+            margin={{ base: '64px 0 84px 0', lg: '0', xl: '0' }}
         >
-            <Header />
             <MenuSection />
-            <GridItem
-                as='main'
-                bg='#d8b4fe'
-                area='main'
-                colSpan={[12, 12, 12, 12, 10]}
-                height={{ base: 'calc(98svh - 64px - 84px)', md: 'calc(98svh - 80px)' }}
-                overflowX='auto'
-                p={{ base: '0 16px', md: '0 20px', xl: '0 0 0 24px' }}
-                w='100%'
+            <Flex
+                direction='column'
+                p={['0 16px', '0 16px', '0 20px', '0 20px', '0 0 0 24px', null]}
+                maxW={{ base: '100%', lg: 'calc(100% - 280px - 256px)' }}
             >
                 <Outlet />
-            </GridItem>
+            </Flex>
             <Aside />
-            <Footer />
-        </Grid>
+        </Flex>
+
+        <Footer />
     </>
 );
 

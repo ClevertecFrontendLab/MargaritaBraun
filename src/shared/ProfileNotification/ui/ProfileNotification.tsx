@@ -12,8 +12,8 @@ export const ProfileNotification = () => {
             justify='flex-end'
             top='102px'
             right='56px'
-            gap={{ sm: '0', md: '6', xl: '6', '2xl': '6' }}
-            flexGrow='1'
+            gap={[0, null, 6]}
+            flexGrow='2'
             position={{ md: 'static', lg: 'absolute' }}
         >
             <Flex align='center' gap={[1.5, 2]} px={[3, 4]} py={[0, 1.5]}>
