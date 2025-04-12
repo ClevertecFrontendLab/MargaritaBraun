@@ -26,9 +26,9 @@ const theme = extendTheme({
             },
             body: {
                 backgroundColor: '#FFFFFF',
-                width: '100%',
-                maxWidth: '1920px',
-                margin: '0 auto',
+                // width: '100%',
+                // maxWidth: '1920px',
+                // margin: '0 auto',
                 fontFamily: 'Inter, sans-serif',
             },
             fonts: {

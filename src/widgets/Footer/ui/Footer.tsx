@@ -1,21 +1,23 @@
 import { SearchIcon } from '@chakra-ui/icons';
-import { Avatar, Flex, IconButton, Text } from '@chakra-ui/react';
+import { Avatar, Flex, GridItem, IconButton, Text } from '@chakra-ui/react';
 
 import avatarFoto from '~/assets/Breakfast.png';
 import { HomeIcon, WriteRecipeIcon } from '~/shared/Icons';
 export const Footer = () => {
     const profileName = 'Екатерина Константинопольская';
     return (
-        <Flex
+        <GridItem
+            area='footer'
             bg='lime.50'
             display={{ base: 'flex', lg: 'none' }}
             as='footer'
             justifyContent='space-around'
-            position='fixed'
+            position='absolute'
             bottom='0'
             zIndex='3'
             data-test-id='footer'
             w='100%'
+            colSpan={5}
         >
             <Flex
                 direction='column'
@@ -86,6 +88,6 @@ export const Footer = () => {
                     Мой профиль
                 </Text>
             </Flex>
-        </Flex>
+        </GridItem>
     );
 };

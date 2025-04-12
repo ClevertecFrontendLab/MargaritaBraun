@@ -1,4 +1,4 @@
-import { Flex, IconButton } from '@chakra-ui/react';
+import { Flex, GridItem, IconButton } from '@chakra-ui/react';
 
 import { MiniCardAvatar } from '~/entities/Avatar';
 import { Breadcrumbs } from '~/shared/Breadcrumb';
@@ -7,18 +7,21 @@ import { LogoNavLink } from '~/shared/NavLinks';
 import { ProfileNotification } from '~/shared/ProfileNotification';
 
 export const Header = () => (
-    <Flex
+    <GridItem
+        area='header'
         bg='#FFFFD3'
         height={{ base: '64px', lg: '80px' }}
         as='header'
         data-test-id='header'
+        colSpan={3}
         w='100%'
-        flexBasis='100%'
-        position={{ base: 'fixed', lg: 'relative' }}
-        top='0'
-        zIndex='3'
+        // w='100%'
+        // flexBasis='100%'
+        // position={{ base: 'absolute', lg: 'relative' }}
+        // top='0'
+        // zIndex='3'
         // maxW={{ base: '100%', '2xl': '1920px' }}
-        m='0 auto'
+        // m='0 auto'
         // pos='relative'
     >
         <Flex
@@ -45,7 +48,7 @@ export const Header = () => (
                 display={{ base: 'flex', md: 'none' }}
             />
         </Flex>
-    </Flex>
+    </GridItem>
 );
 
 // import { Flex, GridItem, IconButton } from '@chakra-ui/react';
