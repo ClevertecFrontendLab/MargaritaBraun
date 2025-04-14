@@ -6,13 +6,8 @@ import { CardRecipe } from '~/entities/Card';
 
 import dataHomeJuiciest from './dataHomeJuiciest.ts';
 export const HomeJuiciest = () => (
-    <Flex
-        direction='column'
-        // justify='center' align='center'
-        gap={['3', '6']}
-        as='section'
-    >
-        <Flex justify='space-between' w='100%'>
+    <Flex direction='column' gap={['3', '6']} as='section'>
+        <Flex justify='space-between'>
             <Heading
                 as='h3'
                 fontSize={['24px', '36px', '48px']}
@@ -31,7 +26,7 @@ export const HomeJuiciest = () => (
                     data-test-id='juiciest-link'
                     as={ReachLink}
                     to='/juiciest'
-                    size={[null, null, null, 'lg']}
+                    size={[null, null, 'md', 'lg']}
                 >
                     Вся подборка
                 </Button>
@@ -52,13 +47,7 @@ export const HomeJuiciest = () => (
                 </Button>
             </Box>
         </Flex>
-        <SimpleGrid
-            // columns={[1, 1, 2, 2, 1, 2]}
-            // columns={[1, 2, 1, 1, 1, 1, 2, 2]}
-            columns={[1, 1, 2, 2, 1, 2]}
-            // columns={{ base: 1, sm: 2, td: 1, lg: 1, xl: 2, '2xl': 2 }}
-            spacing={['12px', '12px', '12px', '16px', '24px']}
-        >
+        <SimpleGrid columns={[1, 1, 2, 1, 1, 2]} w='100%' spacing={['12px', '16px', '24px']}>
             {dataHomeJuiciest.map((dataCard) => (
                 <CardRecipe key={dataCard.title} {...dataCard}></CardRecipe>
             ))}

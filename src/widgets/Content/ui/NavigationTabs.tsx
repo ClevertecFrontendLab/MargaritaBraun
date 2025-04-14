@@ -5,16 +5,15 @@ import navigationData from '~/entities/NavMenu/const/navigationData';
 export interface NavigationTabsProps {
     category: string;
 }
-// Веганская кухня
+
 export const NavigationTabs = ({ category }: NavigationTabsProps) => {
     const pop = 'Text tabs';
     const data = navigationData.filter((item) => item.label === category);
-    // console.log('data', data);
     const itemsNavigations = data[0].subitems;
     return (
         <>
             {itemsNavigations && itemsNavigations.length > 0 && (
-                <Flex align='center' justify='center'>
+                <Flex align='center' justify='center' pb='12px'>
                     <Tabs position='relative' variant='unstyled' defaultIndex={2} overflow='hidden'>
                         <TabList overflowX='auto'>
                             {itemsNavigations.map((item) => (
@@ -32,7 +31,7 @@ export const NavigationTabs = ({ category }: NavigationTabsProps) => {
                                 </Tab>
                             ))}
                         </TabList>
-                        <TabPanels>
+                        <TabPanels display='none'>
                             {itemsNavigations.map((_, index) => (
                                 <TabPanel key={index}>
                                     <p>{`${pop} ${index}`}</p>

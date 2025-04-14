@@ -11,7 +11,7 @@ const dataHomeJuiciest: dataForDishesProps[] = [
             'Как раз после праздников, когда мясные продукты еще остались, но никто их уже не хочет, время варить солянку.',
     },
     {
-        imageUrl: '../public/homeJuiciest/spaghetti-dumplings.png',
+        imageUrl: '../public/homeJuiciest/spicy-Italian-ham.png',
         category: 'Вторые блюда',
         isFavorites: 159,
         isLiked: 257,

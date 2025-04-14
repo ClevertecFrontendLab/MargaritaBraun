@@ -12,19 +12,18 @@ export const Footer = () => {
             display={{ base: 'flex', lg: 'none' }}
             as='footer'
             justifyContent='space-around'
-            position='absolute'
-            bottom='0'
-            zIndex='3'
+            zIndex='docked'
             data-test-id='footer'
-            w='100%'
-            colSpan={5}
+            position='fixed'
+            bottom='0'
+            left='0'
+            right='0'
         >
             <Flex
                 direction='column'
                 justify='space-between'
                 align='center'
                 bg='radial-gradient(50% 50% at 50% 50%, rgba(196, 255, 97, 0.70) 0%, rgba(255, 255, 255, 0.00) 100%)'
-                // px='2.5'
                 py='2.5'
                 gap='1'
             >

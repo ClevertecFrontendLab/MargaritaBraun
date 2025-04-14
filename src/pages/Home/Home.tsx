@@ -1,6 +1,6 @@
-import { Flex } from '@chakra-ui/react';
+// import { Flex } from '@chakra-ui/react';
 
-import { KitchenSection } from '~/entities/KitchenSection';
+import { HomeKitchen } from '~/entities/KitchenSection';
 import { SliderNewRecipes } from '~/entities/Slider';
 import { CookingBlogs } from '~/shared/CookingBlogs';
 import { HomeJuiciest, PageHeaderWithFilters } from '~/widgets/Content';
@@ -13,12 +13,10 @@ const dataForPage: PageHeaderWithFiltersProps = {
 const Home = () => (
     <>
         <PageHeaderWithFilters {...dataForPage}></PageHeaderWithFilters>
-        <Flex direction='column' gap={['8', null, '10']} flex='1 1 auto'>
-            <SliderNewRecipes />
-            <HomeJuiciest />
-            <CookingBlogs />
-            <KitchenSection />
-        </Flex>
+        <SliderNewRecipes />
+        <HomeJuiciest />
+        <CookingBlogs />
+        <HomeKitchen />
     </>
 );
 export default Home;

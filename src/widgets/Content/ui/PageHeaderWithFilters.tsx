@@ -23,7 +23,13 @@ export interface PageHeaderWithFiltersProps {
 export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFiltersProps) => {
     const placeholderForInput = 'Название или ингредиент...';
     return (
-        <Flex direction='column' align='center' gap='8' py='8' flex='1 1 auto'>
+        <Flex
+            direction='column'
+            align='center'
+            gap={['4', null, null, '8', '8']}
+            pt='8'
+            flex='1 1 auto'
+        >
             <Flex gap='3' direction='column' align='center'>
                 <Heading
                     as='h1'
@@ -38,7 +44,7 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     <Text
                         textStyle='textParagraph'
                         color='blackAlpha.600'
-                        // maxW='696px'
+                        maxW={['100%', null, null, '696px']}
                         textAlign='center'
                     >
                         {subtitle}

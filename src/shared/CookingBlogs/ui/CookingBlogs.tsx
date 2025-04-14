@@ -38,7 +38,7 @@ export const CookingBlogs = () => (
                 </Hide>
             </Flex>
         </Flex>
-        <Flex gap='6' align='center' direction={['column', 'row']}>
+        <Flex gap='6' align='center' direction={['column', null, 'row']}>
             {dataCookingBlogs.map((dataForItem) => (
                 <CardCookBlog key={dataForItem.nickName} {...dataForItem} />
             ))}

@@ -15,14 +15,22 @@ export const CardSlider = ({
     const categoryData = navigationData.filter((item) => item.label === category);
     const CategoryIcon = categoryData[0].icon;
     return (
-        <Card variant='outline' maxW={{ base: '158px', lg: '279px', xl: '322px' }}>
-            <Image
-                objectFit='contain'
-                src={imageUrl}
-                alt={title}
-                borderTopRadius='8px'
-                position='relative'
-            />
+        <Card
+            variant='outline'
+            w={['158px', '158px', '158px', '24%', '24%']}
+            h={['220px', null, null, '402px', '402px', '414px']}
+        >
+            <Flex overflow='hidden' borderTopRadius='8px' flex='1 1 47%'>
+                <Image
+                    objectFit='cover'
+                    src={imageUrl}
+                    alt={title}
+                    w='100%'
+                    h='auto'
+                    borderTopRadius='8px'
+                    position='relative'
+                />
+            </Flex>
             <Flex
                 direction='column'
                 justify='space-between'

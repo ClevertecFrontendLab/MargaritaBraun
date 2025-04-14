@@ -1,11 +1,8 @@
 import { extendTheme } from '@chakra-ui/react';
-// extendThemeСhakra
+
 const theme = extendTheme({
     styles: {
         global: {
-            // html: {
-            //     width: '100%',
-            // },
             '::-webkit-scrollbar': {
                 width: '8px',
                 height: '8px',
@@ -21,14 +18,11 @@ const theme = extendTheme({
                 display: 'none',
             },
             div: {
-                // scrollbarColor: '#d4d4d8 transparent',
+                scrollbarColor: '#d4d4d8 transparent',
                 scrollbarWidth: 'thin',
             },
             body: {
                 backgroundColor: '#FFFFFF',
-                // width: '100%',
-                // maxWidth: '1920px',
-                // margin: '0 auto',
                 fontFamily: 'Inter, sans-serif',
             },
             fonts: {
@@ -39,7 +33,7 @@ const theme = extendTheme({
     },
     textStyles: {
         h1: {
-            fontSize: ['20px', '48px'],
+            fontSize: ['20px', '20px', '30px', '48px'],
             fontFamily: 'Inter',
             fontWeight: '700',
             lineHeight: ['32px', '48px'],
@@ -47,11 +41,7 @@ const theme = extendTheme({
         },
         h3: {
             fontSize: ['16px', '20px'],
-            // fontWeight: 'semibold',
-            // lineHeight: '110%',
-            // fontFamily: 'Inter, sans-serif',
             fontFamily: 'Inter',
-            // fontSize: '20px',
             fontWeight: '500',
             lineHeight: '28px',
             fontStyle: 'normal',
@@ -65,9 +55,9 @@ const theme = extendTheme({
         },
         titleCard: {
             fontFamily: 'Inter, sans-serif',
-            fontSize: '20px',
+            fontSize: ['16px', null, null, '20px'],
             fontWeight: '500',
-            lineHeight: '28px',
+            lineHeight: ['24px', null, null, '28px'],
             fontStyle: 'normal',
         },
         profileNotific: {
@@ -91,25 +81,10 @@ const theme = extendTheme({
         },
     },
     breakpoints: {
-        // base: '0em',
-        sm: '360px',
-        xl: '1440px',
-        '2xl': '1920px',
+        sm: '22.5rem',
+        xl: '90rem',
+        '2xl': '120rem',
     },
-    // breakpoints: {
-    //     // base: '0em',
-    //     sm: '361px',
-    //     xl: '1441px',
-    //     '2xl': '1921px',
-    // },
-    // breakpoints: {
-    //     base: '0em',
-    //     sm: '360px',
-    //     md: '768px',
-    //     lg: '1024px',
-    //     xl: '1440px',
-    //     '2xl': '1920px',
-    // },
 });
 
 export default theme;

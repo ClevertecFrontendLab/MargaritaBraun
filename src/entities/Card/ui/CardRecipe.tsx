@@ -28,13 +28,8 @@ export const CardRecipe = ({
     const categoryData = navigationData.filter((item) => item.label === category);
     const CategoryIcon = categoryData[0].icon;
     return (
-        <Card
-            direction='row'
-            variant='outline'
-            // minH='128px'
-            // flexBasis={{ base: '100%', sm: '100%', md: '100%', xl: '100%', '2xl': '49%' }}
-        >
-            <Flex flexBasis='55%' flexShrink='2' overflow='hidden' position='relative'>
+        <Card direction='row' variant='outline' maxH={['128px', null, null, '244px']}>
+            <Flex flex='1 1 55%'>
                 <Image
                     objectFit='cover'
                     w='100%'
@@ -44,16 +39,11 @@ export const CardRecipe = ({
                 />
             </Flex>
             <Flex
+                flex='1 1 45%'
                 direction='column'
                 justify='space-between'
-                // padding='20px 24px'
-                // padding={{ base: '8px 8px 4px 8px', sm: '8px 8px 4px 8px', td: '20px 24px', '2xl': '20px 24px' }}
-                // gap='6'
-                padding={['8px 8px 4px 8px', '20px 24px']}
+                padding={['8px 8px 4px 8px', '8px 8px 4px 8px', '20px 24px']}
                 gap={{ base: '0', sm: '0', '2xl': '6' }}
-                // flex='1 2 50%'
-                // flex={{ base: '1 0 0', '2xl': '1 2 50%' }}
-                flex='1 0 0'
             >
                 <CardHeader display='flex' justifyContent='space-between' p='0'>
                     <Flex
@@ -63,19 +53,12 @@ export const CardRecipe = ({
                         py='0.5'
                         align='center'
                         gap={['0', null, '2']}
-                        // position={{ base: 'absolute', md: 'static', xl: 'static' }}
-                        // position={['static', null, null, 'absolute']}
-                        // position={['absolute', 'absolute', 'absolute', 'static']}
                         position={['absolute', 'absolute', 'static']}
                         zIndex='2'
                         top='2'
                         left='2'
                     >
-                        <CategoryIcon
-                            // boxSize={{ base: '14px' }}
-                            w='30px'
-                            h='30px'
-                        />
+                        <CategoryIcon w='30px' h='30px' />
                         <Text
                             fontSize='14px'
                             fontWeight='500'
@@ -112,10 +95,11 @@ export const CardRecipe = ({
                         </Flex>
                     </Flex>
                 </CardHeader>
-                <CardBody p='0' display='flex' gap='3' flexDirection='column' minH='68px'>
+                <CardBody p='0' display='flex' gap='3' flexDirection='column'>
                     <Heading
                         fontSize={['16px', null, '20px']}
                         as='h3'
+                        fontWeight='500'
                         noOfLines={[2, 2, 1]}
                         lineHeight={['5', null, '7']}
                     >
@@ -133,7 +117,6 @@ export const CardRecipe = ({
                             {btnSave}
                         </Text>
                     </Button>
-                    {/* size: xs */}
                     <Button
                         variant='solid'
                         bg='black'

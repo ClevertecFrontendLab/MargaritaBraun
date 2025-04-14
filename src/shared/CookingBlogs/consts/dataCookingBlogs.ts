@@ -1,4 +1,3 @@
-// dataCookingBlogs
 export interface dataCookingBlogsProps {
     urlToImage: string;
     titleName: string;

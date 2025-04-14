@@ -14,15 +14,8 @@ export const SliderNewRecipes = () => (
         >
             Новые рецепты
         </Heading>
-        <Flex h={{ base: '220px', lg: '402px', xl: '414px' }} pos='relative' overflow='hidden'>
-            <HStack
-                pos='absolute'
-                top='0'
-                left='0'
-                w='max-content'
-                h={{ base: '220px', lg: '402px', xl: '414px' }}
-                spacing={{ base: '3', lg: '6' }}
-            >
+        <Flex h={['220px', null, null, '402px', '402px', '414px']} pos='relative' overflow='hidden'>
+            <HStack pos='absolute' bottom='0' left='0' spacing={['3', null, '6']}>
                 {dataForSlider.map((dataForSlide) => (
                     <CardSlider key={dataForSlide.title} {...dataForSlide} />
                 ))}

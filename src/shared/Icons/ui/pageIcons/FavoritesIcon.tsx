@@ -1,8 +1,13 @@
 import { Icon } from '@chakra-ui/react';
 
-export const FavoritesIcon = () => (
+export const FavoritesIcon = ({ size = '16px' }) => (
     <>
-        <Icon viewBox='0 0 16 16' color='currentColor' w={4} h={4}>
+        <Icon
+            viewBox='0 0 16 16'
+            color='currentColor'
+            boxSize={{ size }}
+            // boxSize={{ base: '16px', md: '24px' }}
+        >
             <path
                 fillRule='evenodd'
                 clipRule='evenodd'

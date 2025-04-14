@@ -1,15 +1,17 @@
+import { JuiciestKitchen } from '~/entities/KitchenSection';
+import dataForDishesJusty from '~/shared/consts/dataForDishesJusty';
 import { PageHeaderWithFilters, RecipesSections } from '~/widgets/Content';
 import { PageHeaderWithFiltersProps } from '~/widgets/Content/ui/PageHeaderWithFilters';
+
 const dataForPage: PageHeaderWithFiltersProps = {
     title: 'Самое сочное',
-    // subtitle: 'Интересны не только убеждённым вегетарианцам, но и тем, кто хочет  попробовать вегетарианскую диету и готовить вкусные  вегетарианские блюда.'
 };
 
 const Juiciest = () => (
     <>
         <PageHeaderWithFilters {...dataForPage}></PageHeaderWithFilters>
-        {/* <NavigationTabs category='Веганская кухня'></NavigationTabs> */}
-        <RecipesSections></RecipesSections>
+        <RecipesSections dataForDishes={dataForDishesJusty}></RecipesSections>
+        <JuiciestKitchen />
     </>
 );
 export default Juiciest;
