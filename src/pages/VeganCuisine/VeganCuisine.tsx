@@ -1,6 +1,6 @@
 import { VeganKitchen } from '~/entities/KitchenSection';
 import dataForDishes from '~/shared/consts/dataForDishes';
-import { NavigationTabs, PageHeaderWithFilters, RecipesSections } from '~/widgets/Content';
+import { PageHeaderWithFilters, RecipesSections } from '~/widgets/Content';
 import { PageHeaderWithFiltersProps } from '~/widgets/Content/ui/PageHeaderWithFilters';
 
 const dataForPage: PageHeaderWithFiltersProps = {
@@ -12,9 +12,10 @@ const dataForPage: PageHeaderWithFiltersProps = {
 const VeganСuisine = () => (
     <>
         <PageHeaderWithFilters {...dataForPage}></PageHeaderWithFilters>
-        <NavigationTabs category='Веганская кухня'></NavigationTabs>
+        {/* <NavigationTabs category='Веганская кухня'></NavigationTabs> */}
         <RecipesSections dataForDishes={dataForDishes}></RecipesSections>
         <VeganKitchen />
     </>
 );
+
 export default VeganСuisine;

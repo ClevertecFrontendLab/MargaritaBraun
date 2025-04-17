@@ -63,11 +63,11 @@ const navigationData: MenuProps = [
             },
             {
                 label: 'Овощные закуски',
-                url: '/snacks/vegetable',
+                url: '/snacks/vegetables',
             },
             {
                 label: 'Теплые закуски',
-                url: '/snacks/warm',
+                url: '/snacks/warm-snacks',
             },
             {
                 label: 'Бутерброды',
@@ -91,7 +91,7 @@ const navigationData: MenuProps = [
             },
             {
                 label: 'Овощные супы',
-                url: '/first-courses/vegetable-soup',
+                url: '/first-courses/vegetables-soup',
             },
             {
                 label: 'Бульоны',
@@ -110,56 +110,57 @@ const navigationData: MenuProps = [
     {
         label: 'Вторые блюда',
         name: 'Second courses',
-        url: 'second-courses',
+        url: 'second-dish',
         icon: SecondCourses,
         subitems: [
             {
                 label: 'Мясные',
-                url: '/second-courses/meat',
+                url: '/second-dish/meat',
             },
             {
                 label: 'Рыбные',
-                url: '/second-courses/fish',
+                url: '/second-dish/fish',
             },
             {
                 label: 'Овощные',
-                url: '/second-courses/veggie',
+                url: '/second-dish/veggie',
             },
             {
                 label: 'Из птицы',
-                url: '/second-courses/chicken',
+                // url: '/second-dish/chicken',
+                url: '/second-dish/poultry-dish',
             },
             {
                 label: 'Из грибов',
-                url: '/second-courses/mushrooms',
+                url: '/second-dish/mushrooms',
             },
             {
                 label: 'Из субпродуктов',
-                url: '/second-courses/offal',
+                url: '/second-dish/offal',
             },
             {
                 label: 'На пару',
-                url: '/second-courses/steamed',
+                url: '/second-dish/steamed',
             },
             {
                 label: 'Пельмени, вареники',
-                url: '/second-courses/dumplings',
+                url: '/second-dish/dumplings',
             },
             {
                 label: 'Мучные гарниры',
-                url: '/second-courses/flour-side-dishes',
+                url: '/second-dish/flour-side-dishes',
             },
             {
                 label: 'Овощные гарниры ',
-                url: '/second-courses/veggie-side-dishes',
+                url: '/second-dish/veggie-side-dishes',
             },
             {
                 label: 'Пицца',
-                url: '/second-courses/pizza',
+                url: '/second-dish/pizza',
             },
             {
                 label: 'Суши',
-                url: '/second-courses/sushi',
+                url: '/second-dish/sushi',
             },
         ],
     },
@@ -259,39 +260,39 @@ const navigationData: MenuProps = [
         label: 'Веганская кухня',
         name: 'Vegan cuisine',
         icon: VeganIcon,
-        url: 'vegan-cuisine',
+        url: 'vegan',
         subitems: [
             {
                 label: 'Закуски',
-                url: '/vegan-cuisine/snacks',
+                url: '/vegan/snacks',
             },
             {
                 label: 'Первые блюда',
-                url: '/vegan-cuisine/first-courses',
+                url: '/vegan/first-courses',
             },
             {
                 label: 'Вторые блюда',
-                url: '/vegan-cuisine/main-courses',
+                url: '/vegan/second-dish',
             },
             {
                 label: 'Гарниры',
-                url: '/vegan-cuisine/side-dishes',
+                url: '/vegan/side-dishes',
             },
             {
                 label: 'Десерты',
-                url: '/vegan-cuisine/desserts',
+                url: '/vegan/desserts',
             },
             {
                 label: 'Выпечка',
-                url: '/vegan-cuisine/baking',
+                url: '/vegan/baking',
             },
             {
                 label: 'Сыроедческие блюда',
-                url: '/vegan-cuisine/raw-dishes',
+                url: '/vegan/raw-dishes',
             },
             {
                 label: 'Напитки',
-                url: '/vegan-cuisine/drinks',
+                url: '/vegan/drinks',
             },
         ],
     },
@@ -307,7 +308,7 @@ const navigationData: MenuProps = [
             },
             {
                 label: 'Вторые блюда',
-                url: '/childrens-meals/second-courses',
+                url: '/childrens-meals/second-dish',
             },
             {
                 label: 'Гарниры',
@@ -415,63 +416,63 @@ const navigationData: MenuProps = [
         label: 'Национальные',
         name: 'National',
         icon: NationalIcon,
-        url: 'national-cuisines',
+        url: 'national',
         subitems: [
             {
                 label: 'Американская кухня',
-                url: '/national-cuisines/american',
+                url: '/national/american',
             },
             {
                 label: 'Армянская кухня',
-                url: '/national-cuisines/armenian',
+                url: '/national/armenian',
             },
             {
                 label: 'Греческая кухня',
-                url: '/national-cuisines/greek',
+                url: '/national/greek',
             },
             {
                 label: 'Грузинская кухня',
-                url: '/national-cuisines/georgian',
+                url: '/national/georgian',
             },
             {
                 label: 'Итальянская кухня',
-                url: '/national-cuisines/italian',
+                url: '/national/italian',
             },
             {
                 label: 'Китайская кухня',
-                url: '/national-cuisines/chinese',
+                url: '/national/chinese',
             },
             {
                 label: 'Мексиканская кухня',
-                url: '/national-cuisines/mexican',
+                url: '/national/mexican',
             },
             {
                 label: 'Паназиатская кухня',
-                url: '/national-cuisines/pan-asian',
+                url: '/national/pan-asian',
             },
             {
                 label: 'Русская кухня',
-                url: '/national-cuisines/russian',
+                url: '/national/russian',
             },
             {
                 label: 'Турецкая кухня',
-                url: '/national-cuisines/turkish',
+                url: '/national/turkish',
             },
             {
                 label: 'Французская кухня',
-                url: '/national-cuisines/french',
+                url: '/national/french',
             },
             {
                 label: 'Шведская кухня',
-                url: '/national-cuisines/swedish',
+                url: '/national/swedish',
             },
             {
                 label: 'Японская кухня',
-                url: '/national-cuisines/japanese',
+                url: '/national/japanese',
             },
             {
                 label: 'Другая кухня',
-                url: '/national-cuisines/other',
+                url: '/national/other',
             },
         ],
     },

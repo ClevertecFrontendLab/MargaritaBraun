@@ -12,31 +12,33 @@ import {
 } from '@chakra-ui/react';
 
 import navigationData from '~/entities/NavMenu/const/navigationData';
-import { dataForDishesProps } from '~/shared/consts/dataForDishes';
+import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
 
 export const CardRecipe = ({
-    imageUrl,
-    category,
-    isFavorites,
-    isLiked,
     title,
     description,
-}: dataForDishesProps) => {
+    image,
+    category,
+    bookmarks,
+    likes,
+}: dataAllCategoryProps) => {
     const btnSave = 'Сохранить';
     const btnCooking = 'Готовить';
-    const categoryData = navigationData.filter((item) => item.label === category);
-    const CategoryIcon = categoryData[0].icon;
+
+    const getThisCategoryObject = (currentCategory: string) => {
+        const categoryData = navigationData.filter((item) => item.url === currentCategory);
+        return categoryData[0];
+    };
+
     return (
-        <Card direction='row' variant='outline' maxH={['128px', null, null, '244px']}>
+        <Card
+            direction='row'
+            variant='outline'
+            // maxH={['128px', null, null, '244px']}
+        >
             <Flex flex='1 1 55%'>
-                <Image
-                    objectFit='cover'
-                    w='100%'
-                    src={imageUrl}
-                    alt={title}
-                    borderLeftRadius='8px'
-                />
+                <Image objectFit='cover' w='100%' src={image} alt={title} borderLeftRadius='8px' />
             </Flex>
             <Flex
                 flex='1 1 45%'
@@ -47,26 +49,37 @@ export const CardRecipe = ({
             >
                 <CardHeader display='flex' justifyContent='space-between' p='0'>
                     <Flex
-                        bg='lime.50'
-                        borderRadius='md'
-                        px='2'
-                        py='0.5'
-                        align='center'
                         gap={['0', null, '2']}
                         position={['absolute', 'absolute', 'static']}
                         zIndex='2'
                         top='2'
                         left='2'
+                        direction='column'
                     >
-                        <CategoryIcon w='30px' h='30px' />
-                        <Text
-                            fontSize='14px'
-                            fontWeight='500'
-                            lineHeight='20px'
-                            whiteSpace='nowrap'
-                        >
-                            {category}
-                        </Text>
+                        {category.map((item: string) => {
+                            const currentCategory = getThisCategoryObject(item);
+                            const CategoryIcon = currentCategory.icon;
+                            return (
+                                <Flex
+                                    key={item}
+                                    align='center'
+                                    bg='lime.50'
+                                    borderRadius='md'
+                                    gap={['0', null, '2']}
+                                    p='0.5px 3.5px'
+                                >
+                                    <CategoryIcon w='30px' h='30px' />
+                                    <Text
+                                        fontSize='14px'
+                                        fontWeight='500'
+                                        lineHeight='20px'
+                                        whiteSpace='nowrap'
+                                    >
+                                        {currentCategory.label}
+                                    </Text>
+                                </Flex>
+                            );
+                        })}
                     </Flex>
                     <Flex>
                         <Flex align='center' gap='2'>
@@ -78,7 +91,7 @@ export const CardRecipe = ({
                                 lineHeight='16px'
                                 color='lime.600'
                             >
-                                {isFavorites}
+                                {bookmarks}
                             </Text>
                         </Flex>
                         <Flex align='center' gap='2' padding='0px 4px' justify='center'>
@@ -90,7 +103,7 @@ export const CardRecipe = ({
                                 lineHeight='16px'
                                 color='lime.600'
                             >
-                                {isLiked}
+                                {likes}
                             </Text>
                         </Flex>
                     </Flex>

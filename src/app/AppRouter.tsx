@@ -3,11 +3,12 @@
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 
-import navigationData from '~/entities/NavMenu/const/navigationData';
+import CategoryPage from '~/pages/CategoryPage/CategoryPage';
+// import navigationData from '~/entities/NavMenu/const/navigationData';
 import Home from '~/pages/Home/Home';
 import Juiciest from '~/pages/Juiciest/Juiciest';
-import VeganСuisine from '~/pages/VeganCuisine/VeganCuisine';
 
+// import VeganСuisine from '~/pages/VeganCuisine/VeganCuisine';
 import Layout from './layouts/Layout';
 
 const AppRouter = () => (
@@ -15,18 +16,22 @@ const AppRouter = () => (
         <Routes>
             <Route element={<Layout />}>
                 <Route index element={<Home />} />
-                {navigationData.map((category) => (
-                    <Route key={category.url} path={`/${category.url}`} element={<VeganСuisine />}>
+                {/* {navigationData.map((category) => (
+                    //  <VeganСuisine />
+                    <Route key={category.url} path={`/${category.url}`} element={<CategoryPage />}>
                         {category.subitems &&
                             category.subitems.map((subitem) => (
                                 <Route
                                     key={`${category.url}/${subitem.url}`}
                                     path={`${subitem.url}`}
-                                    element={<VeganСuisine />}
+                                    element={<CategoryPage />}
                                 />
                             ))}
                     </Route>
-                ))}
+                ))} */}
+                <Route path=':category' element={<CategoryPage />}>
+                    <Route path=':subcategory' element={<CategoryPage />} />
+                </Route>
                 <Route path='juiciest' element={<Juiciest />} />
             </Route>
         </Routes>
