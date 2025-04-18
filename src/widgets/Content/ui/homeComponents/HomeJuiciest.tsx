@@ -3,8 +3,8 @@ import { Box, Button, Flex, Heading, Hide, Show, SimpleGrid } from '@chakra-ui/r
 import { Link as ReachLink } from 'react-router';
 
 import { CardRecipe } from '~/entities/Card';
+import dataAllCategory from '~/shared/consts/dataAllCategory';
 
-import dataHomeJuiciest from './dataHomeJuiciest.ts';
 export const HomeJuiciest = () => (
     <Flex direction='column' gap={['3', '6']} as='section'>
         <Flex justify='space-between'>
@@ -48,7 +48,7 @@ export const HomeJuiciest = () => (
             </Box>
         </Flex>
         <SimpleGrid columns={[1, 1, 2, 1, 1, 2]} w='100%' spacing={['12px', '16px', '24px']}>
-            {dataHomeJuiciest.map((dataCard) => (
+            {dataAllCategory.map((dataCard) => (
                 <CardRecipe key={dataCard.title} {...dataCard}></CardRecipe>
             ))}
         </SimpleGrid>

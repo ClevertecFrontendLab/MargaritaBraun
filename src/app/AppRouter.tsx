@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { Route, Routes } from 'react-router';
 
 import CategoryPage from '~/pages/CategoryPage/CategoryPage';
+import SingleRecipePage from '~/pages/CategoryPage/SingleRecipePage';
 // import navigationData from '~/entities/NavMenu/const/navigationData';
 import Home from '~/pages/Home/Home';
 import Juiciest from '~/pages/Juiciest/Juiciest';
@@ -29,9 +30,18 @@ const AppRouter = () => (
                             ))}
                     </Route>
                 ))} */}
+                {/* <Route path=':category' element={<CategoryPage />}>
+                    {/* <Route path=':subcategory' element={<CategoryPage />} /> */}
+                {/* <Route path=':subcategory' element={<CategoryPage />}>
+                        <Route path=':id' element={<SingleRecipePage />} />
+                    </Route> */}
+                {/* </Route> */}
                 <Route path=':category' element={<CategoryPage />}>
-                    <Route path=':subcategory' element={<CategoryPage />} />
+                    <Route path=':subcategory' element={<CategoryPage />}>
+                        {/* <Route path=':id' element={<SingleRecipePage />} /> */}
+                    </Route>
                 </Route>
+                <Route path='/:category/:subcategory/:id' element={<SingleRecipePage />} />
                 <Route path='juiciest' element={<Juiciest />} />
             </Route>
         </Routes>

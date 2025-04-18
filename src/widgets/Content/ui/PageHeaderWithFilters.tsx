@@ -28,7 +28,7 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
             align='center'
             gap={['4', null, null, '8', '8']}
             pt='8'
-            flex='1 1 auto'
+            // flex='1 1 auto'
         >
             <Flex gap='3' direction='column' align='center'>
                 <Heading

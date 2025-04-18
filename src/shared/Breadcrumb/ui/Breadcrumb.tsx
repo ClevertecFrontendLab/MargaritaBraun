@@ -2,6 +2,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex } from '@chakra-ui/rea
 import { useLocation } from 'react-router';
 
 import navigationData from '~/entities/NavMenu/const/navigationData';
+import dataAllCategory from '~/shared/consts/dataAllCategory';
 
 const pagesParams = [
     {
@@ -42,6 +43,18 @@ export const Breadcrumbs = () => {
                         const pageObj = pagesParams.find((page) => page.url === currentPath);
                         if (pageObj) {
                             categoryLabel = pageObj.label;
+                        }
+
+                        if (typeof +currentPath === 'number' && categoryLabel) {
+                            const currentRecipe = dataAllCategory.find(
+                                (recipe) => recipe.id === `${currentPath}`,
+                            );
+
+                            if (currentRecipe) {
+                                if (currentRecipe.title) {
+                                    categoryLabel = currentRecipe.title;
+                                }
+                            }
                         }
                     }
                     return (

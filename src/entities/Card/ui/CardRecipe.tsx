@@ -10,19 +10,26 @@ import {
     Image,
     Text,
 } from '@chakra-ui/react';
+import { NavLink as ReachLink, useParams } from 'react-router';
 
 import navigationData from '~/entities/NavMenu/const/navigationData';
 import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
 
 export const CardRecipe = ({
+    id,
     title,
     description,
     image,
     category,
+    subcategory,
     bookmarks,
     likes,
 }: dataAllCategoryProps) => {
+    const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
+        category: string;
+        subcategory: string;
+    }>();
     const btnSave = 'Сохранить';
     const btnCooking = 'Готовить';
 
@@ -30,6 +37,12 @@ export const CardRecipe = ({
         const categoryData = navigationData.filter((item) => item.url === currentCategory);
         return categoryData[0];
     };
+
+    const checkCategory = currentCategory ? currentCategory : category[0];
+    const findSubcategory = currentSubCategory ? currentSubCategory : subcategory[0];
+
+    const checkSubcategory = currentSubCategory ? currentSubCategory : findSubcategory;
+    const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
 
     return (
         <Card
@@ -136,6 +149,9 @@ export const CardRecipe = ({
                         color='white'
                         colorScheme='blackAlpha'
                         size={['xs', null, 'sm']}
+                        as={ReachLink}
+                        to={recipePath}
+                        onClick={() => console.log('id', id)}
                     >
                         {btnCooking}
                     </Button>

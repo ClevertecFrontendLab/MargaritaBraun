@@ -37,9 +37,9 @@ const Layout = () => (
                 rowEnd={[2, 2, 2, 3, 3]}
                 display='flex'
                 w='100%'
-                maxWidth={['100%', '100%', '100%', '100%', '100%', '1355px']}
                 justifyContent='center'
                 flexDirection='column'
+                flexShrink='2'
                 p={['0 16px', null, '0 20px', null, '0 0 0 24px', null]}
                 gap={['8', null, '10']}
             >

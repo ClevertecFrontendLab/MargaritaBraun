@@ -2,28 +2,38 @@ import { Flex, Text } from '@chakra-ui/react';
 import { useParams } from 'react-router';
 
 import navigationData from '~/entities/NavMenu/const/navigationData';
-import { NavigationTabs } from '~/widgets/Content';
+import { NavigationTabs, PageHeaderWithFilters } from '~/widgets/Content';
 
 import { RecipesList } from './RecipesList';
 
 const CategoryPage = () => {
-    const { category, subcategory } = useParams();
+    const { category, subcategory } = useParams<{ category: string; subcategory: string }>();
 
-    console.log('category Параметры:', { category, subcategory });
+    // Находим объект категории
+    const categoryObject = navigationData.find((item) => item.url === category);
 
-    const categoryObjext = navigationData.find((item) => item.url === category);
-    console.log('categoryObjext', categoryObjext);
-    const subcategoryObject = categoryObjext?.subitems;
-    return (
-        <>
-            <Flex direction='column' justify='flex-start' height='100%'>
-                <Text>{subcategory}</Text>
-                {subcategoryObject && <NavigationTabs itemsNavigations={subcategoryObject} />}
-                {category && subcategory && (
-                    <RecipesList category={category} subcategory={subcategory} />
-                )}
+    // Проверяем, найден ли объект категории
+    if (!categoryObject) {
+        return (
+            <Flex justify='center' align='center' height='100%'>
+                <Text fontSize='xl' color='red.500'>
+                    Категория не найдена.
+                </Text>
             </Flex>
-        </>
+        );
+    }
+
+    const subcategoryObject = categoryObject.subitems;
+    const title = categoryObject.label || 'Вкусная кухня для вас';
+
+    return (
+        <Flex direction='column' justify='flex-start' height='100%'>
+            <PageHeaderWithFilters title={title} />
+            {subcategoryObject && <NavigationTabs itemsNavigations={subcategoryObject} />}
+            {category && subcategory && (
+                <RecipesList category={category} subcategory={subcategory} />
+            )}
+        </Flex>
     );
 };
 

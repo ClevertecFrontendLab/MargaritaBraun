@@ -39,11 +39,11 @@ const navigationData: MenuProps = [
             },
             {
                 label: 'Овощные салаты',
-                url: '/salads/veggie',
+                url: '/salads/vegitables-salads',
             },
             {
                 label: 'Теплые салаты',
-                url: '/salads/warm',
+                url: '/salads/warm-salads',
             },
         ],
     },
@@ -109,7 +109,7 @@ const navigationData: MenuProps = [
     },
     {
         label: 'Вторые блюда',
-        name: 'Second courses',
+        name: 'Second dish',
         url: 'second-dish',
         icon: SecondCourses,
         subitems: [

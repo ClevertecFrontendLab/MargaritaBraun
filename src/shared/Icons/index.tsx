@@ -17,11 +17,10 @@ export { VeganIcon } from './ui/menuIcons/VeganIcon';
 export { AccordionIcon } from './ui/pageIcons/AccordionIcon';
 export { BsPeopleIcon } from './ui/pageIcons/BsPeopleIcon';
 export { BurgerIcon } from './ui/pageIcons/BurgerIcon';
+export { ClocksIcon } from './ui/pageIcons/ClocksIcon';
 export { FavoritesIcon } from './ui/pageIcons/FavoritesIcon';
 export { FiltersIcon } from './ui/pageIcons/FiltersIcon';
 export { HomeIcon } from './ui/pageIcons/HomeIcon';
 export { LikeyIcon } from './ui/pageIcons/LikeyIcon';
 export { SighOutIcon } from './ui/pageIcons/SighOutIcon';
 export { WriteRecipeIcon } from './ui/pageIcons/WriteRecipeIcon';
-
-// export {PotIcon}
