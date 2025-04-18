@@ -30,7 +30,7 @@ export const PreparationSteps: FC<{ steps: PreparationStep[] }> = ({ steps }) =>
                                 </Flex>
                             )}
                             <Flex direction='column' gap={['4', '4']} p={['20px 24px']}>
-                                <Badge>
+                                <Badge w='57px'>
                                     <Text textStyle='textCardDescription'>{`Шаг ${nowStep.stepNumber}`}</Text>
                                 </Badge>
                                 <Text textStyle='textCardDescription'>{nowStep.description}</Text>

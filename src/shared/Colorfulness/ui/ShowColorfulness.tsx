@@ -10,7 +10,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
     carbohydrates,
 }) => (
     <>
-        <VStack>
+        <VStack w='100%'>
             <Text
                 as='h4'
                 color='blackAlpha.800'
