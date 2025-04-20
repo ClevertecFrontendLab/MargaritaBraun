@@ -22,5 +22,6 @@ export { FavoritesIcon } from './ui/pageIcons/FavoritesIcon';
 export { FiltersIcon } from './ui/pageIcons/FiltersIcon';
 export { HomeIcon } from './ui/pageIcons/HomeIcon';
 export { LikeyIcon } from './ui/pageIcons/LikeyIcon';
+export { PlusIcon } from './ui/pageIcons/PlusIcon';
 export { SighOutIcon } from './ui/pageIcons/SighOutIcon';
 export { WriteRecipeIcon } from './ui/pageIcons/WriteRecipeIcon';

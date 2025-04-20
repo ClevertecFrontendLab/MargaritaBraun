@@ -8,12 +8,16 @@ import {
     Input,
     InputGroup,
     InputRightElement,
-    Select,
+    // Select,
     Switch,
     Text,
 } from '@chakra-ui/react';
+import { ChangeEvent, useState } from 'react';
 
+import { SelectAllergy } from '~/shared/FiltersComponents';
 import { FiltersIcon } from '~/shared/Icons';
+
+// import defaultAllergyOptions from '../consts/defaultAllergyOptions';
 
 export interface PageHeaderWithFiltersProps {
     title: string;
@@ -22,14 +26,15 @@ export interface PageHeaderWithFiltersProps {
 
 export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFiltersProps) => {
     const placeholderForInput = 'Название или ингредиент...';
+    const [switchAllergy, setswitchAllergy] = useState(false);
+
+    const handleSwitch = (event: ChangeEvent<HTMLInputElement>) => {
+        console.log('switch', event.target.checked);
+        setswitchAllergy(() => event.target.checked);
+    };
+
     return (
-        <Flex
-            direction='column'
-            align='center'
-            gap={['4', null, null, '8', '8']}
-            pt='8'
-            // flex='1 1 auto'
-        >
+        <Flex direction='column' align='center' gap={['4', null, null, '8', '8']} pt='8'>
             <Flex gap='3' direction='column' align='center'>
                 <Heading
                     as='h1'
@@ -90,16 +95,23 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                         lineHeight='24px'
                         fontFamily='Inter'
                         whiteSpace='nowrap'
+                        colorScheme='lime.400'
                     >
                         Исключить мои аллергены
                     </FormLabel>
-                    <Switch id='exclude-my-allergens' />
+                    <Switch
+                        id='exclude-my-allergens'
+                        isChecked={switchAllergy}
+                        onChange={handleSwitch}
+                    />
                 </FormControl>
-                <Select placeholder='Выберите из списка...' size='lg'>
-                    <option value='option1'>Option 1</option>
-                    <option value='option2'>Option 2</option>
-                    <option value='option3'>Option 3</option>
-                </Select>
+                {/* <Select placeholder='Выберите из списка...' size='md'>
+                    {defaultAllergyOptions &&
+                        defaultAllergyOptions.map((alergyProps) => (
+                            <option value={alergyProps}>{alergyProps}</option>
+                        ))}
+                </Select> */}
+                <SelectAllergy isEnabled={switchAllergy} />
             </Flex>
         </Flex>
     );

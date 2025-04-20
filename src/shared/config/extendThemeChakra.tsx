@@ -1,7 +1,4 @@
-import {
-    extendTheme,
-    // defineStyle, defineStyleConfig
-} from '@chakra-ui/react';
+import { extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme({
     styles: {
@@ -87,7 +84,6 @@ const theme = extendTheme({
             150: '#D7FF94',
             300: '#C4FF61',
             400: '#B1FF2E',
-            // 500: '#B1FF2E', // повтор для 400
             500: '#FFFFD3', // повтор для 400
             600: '#2DB100', // #2DB100;
             800: '#134B00',
@@ -99,7 +95,33 @@ const theme = extendTheme({
         xl: '90rem',
         '2xl': '120rem',
     },
+
     components: {
+        Checkbox: {
+            baseStyle: {
+                color: 'lime.600',
+                backgroundColor: 'lime.300',
+
+                control: {
+                    borderColor: 'lime.600',
+                    // background: 'lime.300',
+                },
+                icon: {
+                    color: 'black',
+                    // backgroundColor: 'transparent',
+                    background: 'lime.300',
+                },
+            },
+        },
+
+        Tag: {
+            container: {
+                // bg: 'lime.400',
+                bg: 'transparent',
+                color: 'lime.700',
+            },
+        },
+
         Button: {
             baseStyle: {
                 fontWeight: '600',
