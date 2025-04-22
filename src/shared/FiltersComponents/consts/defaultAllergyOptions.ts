@@ -3,6 +3,7 @@ interface defaultAllergyOptionsProps {
     value: string;
     key: string;
 }
+
 const defaultAllergyOptions: defaultAllergyOptionsProps[] = [
     { label: 'Молочные продукты', value: 'milk', key: 'milk21' },
     { label: 'Яйцо', value: 'egg', key: 'egg21' },

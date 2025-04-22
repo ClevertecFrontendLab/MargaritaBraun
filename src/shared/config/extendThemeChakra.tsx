@@ -84,7 +84,8 @@ const theme = extendTheme({
             150: '#D7FF94',
             300: '#C4FF61',
             400: '#B1FF2E',
-            500: '#FFFFD3', // повтор для 400
+            // 500: '#FFFFD3', // повтор для 400
+            500: '#B1FF2E', // повтор для 400
             600: '#2DB100', // #2DB100;
             800: '#134B00',
             900: '#364e0d', // повтор для 400
@@ -111,14 +112,6 @@ const theme = extendTheme({
                     // backgroundColor: 'transparent',
                     background: 'lime.300',
                 },
-            },
-        },
-
-        Tag: {
-            container: {
-                // bg: 'lime.400',
-                bg: 'transparent',
-                color: 'lime.700',
             },
         },
 

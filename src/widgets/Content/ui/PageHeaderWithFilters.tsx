@@ -8,16 +8,17 @@ import {
     Input,
     InputGroup,
     InputRightElement,
-    // Select,
     Switch,
     Text,
+    useDisclosure,
 } from '@chakra-ui/react';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 
+import { FiltersDrawer } from '~/shared/Filters';
 import { SelectAllergy } from '~/shared/FiltersComponents';
 import { FiltersIcon } from '~/shared/Icons';
 
-// import defaultAllergyOptions from '../consts/defaultAllergyOptions';
+import { FiltersData } from '../modal/filtersType';
 
 export interface PageHeaderWithFiltersProps {
     title: string;
@@ -27,6 +28,18 @@ export interface PageHeaderWithFiltersProps {
 export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFiltersProps) => {
     const placeholderForInput = 'Название или ингредиент...';
     const [switchAllergy, setswitchAllergy] = useState(false);
+
+    const [fullFilters, setfullFilters] = useState<FiltersData>({
+        categoryFilter: [],
+        autorsFilter: [],
+        meatTypeFilter: [],
+        sideDishFilter: [],
+        allergyFilter: [],
+    });
+
+    const btnRef = useRef<HTMLButtonElement | null>(null);
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleSwitch = (event: ChangeEvent<HTMLInputElement>) => {
         console.log('switch', event.target.checked);
@@ -67,6 +80,8 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     size={['sm', 'lg']}
                     icon={<FiltersIcon />}
                     borderColor='blackAlpha.600'
+                    ref={btnRef}
+                    onClick={onOpen}
                 />
                 <InputGroup
                     size={['sm', 'lg']}
@@ -103,16 +118,19 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                         id='exclude-my-allergens'
                         isChecked={switchAllergy}
                         onChange={handleSwitch}
+                        colorScheme='lime'
                     />
                 </FormControl>
-                {/* <Select placeholder='Выберите из списка...' size='md'>
-                    {defaultAllergyOptions &&
-                        defaultAllergyOptions.map((alergyProps) => (
-                            <option value={alergyProps}>{alergyProps}</option>
-                        ))}
-                </Select> */}
                 <SelectAllergy isEnabled={switchAllergy} />
             </Flex>
+            <FiltersDrawer
+                btnRef={btnRef}
+                isOpen={isOpen}
+                onOpen={onOpen}
+                onClose={onClose}
+                fullFilters={fullFilters}
+                setfullFilters={setfullFilters}
+            />
         </Flex>
     );
 };

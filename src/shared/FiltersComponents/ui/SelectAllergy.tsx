@@ -87,9 +87,8 @@ export const SelectAllergy: FC<SelectAllergyProps> = ({ isEnabled }) => {
                                                       key={selectedOption?.key}
                                                       size='sm'
                                                       variant='outline'
-                                                      borderColor='lime.600'
-                                                      bg='transparent'
                                                       mr={2}
+                                                      colorScheme='lime'
                                                   >
                                                       <TagLabel>{selectedOption?.label}</TagLabel>
                                                       <TagCloseButton
