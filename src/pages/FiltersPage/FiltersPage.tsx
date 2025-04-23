@@ -1,9 +1,9 @@
-import { Text } from '@chakra-ui/react';
+// import { Text } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 
 import dataAllCategory from '~/shared/consts/dataAllCategory';
 import { filtersSelector } from '~/store/filter-slice';
-import { RecipesSections } from '~/widgets/Content';
+import { PageHeaderWithFilters, RecipesSections } from '~/widgets/Content';
 
 export const FiltersPage = () => {
     const filters = useSelector(filtersSelector);
@@ -34,7 +34,8 @@ export const FiltersPage = () => {
 
     return (
         <>
-            <Text>Filters</Text>
+            {/* <Text>Filters</Text> */}
+            <PageHeaderWithFilters title='Фильтрация' />
             <RecipesSections dataAllCategory={filteredData} />{' '}
         </>
     );

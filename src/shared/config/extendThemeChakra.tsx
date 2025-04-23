@@ -141,14 +141,6 @@ const theme = extendTheme({
                 color: 'black',
             },
         },
-        // Heading: {
-        //     defaultProps: {
-        //         // size: 'xl',
-        //         // variant: 'custom',
-        //         // colorScheme: 'brand',
-        //         color: 'red',
-        //     },
-        // }
     },
 });
 

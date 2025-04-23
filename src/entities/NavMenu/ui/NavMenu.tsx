@@ -20,10 +20,16 @@ export const NavMenu = () => {
     const indexCategory = navigationData.findIndex((item) => item.url === category);
     const indexOpenMenu = indexCategory !== -1 ? [indexCategory] : [];
     return (
-        <Flex direction='column' overflow='auto' padding='10px 16px 10px 10px' h='100%'>
-            <Accordion allowToggle p='0' defaultIndex={indexOpenMenu}>
+        <Flex
+            direction='column'
+            overflow='auto'
+            p={['0', null, null, '10px 16px 10px 10px']}
+            h='100%'
+            w='100%'
+        >
+            <Accordion allowToggle p='0' defaultIndex={indexOpenMenu} w='100%'>
                 {navigationData.map((item) => (
-                    <AccordionItem key={item.label} border='none'>
+                    <AccordionItem key={item.label} border='none' w='100%'>
                         {({ isExpanded }) => (
                             <>
                                 <AccordionButton

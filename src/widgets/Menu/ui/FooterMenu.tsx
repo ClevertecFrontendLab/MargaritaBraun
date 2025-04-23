@@ -7,7 +7,14 @@ export const FooterMenu = () => {
     const text = 'Все права защищены, ученический файл, ©Клевер Технолоджи, 2025';
     const out = 'Выйти';
     return (
-        <Flex direction='column' gap='4' p='0px 24px 32px 24px' maxW='256px' bg='white'>
+        <Flex
+            direction='column'
+            gap='4'
+            p={['0', null, null, '0px 24px 32px 24px']}
+            maxW={['344px', null, null, '256px']}
+            bg='white'
+            w='100%'
+        >
             <Text fontSize='12px' lineHeight='16px' color='blackAlpha.400'>
                 {version}
             </Text>
