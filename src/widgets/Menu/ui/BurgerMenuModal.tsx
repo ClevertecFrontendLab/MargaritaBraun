@@ -14,8 +14,12 @@ import { NavMenu } from '~/entities/NavMenu';
 import { Breadcrumbs } from '~/shared/Breadcrumb';
 import { LogoNavLink } from '~/shared/NavLinks';
 
-import { BurgerMenuProps } from './BurgerMenu';
 import { FooterMenu } from './FooterMenu';
+
+export interface BurgerMenuProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
 
 export const BurgerMenuModal: FC<BurgerMenuProps> = ({ isOpen, onClose }) => (
     <>
@@ -29,8 +33,8 @@ export const BurgerMenuModal: FC<BurgerMenuProps> = ({ isOpen, onClose }) => (
                 marginRight='0'
                 h='calc(99.9svh - 87px - 64px)'
                 borderTopRadius='0'
-                onClick={(e: SyntheticEvent) => {
-                    const target = e.target as HTMLElement;
+                onClick={(event: SyntheticEvent) => {
+                    const target = event.target as HTMLElement;
                     const closestLink = target.closest('a');
                     if (closestLink) {
                         onClose();

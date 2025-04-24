@@ -26,6 +26,7 @@ export const Footer = () => {
                 bg='radial-gradient(50% 50% at 50% 50%, rgba(196, 255, 97, 0.70) 0%, rgba(255, 255, 255, 0.00) 100%)'
                 py='2.5'
                 gap='1'
+                w='100%'
             >
                 <IconButton
                     size='md'
@@ -39,7 +40,7 @@ export const Footer = () => {
                     Главная
                 </Text>
             </Flex>
-            <Flex direction='column' justify='space-between' align='center' py='2.5'>
+            <Flex direction='column' justify='space-between' align='center' py='2.5' w='100%'>
                 <IconButton
                     size='lg'
                     isRound={true}
@@ -57,7 +58,7 @@ export const Footer = () => {
                     Поиск
                 </Text>
             </Flex>
-            <Flex direction='column' justify='space-between' align='center' py='2.5'>
+            <Flex direction='column' justify='space-between' align='center' py='2.5' w='100%'>
                 <IconButton
                     size='lg'
                     isRound={true}
@@ -75,7 +76,14 @@ export const Footer = () => {
                     Записать
                 </Text>
             </Flex>
-            <Flex direction='column' justify='space-between' align='center' py='2.5' gap='1'>
+            <Flex
+                direction='column'
+                justify='space-between'
+                align='center'
+                py='2.5'
+                gap='1'
+                w='100%'
+            >
                 <Avatar size='md' name={profileName} src={avatarFoto} />
                 <Text
                     fontSize='12px'

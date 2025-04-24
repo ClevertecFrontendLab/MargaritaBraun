@@ -10,41 +10,42 @@ const Layout = () => (
     <>
         <Grid
             w='100%'
+            minH='100vh'
             maxW='120rem'
             m='0 auto'
-            justify-items='center'
+            justifyItems='center'
             templateAreas={`"header header header"
                 "nav main aside"
                 "footer footer footer"`}
             templateColumns={[
-                'repeat(3, 1fr)',
-                'repeat(3, 1fr)',
-                'repeat(3, 1fr)',
-                '256px 1fr 280px',
-                '256px 1fr 280px',
+                '1fr',
+                '1fr',
+                '1fr',
+                'minmax(200px, 256px) minmax(auto, 1fr) minmax(200px, 280px)',
+                'minmax(200px, 256px) minmax(auto, 1fr) minmax(200px, 280px)',
             ]}
-            templateRows={['64px 1fr 84px', '64px 1fr 84px', '64px 1fr 84px', '80px 1fr']}
+            templateRows={['auto 1fr auto', 'auto 1fr auto', 'auto 1fr auto']}
             position='relative'
+            gap={[2, null, 4]}
         >
             <Header />
+
             <MenuSection />
+
             <GridItem
                 area='main'
                 as='main'
-                colStart={[1, 1, 1, 2, 2]}
-                colEnd={[4, 4, 4, 3, 3]}
-                rowStart={2}
-                rowEnd={[2, 2, 2, 3, 3]}
-                display='flex'
                 w='100%'
-                justifyContent='center'
+                minW='0'
+                display='flex'
                 flexDirection='column'
-                flexShrink='2'
-                p={['0 16px', null, '0 20px', null, '0 0 0 24px', null]}
+                p={['0 16px', null, '0 20px', '0 24px']}
                 gap={['8', null, '10']}
+                mb={['80px', null, null, '0']}
             >
                 <Outlet />
             </GridItem>
+
             <Aside />
 
             <Footer />

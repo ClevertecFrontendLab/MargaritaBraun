@@ -22,7 +22,8 @@ export const MenuSection = () => (
                 justify='space-between'
                 h={[null, null, null, null, 'calc(99.9svh - 24px - 100px)']}
                 position='sticky'
-                top='100px'
+                top='10px'
+                height='calc(100vh - 80px)'
             >
                 <NavMenu />
                 <FooterMenu />

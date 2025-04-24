@@ -45,11 +45,7 @@ export const CardRecipe = ({
     const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
 
     return (
-        <Card
-            direction='row'
-            variant='outline'
-            // maxH={['128px', null, null, '244px']}
-        >
+        <Card direction='row' variant='outline'>
             <Flex flex='1 1 55%'>
                 <Image objectFit='cover' w='100%' src={image} alt={title} borderLeftRadius='8px' />
             </Flex>
@@ -62,8 +58,8 @@ export const CardRecipe = ({
             >
                 <CardHeader display='flex' justifyContent='space-between' p='0'>
                     <Flex
-                        gap={['0', null, '2']}
-                        position={['absolute', 'absolute', 'static']}
+                        gap={['0.5', null, '2']}
+                        position={['absolute', null, null, 'static']}
                         zIndex='2'
                         top='2'
                         left='2'

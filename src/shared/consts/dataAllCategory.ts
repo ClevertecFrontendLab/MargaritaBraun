@@ -382,6 +382,106 @@ const dataAllCategory: dataAllCategoryProps[] = [
             },
         ],
     },
+    // Добавленные рецепты
+    {
+        id: '9',
+        title: 'Солянка с грибами',
+        description:
+            'Как раз после праздников, когда мясные продукты еще остались, но никто их уже не хочет, время варить солянку.',
+        category: ['first-courses'],
+        subcategory: ['vegetables-soup'],
+        image: '../public/slider/solyanka-with-mushrooms.png',
+        bookmarks: 10,
+        likes: 80,
+        date: '2023-03-17T00:00:00Z',
+        time: '25 минут',
+        portions: 1,
+        nutritionValue: { calories: 150, proteins: 4, fats: 6, carbohydrates: 20 },
+        ingredients: [
+            { title: 'цуккини', count: '1', measureUnit: 'шт.' },
+            { title: 'болгарский перец', count: '1', measureUnit: 'шт.' },
+            { title: 'баклажан', count: '1', measureUnit: 'шт.' },
+            { title: 'оливковое масло', count: '0', measureUnit: 'по вкусу' },
+        ],
+        steps: [
+            {
+                stepNumber: 1,
+                description: 'Обжарить овощи на гриле.',
+                image: 'url',
+            },
+            {
+                stepNumber: 2,
+                description: 'Смешать с заправкой и подавать.',
+                image: 'url',
+            },
+        ],
+    },
+    {
+        id: '10',
+        title: 'Оладьи на кефире "Пышные"',
+        description:
+            'Очень вкусные и нежные оладьи на кефире. Настоятельно рекомендую пышные кефирные оладьи на завтрак.',
+        category: ['desserts-pastries'],
+        subcategory: ['pancakes'],
+        image: '../public/slider/kefir-pancakes-puffy.png',
+        bookmarks: 10,
+        likes: 80,
+        date: '2023-03-16T00:00:00Z',
+        time: '25 минут',
+        portions: 1,
+        nutritionValue: { calories: 150, proteins: 4, fats: 6, carbohydrates: 20 },
+        ingredients: [
+            { title: 'цуккини', count: '1', measureUnit: 'шт.' },
+            { title: 'болгарский перец', count: '1', measureUnit: 'шт.' },
+            { title: 'баклажан', count: '1', measureUnit: 'шт.' },
+            { title: 'оливковое масло', count: '0', measureUnit: 'по вкусу' },
+        ],
+        steps: [
+            {
+                stepNumber: 1,
+                description: 'Обжарить овощи на гриле.',
+                image: 'url',
+            },
+            {
+                stepNumber: 2,
+                description: 'Смешать с заправкой и подавать.',
+                image: 'url',
+            },
+        ],
+    },
+    {
+        id: '11',
+        title: 'Салат "Здоровье"',
+        description:
+            'Сельдерей очень полезен для здоровья, пора набираться витаминов. Не  салат, а сплошное удовольствие:) Вкусный, необычный, а главное быстрый.',
+        category: ['salads'],
+        subcategory: ['vegitables-salads'],
+        image: '../public/slider/salad-health.png',
+        bookmarks: 12,
+        likes: 2,
+        date: '2023-03-15T00:00:00Z',
+        time: '25 минут',
+        portions: 1,
+        nutritionValue: { calories: 150, proteins: 4, fats: 6, carbohydrates: 20 },
+        ingredients: [
+            { title: 'цуккини', count: '1', measureUnit: 'шт.' },
+            { title: 'болгарский перец', count: '1', measureUnit: 'шт.' },
+            { title: 'баклажан', count: '1', measureUnit: 'шт.' },
+            { title: 'оливковое масло', count: '0', measureUnit: 'по вкусу' },
+        ],
+        steps: [
+            {
+                stepNumber: 1,
+                description: 'Обжарить овощи на гриле.',
+                image: 'url',
+            },
+            {
+                stepNumber: 2,
+                description: 'Смешать с заправкой и подавать.',
+                image: 'url',
+            },
+        ],
+    },
 ];
 
 export default dataAllCategory;

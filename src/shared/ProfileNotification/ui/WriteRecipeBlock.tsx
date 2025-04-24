@@ -9,12 +9,6 @@ export const WriteRecipeBlock = () => {
             direction='column'
             bg='radial-gradient(50% 50% at 50% 50%, rgba(196, 255, 97, 0.70) 0%, rgba(255, 255, 255, 0.00) 100%)'
             p='10'
-            position='fixed'
-            bottom='52px'
-            height='100px'
-            textAlign='center'
-            marginLeft='50px'
-            w='200px'
             align='center'
             justify='center'
         >

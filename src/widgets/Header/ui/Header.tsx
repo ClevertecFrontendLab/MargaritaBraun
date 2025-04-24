@@ -1,4 +1,4 @@
-import { Box, GridItem, IconButton, useDisclosure } from '@chakra-ui/react';
+import { Box, Flex, GridItem, IconButton, useDisclosure } from '@chakra-ui/react';
 import { useRef } from 'react';
 
 import { MiniCardAvatar } from '~/entities/Avatar';
@@ -34,7 +34,9 @@ export const Header = () => {
                 <Breadcrumbs />
             </Box>
             <MiniCardAvatar />
-            <ProfileNotification />
+            <Flex display={['flex', null, null, 'none']} w='100%' justifyContent='flex-end'>
+                <ProfileNotification />
+            </Flex>
             <IconButton
                 ref={btnRef}
                 aria-label='Burger menu'
