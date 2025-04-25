@@ -9,7 +9,7 @@ import {
     List,
     ListItem,
 } from '@chakra-ui/react';
-import { NavLink as ReachLink, useParams } from 'react-router';
+import { NavLink as ReachLink, useLocation, useParams } from 'react-router';
 
 import { AccordionIcon } from '~/shared/Icons';
 
@@ -17,8 +17,23 @@ import navigationData from '../const/navigationData';
 
 export const NavMenu = () => {
     const { category } = useParams();
-    const indexCategory = navigationData.findIndex((item) => item.url === category);
-    const indexOpenMenu = indexCategory !== -1 ? [indexCategory] : [];
+    const location = useLocation();
+    const isHomePage = location.pathname === '/';
+
+    const indexCategory = navigationData.findIndex((item) => {
+        if (item.url === category) return true;
+
+        if (item.subitems) {
+            return item.subitems.some((subitem) => {
+                const subpath = `${item.url}/${subitem.url}`;
+                return location.pathname.includes(subpath);
+            });
+        }
+
+        return false;
+    });
+
+    const indexOpenMenu = isHomePage ? [] : indexCategory !== -1 ? [indexCategory] : [];
     return (
         <Flex
             direction='column'
@@ -27,7 +42,7 @@ export const NavMenu = () => {
             h='100%'
             w='100%'
         >
-            <Accordion allowToggle p='0' defaultIndex={indexOpenMenu} w='100%'>
+            <Accordion allowToggle p='0' index={indexOpenMenu} w='100%' data-test-id='nav'>
                 {navigationData.map((item) => (
                     <AccordionItem key={item.label} border='none' w='100%'>
                         {({ isExpanded }) => (
@@ -35,9 +50,7 @@ export const NavMenu = () => {
                                 <AccordionButton
                                     as={ReachLink}
                                     to={item.subitems ? item.subitems[0].url : item.url}
-                                    data-test-id={
-                                        item.url === 'vegan-cuisine' ? 'vegan-cuisine' : undefined
-                                    }
+                                    data-test-id={`${item.url}`}
                                     px='2'
                                     py='3'
                                     bg={isExpanded ? '#EAFFC7' : 'transparent'}
@@ -84,6 +97,7 @@ export const NavMenu = () => {
                                                             _before: {
                                                                 width: '7px',
                                                             },
+                                                            'data-test-id': `${item.url.split('/').pop()}-active`,
                                                         }}
                                                         _before={{
                                                             height: '100%',

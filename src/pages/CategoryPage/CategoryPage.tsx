@@ -9,10 +9,8 @@ import { RecipesList } from './RecipesList';
 const CategoryPage = () => {
     const { category, subcategory } = useParams<{ category: string; subcategory: string }>();
 
-    // Находим объект категории
     const categoryObject = navigationData.find((item) => item.url === category);
 
-    // Проверяем, найден ли объект категории
     if (!categoryObject) {
         return (
             <Flex justify='center' align='center' height='100%'>

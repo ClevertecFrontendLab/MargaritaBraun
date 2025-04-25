@@ -468,6 +468,8 @@ const dataAllCategory: dataAllCategoryProps[] = [
             { title: 'болгарский перец', count: '1', measureUnit: 'шт.' },
             { title: 'баклажан', count: '1', measureUnit: 'шт.' },
             { title: 'оливковое масло', count: '0', measureUnit: 'по вкусу' },
+            // { title: 'томатная паста', count: '0', measureUnit: 'по вкусу' },
+            { title: 'яйцо', count: '1', measureUnit: 'шт.' },
         ],
         steps: [
             {

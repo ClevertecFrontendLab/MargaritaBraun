@@ -1,5 +1,15 @@
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { Button, Checkbox, Menu, MenuButton, MenuList } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    Checkbox,
+    Menu,
+    MenuButton,
+    MenuList,
+    Tag,
+    TagLabel,
+    Text,
+} from '@chakra-ui/react';
 import { FC } from 'react';
 
 import { FieldForFilterProps, FiltersData } from '~/widgets/Content/modal/filtersType';
@@ -49,7 +59,24 @@ export const FieldWithSelect: FC<FieldForFilterProps> = ({
                             borderColor='lime.600'
                             p={['10px 12px']}
                         >
-                            {title}
+                            {fullFilters[filterKey].length > 0 ? (
+                                <Box display='flex' flexWrap='wrap' gap={1} h='auto'>
+                                    {fullFilters[filterKey].map((option: string) => (
+                                        <Tag
+                                            key={option}
+                                            colorScheme='lime'
+                                            color='lime.400'
+                                            borderColor='lime.400'
+                                            border='1px'
+                                            mr={1}
+                                        >
+                                            <TagLabel>{option}</TagLabel>
+                                        </Tag>
+                                    ))}
+                                </Box>
+                            ) : (
+                                <Text textAlign='left'>{title}</Text>
+                            )}
                         </MenuButton>
                         <MenuList zIndex='10' w='100%' display='flex' flexDirection='column'>
                             {options.map((option, index) => (
@@ -61,6 +88,11 @@ export const FieldWithSelect: FC<FieldForFilterProps> = ({
                                     bg={index % 2 === 0 ? 'white' : 'blackAlpha.100'}
                                     p={2}
                                     w='100%'
+                                    data-test-id={
+                                        option === 'Веганская кухня'
+                                            ? 'checkbox-веганская кухня'
+                                            : null
+                                    }
                                 >
                                     {option}
                                 </Checkbox>

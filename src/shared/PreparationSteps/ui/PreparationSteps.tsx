@@ -21,7 +21,7 @@ export const PreparationSteps: FC<{ steps: PreparationStep[] }> = ({ steps }) =>
                 </Heading>
                 {steps &&
                     steps.map((nowStep) => (
-                        <Card direction='row'>
+                        <Card direction='row' key={nowStep.stepNumber}>
                             {nowStep.image && (
                                 <Flex w='45%'>
                                     <Image

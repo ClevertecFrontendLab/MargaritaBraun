@@ -54,7 +54,7 @@ export const BurgerMenuModal: FC<BurgerMenuProps> = ({ isOpen, onClose }) => (
                 >
                     <Flex align='center'>
                         <LogoNavLink />
-                        <ModalCloseButton />
+                        <ModalCloseButton data-test-id='close-icon' />
                     </Flex>
                 </ModalHeader>
                 <ModalBody display='flex' w='100%' p={['10px', null, null, '0']} overflow='auto'>

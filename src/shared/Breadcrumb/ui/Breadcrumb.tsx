@@ -25,6 +25,7 @@ export const Breadcrumbs = () => {
             display='flex'
             flexWrap='wrap'
             separator={<ChevronRightIcon color='gray.500' />}
+            data-test-id='breadcrumbs'
         >
             <BreadcrumbItem>
                 <BreadcrumbLink href='/'>{title}</BreadcrumbLink>

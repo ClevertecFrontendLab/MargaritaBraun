@@ -40,6 +40,7 @@ export const FieldWithCheckbox: FC<FieldForFilterProps> = ({
                         onChange={() => handleSelect(option)}
                         textStyle='textCardDescription'
                         p='0'
+                        data-test-id={option === 'Картошка' ? 'checkbox-картошка' : null}
                     >
                         {option}
                     </Checkbox>

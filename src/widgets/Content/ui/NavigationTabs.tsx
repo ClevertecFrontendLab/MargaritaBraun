@@ -9,9 +9,9 @@ export const NavigationTabs = ({ itemsNavigations }: subcategoryObject) => (
     <>
         {itemsNavigations && itemsNavigations.length > 0 && (
             <Flex align='center' justify='center' pb='12px'>
-                <Tabs position='relative' variant='unstyled' overflow='hidden'>
-                    <TabList overflowX='auto'>
-                        {itemsNavigations.map((item) => (
+                <Tabs variant='unstyled'>
+                    <TabList flexWrap='wrap' justifyContent='center'>
+                        {itemsNavigations.map((item, index) => (
                             <Tab
                                 as={ReachLink}
                                 textStyle='textParagraph'
@@ -20,6 +20,7 @@ export const NavigationTabs = ({ itemsNavigations }: subcategoryObject) => (
                                 _activeLink={{
                                     color: 'lime.600',
                                     borderBottom: '2px solid #2DB100',
+                                    'data-test-id': `tab-${item.url.split('/').pop()}-${index}`,
                                 }}
                                 to={item.url}
                                 key={item.label}

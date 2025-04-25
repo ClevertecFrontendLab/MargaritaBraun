@@ -1,5 +1,5 @@
 import { Box, Card, CardBody, CardFooter, Flex, Image, Text } from '@chakra-ui/react';
-import { SyntheticEvent } from 'react';
+import { useNavigate, useParams } from 'react-router';
 
 import navigationData from '~/entities/NavMenu/const/navigationData';
 import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
@@ -15,15 +15,28 @@ export const CardSlider = ({
     bookmarks,
     likes,
 }: dataAllCategoryProps) => {
+    const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
+        category: string;
+        subcategory: string;
+    }>();
+    const navigate = useNavigate();
+
     const getThisCategoryObject = (currentCategory: string) => {
         const categoryData = navigationData.filter((item) => item.url === currentCategory);
         return categoryData[0];
     };
+
+    const checkCategory = currentCategory ? currentCategory : category[0];
+    const findSubcategory = currentSubCategory ? currentSubCategory : subcategory[0];
+
+    const checkSubcategory = currentSubCategory ? currentSubCategory : findSubcategory;
+    const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
+
     return (
         <Card
             variant='outline'
-            onClick={(event: SyntheticEvent) => {
-                console.log(`click ${subcategory} ${id}`, event.target);
+            onClick={() => {
+                navigate(recipePath);
             }}
             h='100%'
             position='relative'

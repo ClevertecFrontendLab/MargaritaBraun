@@ -45,6 +45,7 @@ export const Header = () => {
                 _hover={{ color: 'lime.600' }}
                 display={['flex', null, null, 'none']}
                 onClick={onOpen}
+                data-test-id='hamburger-icon'
             />
             <BurgerMenuModal isOpen={isOpen} onClose={onClose} />
         </GridItem>

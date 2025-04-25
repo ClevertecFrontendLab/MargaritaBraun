@@ -6,7 +6,7 @@ import {
     CardFooter,
     CardHeader,
     Flex,
-    Heading,
+    Highlight,
     Image,
     Text,
 } from '@chakra-ui/react';
@@ -15,6 +15,10 @@ import { NavLink as ReachLink, useParams } from 'react-router';
 import navigationData from '~/entities/NavMenu/const/navigationData';
 import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
+
+interface CardRecipeProps extends dataAllCategoryProps {
+    searchQuery?: string;
+}
 
 export const CardRecipe = ({
     id,
@@ -25,7 +29,8 @@ export const CardRecipe = ({
     subcategory,
     bookmarks,
     likes,
-}: dataAllCategoryProps) => {
+    searchQuery,
+}: CardRecipeProps) => {
     const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
         category: string;
         subcategory: string;
@@ -118,15 +123,28 @@ export const CardRecipe = ({
                     </Flex>
                 </CardHeader>
                 <CardBody p='0' display='flex' gap='3' flexDirection='column'>
-                    <Heading
-                        fontSize={['16px', null, '20px']}
+                    <Box
                         as='h3'
+                        fontSize={['16px', null, '20px']}
                         fontWeight='500'
                         noOfLines={[2, 2, 1]}
                         lineHeight={['5', null, '7']}
                     >
-                        {title}
-                    </Heading>
+                        {searchQuery ? (
+                            <Highlight
+                                query={searchQuery}
+                                styles={{
+                                    bg: 'lime.400',
+                                    fontWeight: 'bold',
+                                    color: 'black',
+                                }}
+                            >
+                                {title}
+                            </Highlight>
+                        ) : (
+                            title
+                        )}
+                    </Box>
                     <Box display={{ base: 'none', lg: 'block' }}>
                         <Text noOfLines={3}>{description}</Text>
                     </Box>
@@ -147,7 +165,8 @@ export const CardRecipe = ({
                         size={['xs', null, 'sm']}
                         as={ReachLink}
                         to={recipePath}
-                        onClick={() => console.log('id', id)}
+                        // onClick={() => console.log('id', id)}
+                        data-test-id={`card-link-${id}`}
                     >
                         {btnCooking}
                     </Button>

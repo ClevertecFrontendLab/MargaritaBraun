@@ -5,13 +5,19 @@ import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 
 interface RecipesSectionsProps {
     dataAllCategory: dataAllCategoryProps[];
+    searchQuery: string;
 }
 
-export const RecipesSections = ({ dataAllCategory }: RecipesSectionsProps) => (
+export const RecipesSections = ({ dataAllCategory, searchQuery }: RecipesSectionsProps) => (
     <Flex direction='column' pb='26' w='100%'>
         <SimpleGrid columns={[1, 1, 2, 1, 1, 2]} w='100%' gap='16px 24px'>
-            {dataAllCategory.map((dataCard) => (
-                <CardRecipe key={dataCard.title} {...dataCard}></CardRecipe>
+            {dataAllCategory.map((dataCard, i) => (
+                <CardRecipe
+                    key={dataCard.title}
+                    {...dataCard}
+                    searchQuery={searchQuery}
+                    data-test-id={`food-card-${i}`}
+                ></CardRecipe>
             ))}
         </SimpleGrid>
         <Flex justify='center' align='center' pt='4'>

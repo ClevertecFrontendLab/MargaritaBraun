@@ -12,6 +12,8 @@ import {
     MenuButton,
     MenuList,
     Switch,
+    Tag,
+    TagLabel,
     Text,
 } from '@chakra-ui/react';
 import { ChangeEvent, FC, useState } from 'react';
@@ -68,14 +70,24 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
     };
 
     return (
-        <Flex display='column' gap={[2]}>
-            <Flex alignItems='center'>
-                <Text>Исключить аллергены</Text>
+        <>
+            <Flex alignItems='center' gap={[3]}>
+                <Text
+                    whiteSpace='nowrap'
+                    fontFamily='Inter'
+                    fontSize='16px'
+                    fontStyle='normal'
+                    fontWeight='500'
+                    lineHeight='24px'
+                >
+                    Исключить аллергены
+                </Text>
                 <Switch
                     size='md'
                     colorScheme='lime'
                     onChange={handleSwitch}
                     isChecked={activated}
+                    data-test-id='allergens-menu-button-filter'
                 />
             </Flex>
             <Menu closeOnSelect={false}>
@@ -100,21 +112,27 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                                     e.preventDefault();
                                 }
                             }}
+                            h='auto'
                         >
-                            <Box display='flex' flexWrap='wrap' gap={1}>
-                                {fullFilters[filterKey].length > 0
-                                    ? fullFilters[filterKey].map((option: string) => (
-                                          <Text
-                                              as='span'
-                                              textStyle='textCardDescription'
-                                              noOfLines={1}
-                                              key={option}
-                                          >
-                                              {option}
-                                          </Text>
-                                      ))
-                                    : title}
-                            </Box>
+                            {fullFilters[filterKey].length > 0 ? (
+                                <Box display='flex' flexWrap='wrap' gap={1} h='auto'>
+                                    {fullFilters[filterKey].map((option: string) => (
+                                        <Tag
+                                            key={option}
+                                            colorScheme='lime'
+                                            color='lime.400'
+                                            borderColor='lime.400'
+                                            border='1px'
+                                            mr={1}
+                                            data-test-id='filter-tag'
+                                        >
+                                            <TagLabel>{option}</TagLabel>
+                                        </Tag>
+                                    ))}
+                                </Box>
+                            ) : (
+                                <Text textAlign='left'>{title}</Text>
+                            )}
                         </MenuButton>
                         <MenuList zIndex='10' w='269px' display='flex' flexDirection='column'>
                             {allOptions.map((option, index) => (
@@ -125,6 +143,7 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                                     onChange={() => handleSelect(option)}
                                     bg={index % 2 === 0 ? 'white' : 'blackAlpha.100'}
                                     p={2}
+                                    data-test-id={`allergen-${index}`}
                                 >
                                     {option}
                                 </Checkbox>
@@ -137,6 +156,7 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                                         setNewAllergy(event.target.value)
                                     }
                                     placeholder='Добавить аллерген'
+                                    data-test-id='add-other-allergen'
                                 />
                                 <InputRightElement>
                                     <IconButton
@@ -144,6 +164,7 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                                         aria-label='add'
                                         size='xs'
                                         icon={<PlusIcon />}
+                                        data-test-id='add-allergen-button'
                                     />
                                 </InputRightElement>
                             </InputGroup>
@@ -151,6 +172,6 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                     </>
                 )}
             </Menu>
-        </Flex>
+        </>
     );
 };

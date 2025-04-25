@@ -7,11 +7,11 @@ import {
     DrawerFooter,
     DrawerHeader,
     DrawerOverlay,
+    Flex,
     Stack,
 } from '@chakra-ui/react';
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink as ReachLink } from 'react-router';
 
 import navigationData from '~/entities/NavMenu/const/navigationData';
 import {
@@ -58,13 +58,19 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
 
     return (
         <>
-            <Drawer isOpen={isOpen} placement='right' onClose={onClose} size='sm'>
+            <Drawer
+                isOpen={isOpen}
+                placement='right'
+                onClose={onClose}
+                size='sm'
+                data-test-id='filter-drawer'
+            >
                 <DrawerOverlay
                     background='var(--blackAlpha-300, rgba(0, 0, 0, 0.16))'
                     backdropFilter='blur(2px)'
                 />
                 <DrawerContent>
-                    <DrawerCloseButton />
+                    <DrawerCloseButton data-test-id='close-filter-drawer' />
                     <DrawerHeader>Фильтр</DrawerHeader>
 
                     <DrawerBody
@@ -78,6 +84,7 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                             fullFilters={fullFilters}
                             setfullFilters={setfullFilters}
                             filterKey='categoryFilter'
+                            data-test-id='filter-menu-button-категория'
                         />
                         <FieldWithSelect
                             title='Поиск по автору'
@@ -100,13 +107,16 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                             setfullFilters={setfullFilters}
                             filterKey='sideDishFilter'
                         />
-                        <SelectAllergyWithSwitch
-                            title='Выберите из списка аллергенов...'
-                            options={allergyOptions}
-                            fullFilters={fullFilters}
-                            setfullFilters={setfullFilters}
-                            filterKey='allergyFilter'
-                        />
+                        <Flex direction='column'>
+                            <SelectAllergyWithSwitch
+                                data-test-id='allergens-switcher-filter'
+                                title='Выберите из списка аллергенов...'
+                                options={allergyOptions}
+                                fullFilters={fullFilters}
+                                setfullFilters={setfullFilters}
+                                filterKey='allergyFilter'
+                            />
+                        </Flex>
                     </DrawerBody>
 
                     <DrawerFooter display='flex' flexDirection='column'>
@@ -117,17 +127,18 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                                 colorScheme='black'
                                 size={['sm', 'sm', null, null, 'lg']}
                                 onClick={handleCleanFilters}
+                                data-test-id='clear-filter-button'
                             >
                                 Очистить фильтр
                             </Button>
                             <Button
-                                as={ReachLink}
                                 colorScheme='black'
                                 variant='solid'
                                 bg='black'
                                 color='white'
                                 size={['sm', 'sm', null, null, 'lg']}
-                                to='/filters'
+                                onClick={onClose}
+                                data-test-id='find-recipe-button'
                             >
                                 Найти рецепт
                             </Button>

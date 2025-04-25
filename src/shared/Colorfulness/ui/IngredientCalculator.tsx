@@ -72,8 +72,8 @@ export const IngredientCalculator: FC<IngredientCalculatorProps> = ({ ingredient
                         >
                             <NumberInputField />
                             <NumberInputStepper>
-                                <NumberIncrementStepper />
-                                <NumberDecrementStepper />
+                                <NumberIncrementStepper data-test-id='increment-stepper' />
+                                <NumberDecrementStepper data-test-id='decrement-stepper' />
                             </NumberInputStepper>
                         </NumberInput>
                     </Flex>
@@ -86,6 +86,7 @@ export const IngredientCalculator: FC<IngredientCalculatorProps> = ({ ingredient
                     {ingredients &&
                         ingredients.map((item, index) => (
                             <HStack
+                                key={index}
                                 bg={index % 2 === 0 ? '#FFF' : 'blackAlpha.100'}
                                 w='100%'
                                 justifyContent='space-between'
@@ -102,7 +103,6 @@ export const IngredientCalculator: FC<IngredientCalculatorProps> = ({ ingredient
                                 >
                                     {item.title}
                                 </Text>
-                                {/* <Text w='50%'>{+item.count * +letsPortions + item.measureUnit}</Text> */}
                                 <Text
                                     w='50%'
                                     textAlign='right'
@@ -112,6 +112,7 @@ export const IngredientCalculator: FC<IngredientCalculatorProps> = ({ ingredient
                                     fontWeight='400'
                                     lineHeight='20px'
                                     p={['12px 8px', '12px 8px', '16px 24px']}
+                                    data-test-id={`ingredient-quantity-${index}`}
                                 >{`${+item.count * +letsPortions} ${item.measureUnit}`}</Text>
                             </HStack>
                         ))}

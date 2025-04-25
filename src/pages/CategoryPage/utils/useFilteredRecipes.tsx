@@ -4,14 +4,14 @@ import { useSearchParams } from 'react-router';
 import navigationData from '~/entities/NavMenu/const/navigationData';
 import dataAllCategory from '~/shared/consts/dataAllCategory';
 import { filtersSelector } from '~/store/filter-slice';
-import { PageHeaderWithFilters, RecipesSections } from '~/widgets/Content';
 
-export const FiltersPage = () => {
+import { checkRecipeAllergens } from './checkRecipeAllergens';
+
+export const useFilteredRecipes = (dataWithoutFilters = dataAllCategory) => {
     const filters = useSelector(filtersSelector);
     const [searchParams] = useSearchParams();
     const searchQuery = searchParams.get('search') || '';
-
-    const filteredData = dataAllCategory.filter((recipeData) => {
+    const filteredData = dataWithoutFilters.filter((recipeData) => {
         if (searchQuery) {
             const searchLower = searchQuery.toLowerCase();
             const titleMatches = recipeData.title.toLowerCase().includes(searchLower);
@@ -27,21 +27,14 @@ export const FiltersPage = () => {
         }
 
         if (filters.allergyFilter.length > 0) {
-            const hasAllergens = recipeData.ingredients.some((ingredient) =>
-                filters.allergyFilter.some((allergen) =>
-                    ingredient.title.toLowerCase().includes(allergen.toLowerCase()),
-                ),
+            const hasAllergens = checkRecipeAllergens(
+                recipeData.ingredients,
+                filters.allergyFilter,
             );
             if (hasAllergens) return false;
         }
 
         return true;
     });
-
-    return (
-        <>
-            <PageHeaderWithFilters title='Фильтрация' />
-            <RecipesSections dataAllCategory={filteredData} searchQuery={searchQuery} />
-        </>
-    );
+    return filteredData;
 };
