@@ -14,7 +14,7 @@ export interface BurgerMenuProps {
 export const BurgerMenuModal: FC<BurgerMenuProps> = ({ isOpen, onClose }) => (
     <>
         <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay top='80px' zIndex='20' />
+            <ModalOverlay top='64px' zIndex='20' />
             <ModalContent
                 display='flex'
                 justifyContent='flex-end'
@@ -26,12 +26,17 @@ export const BurgerMenuModal: FC<BurgerMenuProps> = ({ isOpen, onClose }) => (
                 // zIndex='sticky'
                 zIndex='21'
             >
-                <ModalBody display='flex' w='100%' p={['10px', null, null, '0']} overflow='auto'>
+                <ModalBody
+                    display='flex'
+                    w='100%'
+                    p={['10px', null, null, '0']}
+                    // overflow='auto'
+                >
                     <Flex
                         direction='column'
                         justify='space-between'
-                        position='sticky'
-                        top='80px'
+                        // position='sticky'
+                        // top='64px'
                         w='100%'
                         gap={[2]}
                     >

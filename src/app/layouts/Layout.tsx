@@ -11,7 +11,7 @@ const Layout = () => (
         <Grid
             w='100%'
             minH='100vh'
-            maxW='120rem'
+            maxW={['100%', null, null, null, '120rem']}
             m='0 auto'
             justifyItems='center'
             templateAreas={`"header header header"
@@ -24,7 +24,7 @@ const Layout = () => (
                 null,
                 'minmax(200px, 256px) minmax(auto, 1fr) minmax(200px, 280px)',
             ]}
-            templateRows={['auto 1fr auto', null, null, null, 'auto 1fr']}
+            templateRows={['64px 1fr 80px', null, null, null, '80px 1fr']}
             position='relative'
             gap={[2, null, 4]}
         >

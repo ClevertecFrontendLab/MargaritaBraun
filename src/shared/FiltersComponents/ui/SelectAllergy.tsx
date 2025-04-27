@@ -16,7 +16,7 @@ import {
     TagLabel,
     Text,
 } from '@chakra-ui/react';
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
 
 import { PlusIcon } from '~/shared/Icons';
 import { FieldForFilterProps, FiltersData } from '~/widgets/Content/modal/filtersType';
@@ -48,6 +48,28 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
                 };
             }
         });
+    };
+
+    const handleAddAllergy = () => {
+        const trimmedValue = addNewAllergy.trim();
+        if (!trimmedValue) return;
+
+        if (!allOptions.includes(trimmedValue)) {
+            setAllOptions((prev) => [...prev, trimmedValue]);
+        }
+
+        setfullFilters((prev: FiltersData) => ({
+            ...prev,
+            [filterKey]: [...(prev[filterKey] || []), trimmedValue],
+        }));
+
+        setNewAllergy('');
+    };
+
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleAddAllergy();
+        }
     };
 
     const handleClick = () => {
@@ -106,7 +128,7 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
                             colorScheme='white'
                             borderColor='lime.600'
                             p={['10px 12px']}
-                            disabled={!activated}
+                            isDisabled={!activated}
                             onClick={(e) => {
                                 if (!activated) {
                                     e.preventDefault();
@@ -166,6 +188,7 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
                                         }
                                         placeholder='Добавить аллерген'
                                         data-test-id='add-other-allergen'
+                                        onKeyDown={handleKeyDown}
                                     />
                                     <InputRightElement>
                                         <IconButton

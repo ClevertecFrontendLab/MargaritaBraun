@@ -33,7 +33,6 @@ export const useFilteredRecipes = (dataWithoutFilters = dataAllCategory) => {
             }
 
             const hasMatch = filters.sideDishFilter.some((russianSide) => {
-                console.log('d', russianSide);
                 const translation = sideDishesDefault.find((s) => s.label === russianSide)?.title;
                 return translation && recipeData.side!.includes(translation);
             });
@@ -52,5 +51,6 @@ export const useFilteredRecipes = (dataWithoutFilters = dataAllCategory) => {
         return true;
     });
 
-    return filteredData;
+    const sorted = filteredData.sort((a, b) => +a.id - +b.id);
+    return sorted;
 };

@@ -9,13 +9,15 @@ export const checkRecipeAllergens = (
     }
 
     const normalizedAllergens = allergens.map((a) => a.toLowerCase().trim());
-    console.log('ingrig', ingredients);
 
     return ingredients.some((ingredient) => {
         const ingredientName = ingredient.title.toLowerCase().trim();
 
-        return normalizedAllergens.some(
-            (allergen) => ingredientName.includes(allergen) || allergen.includes(ingredientName),
-        );
+        return normalizedAllergens.some((allergen) => {
+            if (allergen === 'томат (помидор)') {
+                allergen = 'томат';
+            }
+            return ingredientName.includes(allergen) || allergen.includes(ingredientName);
+        });
     });
 };

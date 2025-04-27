@@ -10,7 +10,6 @@ import { ProfileNotification } from '~/shared/ProfileNotification';
 import { BurgerMenuModal } from '~/widgets/Menu';
 
 export const Header = () => {
-    // const [openBurger, setOpenBurger] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = useRef(null);
     console.log('header', isOpen);
@@ -18,7 +17,6 @@ export const Header = () => {
         <GridItem
             area='header'
             as='header'
-            // height={{ base: '64px', lg: '80px' }}
             h={['64px', null, null, null, '80px']}
             data-test-id='header'
             colStart={1}
@@ -31,7 +29,6 @@ export const Header = () => {
             justifyContent='space-between'
             p={['8px 16px', null, null, null, '16px 56px 16px 16px', null]}
             bg={isOpen ? 'white' : 'lime.50'}
-            zIndex={isOpen ? '1000000' : 'docked'}
         >
             <LogoNavLink />
             <Hide below='md'>
