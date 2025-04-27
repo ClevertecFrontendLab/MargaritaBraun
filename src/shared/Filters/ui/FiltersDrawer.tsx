@@ -56,20 +56,15 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
         }));
     };
 
+    const checkFiltersParams = () => Object.values(fullFilters).every((item) => item.length === 0);
     return (
         <>
-            <Drawer
-                isOpen={isOpen}
-                placement='right'
-                onClose={onClose}
-                size='sm'
-                data-test-id='filter-drawer'
-            >
+            <Drawer isOpen={isOpen} placement='right' onClose={onClose} size='sm'>
                 <DrawerOverlay
                     background='var(--blackAlpha-300, rgba(0, 0, 0, 0.16))'
                     backdropFilter='blur(2px)'
                 />
-                <DrawerContent>
+                <DrawerContent data-test-id='filter-drawer'>
                     <DrawerCloseButton data-test-id='close-filter-drawer' />
                     <DrawerHeader>Фильтр</DrawerHeader>
 
@@ -84,7 +79,7 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                             fullFilters={fullFilters}
                             setfullFilters={setfullFilters}
                             filterKey='categoryFilter'
-                            data-test-id='filter-menu-button-категория'
+                            dataTestId='filter-menu-button-категория'
                         />
                         <FieldWithSelect
                             title='Поиск по автору'
@@ -109,7 +104,6 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                         />
                         <Flex direction='column'>
                             <SelectAllergyWithSwitch
-                                data-test-id='allergens-switcher-filter'
                                 title='Выберите из списка аллергенов...'
                                 options={allergyOptions}
                                 fullFilters={fullFilters}
@@ -139,6 +133,10 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                                 size={['sm', 'sm', null, null, 'lg']}
                                 onClick={onClose}
                                 data-test-id='find-recipe-button'
+                                isDisabled={checkFiltersParams()}
+                                pointerEvents={checkFiltersParams() ? 'none' : 'auto'}
+                                opacity={checkFiltersParams() ? 0.6 : 1}
+                                cursor={checkFiltersParams() ? 'not-allowed' : 'pointer'}
                             >
                                 Найти рецепт
                             </Button>

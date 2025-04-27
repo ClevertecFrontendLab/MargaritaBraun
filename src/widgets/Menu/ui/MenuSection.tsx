@@ -20,10 +20,9 @@ export const MenuSection = () => (
             <Flex
                 direction='column'
                 justify='space-between'
-                h={[null, null, null, null, 'calc(99.9svh - 24px - 100px)']}
-                position='sticky'
+                position={['static', null, null, 'sticky']}
                 top='10px'
-                height='calc(100vh - 80px)'
+                height={['100%', null, null, 'calc(100vh - 80px)']}
             >
                 <NavMenu />
                 <FooterMenu />

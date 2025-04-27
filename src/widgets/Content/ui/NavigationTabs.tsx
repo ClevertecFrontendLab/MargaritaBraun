@@ -17,10 +17,10 @@ export const NavigationTabs = ({ itemsNavigations }: subcategoryObject) => (
                                 textStyle='textParagraph'
                                 color='lime.800'
                                 whiteSpace='nowrap'
+                                data-test-id={`tab-${item.url.split('/').pop()}-${index}`}
                                 _activeLink={{
                                     color: 'lime.600',
                                     borderBottom: '2px solid #2DB100',
-                                    'data-test-id': `tab-${item.url.split('/').pop()}-${index}`,
                                 }}
                                 to={item.url}
                                 key={item.label}

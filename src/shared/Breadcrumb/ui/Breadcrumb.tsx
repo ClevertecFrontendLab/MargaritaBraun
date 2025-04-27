@@ -8,7 +8,7 @@ import dataAllCategory from '~/shared/consts/dataAllCategory';
 const pagesParams = [
     {
         label: 'Самое сочное',
-        url: 'juiciest',
+        url: 'the-juiciest',
     },
     {
         label: 'Фильтрация',
@@ -26,6 +26,12 @@ export const Breadcrumbs = () => {
             flexWrap='wrap'
             separator={<ChevronRightIcon color='gray.500' />}
             data-test-id='breadcrumbs'
+            sx={{
+                '& > ol': {
+                    flexWrap: 'wrap',
+                    gap: '8px',
+                },
+            }}
         >
             <BreadcrumbItem>
                 <BreadcrumbLink href='/'>{title}</BreadcrumbLink>
@@ -68,9 +74,7 @@ export const Breadcrumbs = () => {
                 }
                 return (
                     <BreadcrumbItem key={routeTo} isCurrentPage={isCurrentPage}>
-                        <BreadcrumbLink href={routeTo} whiteSpace='nowrap'>
-                            {categoryLabel}
-                        </BreadcrumbLink>
+                        <BreadcrumbLink href={routeTo}>{categoryLabel}</BreadcrumbLink>
                     </BreadcrumbItem>
                 );
             })}

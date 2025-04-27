@@ -18,6 +18,7 @@ import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
 
 interface CardRecipeProps extends dataAllCategoryProps {
     searchQuery?: string;
+    index: number;
 }
 
 export const CardRecipe = ({
@@ -30,6 +31,7 @@ export const CardRecipe = ({
     bookmarks,
     likes,
     searchQuery,
+    index,
 }: CardRecipeProps) => {
     const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
         category: string;
@@ -50,7 +52,7 @@ export const CardRecipe = ({
     const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
 
     return (
-        <Card direction='row' variant='outline'>
+        <Card direction='row' variant='outline' data-test-id={`food-card-${index}`}>
             <Flex flex='1 1 55%'>
                 <Image objectFit='cover' w='100%' src={image} alt={title} borderLeftRadius='8px' />
             </Flex>
@@ -165,8 +167,7 @@ export const CardRecipe = ({
                         size={['xs', null, 'sm']}
                         as={ReachLink}
                         to={recipePath}
-                        // onClick={() => console.log('id', id)}
-                        data-test-id={`card-link-${id}`}
+                        data-test-id={`card-link-${index}`}
                     >
                         {btnCooking}
                     </Button>

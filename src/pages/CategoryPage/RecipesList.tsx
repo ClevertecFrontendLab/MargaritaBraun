@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { useSearchParams } from 'react-router';
 
 import { CardRecipe } from '~/entities/Card';
@@ -24,12 +24,15 @@ export const RecipesList = ({ category, subcategory }: RecipesListProps) => {
 
     return (
         <>
-            <Text fontSize='xl' fontWeight='bold'>{`- ${category} - ${category}`}</Text>
             {filteredRecipes.length > 0 ? (
                 <Flex direction='column' gap={[2, 2, 2, 3, 3]}>
-                    <Text>"Есть данные о рецептах в категории"</Text>
-                    {filteredRecipes.map((recipeData) => (
-                        <CardRecipe key={recipeData.id} {...recipeData} searchQuery={searchQuery} />
+                    {filteredRecipes.map((recipeData, index) => (
+                        <CardRecipe
+                            key={recipeData.id}
+                            {...recipeData}
+                            searchQuery={searchQuery}
+                            index={index}
+                        />
                     ))}
                 </Flex>
             ) : (

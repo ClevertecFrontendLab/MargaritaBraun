@@ -13,6 +13,8 @@ export const SliderNewRecipes = () => {
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
     );
     const dataForSlidersCards = sortedRecipes.slice(0, 10);
+    // console.log(' dataForSlidersCards', dataForSlidersCards);
+    // console.log('len dataForSlidersCards', dataForSlidersCards.length);
     const swiperRef = useRef<SwiperType | null>(null);
 
     return (
@@ -55,27 +57,27 @@ export const SliderNewRecipes = () => {
                     breakpoints={{
                         200: {
                             slidesPerView: 1,
-                            spaceBetween: 20,
+                            spaceBetween: 12,
                         },
                         300: {
                             slidesPerView: 2,
-                            spaceBetween: 20,
+                            spaceBetween: 12,
                         },
                         640: {
                             slidesPerView: 2,
-                            spaceBetween: 20,
+                            spaceBetween: 12,
                         },
                         768: {
                             slidesPerView: 4,
-                            spaceBetween: 30,
+                            spaceBetween: 12,
                         },
                         1024: {
                             slidesPerView: 4,
-                            spaceBetween: 40,
+                            spaceBetween: 12,
                         },
                         1400: {
                             slidesPerView: 3,
-                            spaceBetween: 40,
+                            spaceBetween: 12,
                         },
                         // 1440: {
                         //     slidesPerView: 3,
@@ -83,22 +85,22 @@ export const SliderNewRecipes = () => {
                         // },
                         1480: {
                             slidesPerView: 3,
-                            spaceBetween: 40,
+                            spaceBetween: 12,
                         },
                         1500: {
                             slidesPerView: 4,
-                            spaceBetween: 40,
+                            spaceBetween: 24,
                         },
                         1920: {
                             slidesPerView: 4,
-                            spaceBetween: 40,
+                            spaceBetween: 24,
                         },
                     }}
                 >
                     {dataForSlidersCards &&
-                        dataForSlidersCards.map((dataForSlide, i) => (
+                        dataForSlidersCards.map((dataForSlide, index) => (
                             <SwiperSlide key={dataForSlide.id}>
-                                <CardSlider {...dataForSlide} data-test-id={`carousel-card-${i}`} />
+                                <CardSlider {...dataForSlide} index={index} />
                             </SwiperSlide>
                         ))}
                 </Swiper>

@@ -5,6 +5,10 @@ import navigationData from '~/entities/NavMenu/const/navigationData';
 import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
 
+interface CardSliderProps extends dataAllCategoryProps {
+    index: number;
+}
+
 export const CardSlider = ({
     id,
     title,
@@ -14,7 +18,8 @@ export const CardSlider = ({
     subcategory,
     bookmarks,
     likes,
-}: dataAllCategoryProps) => {
+    index,
+}: CardSliderProps) => {
     const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
         category: string;
         subcategory: string;
@@ -40,6 +45,7 @@ export const CardSlider = ({
             }}
             h='100%'
             position='relative'
+            data-test-id={`carousel-card-${index}`}
         >
             <Flex overflow='hidden' borderTopRadius='8px' flex='1 1 47%'>
                 <Image

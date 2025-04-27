@@ -125,14 +125,15 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
                                             borderColor='lime.400'
                                             border='1px'
                                             mr={1}
-                                            data-test-id='filter-tag'
                                         >
                                             <TagLabel>{option}</TagLabel>
                                         </Tag>
                                     ))}
                                 </Box>
                             ) : (
-                                <Text textAlign='left'>{title}</Text>
+                                <Text textAlign='left' as='span'>
+                                    {title}
+                                </Text>
                             )}
                         </MenuButton>
                         <MenuList
@@ -155,26 +156,28 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
                                     {option}
                                 </Checkbox>
                             ))}
-                            <InputGroup size='md' mt={2}>
-                                <Input
-                                    type='text'
-                                    value={addNewAllergy}
-                                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                        setNewAllergy(event.target.value)
-                                    }
-                                    placeholder='Добавить аллерген'
-                                    data-test-id='add-other-allergen'
-                                />
-                                <InputRightElement>
-                                    <IconButton
-                                        onClick={handleClick}
-                                        aria-label='add'
-                                        size='xs'
-                                        icon={<PlusIcon />}
-                                        data-test-id='add-allergen-button'
+                            {isOpen && (
+                                <InputGroup size='md' mt={2}>
+                                    <Input
+                                        type='text'
+                                        value={addNewAllergy}
+                                        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                                            setNewAllergy(event.target.value)
+                                        }
+                                        placeholder='Добавить аллерген'
+                                        data-test-id='add-other-allergen'
                                     />
-                                </InputRightElement>
-                            </InputGroup>
+                                    <InputRightElement>
+                                        <IconButton
+                                            onClick={handleClick}
+                                            aria-label='add'
+                                            size='xs'
+                                            icon={<PlusIcon />}
+                                            data-test-id='add-allergen-button'
+                                        />
+                                    </InputRightElement>
+                                </InputGroup>
+                            )}
                         </MenuList>
                     </>
                 )}

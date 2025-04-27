@@ -5,6 +5,7 @@ import navigationData from '~/entities/NavMenu/const/navigationData';
 import dataAllCategory from '~/shared/consts/dataAllCategory';
 import { filtersSelector } from '~/store/filter-slice';
 
+import { sideDishesDefault } from '../consts/sideDefaultProps';
 import { checkRecipeAllergens } from './checkRecipeAllergens';
 
 export const useFilteredRecipes = (dataWithoutFilters = dataAllCategory) => {
@@ -26,6 +27,20 @@ export const useFilteredRecipes = (dataWithoutFilters = dataAllCategory) => {
             if (!categoryMatches) return false;
         }
 
+        if (filters.sideDishFilter.length > 0) {
+            if (!('side' in recipeData)) {
+                return false;
+            }
+
+            const hasMatch = filters.sideDishFilter.some((russianSide) => {
+                console.log('d', russianSide);
+                const translation = sideDishesDefault.find((s) => s.label === russianSide)?.title;
+                return translation && recipeData.side!.includes(translation);
+            });
+
+            if (!hasMatch) return false;
+        }
+
         if (filters.allergyFilter.length > 0) {
             const hasAllergens = checkRecipeAllergens(
                 recipeData.ingredients,
@@ -36,5 +51,6 @@ export const useFilteredRecipes = (dataWithoutFilters = dataAllCategory) => {
 
         return true;
     });
+
     return filteredData;
 };

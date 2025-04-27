@@ -1,5 +1,3 @@
-// import { Flex } from '@chakra-ui/react';
-
 import { useSearchParams } from 'react-router';
 
 import { HomeKitchen } from '~/entities/KitchenSection';

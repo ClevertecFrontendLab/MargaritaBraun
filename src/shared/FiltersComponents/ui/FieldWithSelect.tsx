@@ -20,6 +20,7 @@ export const FieldWithSelect: FC<FieldForFilterProps> = ({
     fullFilters,
     setfullFilters,
     filterKey,
+    dataTestId,
 }) => {
     const handleSelect = (value: string) => {
         setfullFilters((prev: FiltersData) => {
@@ -45,6 +46,7 @@ export const FieldWithSelect: FC<FieldForFilterProps> = ({
                 {({ isOpen }) => (
                     <>
                         <MenuButton
+                            data-test-id={dataTestId}
                             as={Button}
                             isActive={isOpen}
                             variant='outline'

@@ -20,7 +20,7 @@ const AppRouter = () => (
                     <Route path=':subcategory' element={<CategoryPage />}></Route>
                 </Route>
                 <Route path='/:category/:subcategory/:id' element={<SingleRecipePage />} />
-                <Route path='juiciest' element={<Juiciest />} />
+                <Route path='the-juiciest' element={<Juiciest />} />
                 <Route path='filters' element={<FiltersPage />} />
             </Route>
         </Routes>

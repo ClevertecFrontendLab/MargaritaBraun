@@ -19,12 +19,12 @@ const Layout = () => (
                 "footer footer footer"`}
             templateColumns={[
                 '1fr',
-                '1fr',
-                '1fr',
-                'minmax(200px, 256px) minmax(auto, 1fr) minmax(200px, 280px)',
+                null,
+                null,
+                null,
                 'minmax(200px, 256px) minmax(auto, 1fr) minmax(200px, 280px)',
             ]}
-            templateRows={['auto 1fr auto', 'auto 1fr auto', 'auto 1fr auto']}
+            templateRows={['auto 1fr auto', null, null, null, 'auto 1fr']}
             position='relative'
             gap={[2, null, 4]}
         >
@@ -40,8 +40,8 @@ const Layout = () => (
                 display='flex'
                 flexDirection='column'
                 p={['0 16px', null, '0 20px', '0 24px']}
-                gap={['8', null, '10']}
-                mb={['80px', null, null, '0']}
+                gap={['8', null, null, null, '10']}
+                mb={['80px', null, null, null, '0']}
             >
                 <Outlet />
             </GridItem>

@@ -28,6 +28,14 @@ export const IngredientCalculator: FC<IngredientCalculatorProps> = ({ ingredient
         }
     };
 
+    const calculateIngredients = (currentPortions: number) => {
+        if (currentPortions === 0) {
+            return '';
+        }
+        const resultCalculate = (currentPortions / +portions) * letsPortions;
+        return resultCalculate;
+    };
+
     return (
         <>
             <Stack flexDirection='column'>
@@ -78,11 +86,7 @@ export const IngredientCalculator: FC<IngredientCalculatorProps> = ({ ingredient
                         </NumberInput>
                     </Flex>
                 </HStack>
-                <Stack
-                    w='100%'
-                    direction='column'
-                    // gap='6'
-                >
+                <Stack w='100%' direction='column'>
                     {ingredients &&
                         ingredients.map((item, index) => (
                             <HStack
@@ -113,7 +117,7 @@ export const IngredientCalculator: FC<IngredientCalculatorProps> = ({ ingredient
                                     lineHeight='20px'
                                     p={['12px 8px', '12px 8px', '16px 24px']}
                                     data-test-id={`ingredient-quantity-${index}`}
-                                >{`${+item.count * +letsPortions} ${item.measureUnit}`}</Text>
+                                >{`${calculateIngredients(+item.count)} ${item.measureUnit}`}</Text>
                             </HStack>
                         ))}
                 </Stack>

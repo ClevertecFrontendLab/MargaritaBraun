@@ -1,18 +1,8 @@
-import {
-    Flex,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalFooter,
-    ModalHeader,
-    ModalOverlay,
-} from '@chakra-ui/react';
-import { FC, SyntheticEvent } from 'react';
+import { Flex, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay } from '@chakra-ui/react';
+import { FC } from 'react';
 
 import { NavMenu } from '~/entities/NavMenu';
 import { Breadcrumbs } from '~/shared/Breadcrumb';
-import { LogoNavLink } from '~/shared/NavLinks';
 
 import { FooterMenu } from './FooterMenu';
 
@@ -23,50 +13,31 @@ export interface BurgerMenuProps {
 
 export const BurgerMenuModal: FC<BurgerMenuProps> = ({ isOpen, onClose }) => (
     <>
-        <Modal isOpen={isOpen} onClose={onClose} motionPreset='slideInBottom'>
-            <ModalOverlay />
+        <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay top='80px' zIndex='20' />
             <ModalContent
                 display='flex'
                 justifyContent='flex-end'
                 width='344px'
                 marginLeft='auto'
                 marginRight='0'
-                h='calc(99.9svh - 87px - 64px)'
                 borderTopRadius='0'
-                onClick={(event: SyntheticEvent) => {
-                    const target = event.target as HTMLElement;
-                    const closestLink = target.closest('a');
-                    if (closestLink) {
-                        onClose();
-                    }
-                }}
+                mt={['80px', null, null, null, 0]}
+                // zIndex='sticky'
+                zIndex='21'
             >
-                <ModalHeader
-                    w='100vw'
-                    position='fixed'
-                    left='0'
-                    right='0'
-                    top='0'
-                    bg='white'
-                    h='64px'
-                    justifyContent='flex-end'
-                    zIndex='10'
-                >
-                    <Flex align='center'>
-                        <LogoNavLink />
-                        <ModalCloseButton data-test-id='close-icon' />
-                    </Flex>
-                </ModalHeader>
                 <ModalBody display='flex' w='100%' p={['10px', null, null, '0']} overflow='auto'>
                     <Flex
                         direction='column'
                         justify='space-between'
                         position='sticky'
-                        top='100px'
+                        top='80px'
                         w='100%'
                         gap={[2]}
                     >
-                        <Breadcrumbs />
+                        <Flex w='300px' wrap='wrap'>
+                            <Breadcrumbs />
+                        </Flex>
                         <NavMenu />
                     </Flex>
                 </ModalBody>

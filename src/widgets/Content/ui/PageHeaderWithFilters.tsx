@@ -33,7 +33,6 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
         allergyFilter: [],
     });
 
-    console.log('filters', fullFilters);
     const [inputSearch, setInputSearch] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
     const btnRef = useRef<HTMLButtonElement | null>(null);
@@ -51,7 +50,13 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
     const allergyOptions = filterAllergy;
 
     return (
-        <Flex direction='column' align='center' gap={['4', null, null, '8', '8']} pt='8'>
+        <Flex
+            direction='column'
+            align='center'
+            gap={['4', null, null, '8', '8']}
+            pt='8'
+            bg='blue.100'
+        >
             <Flex gap='3' direction='column' align='center'>
                 <Heading
                     as='h1'
@@ -79,7 +84,7 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     bg='transparent'
                     color='black'
                     aria-label='Filters Button'
-                    p={['0 10px', '0 10px', '0 12px']}
+                    p={['0 10px', null, null, '0 12px']}
                     colorScheme='blackAlpha'
                     size={['sm', 'lg']}
                     icon={<FiltersIcon />}
@@ -142,7 +147,13 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     </InputRightElement>
                 </InputGroup>
             </Flex>
-            <Flex w='80%' alignItems='center' justifyContent='center' gap={[4]}>
+            <Flex
+                w='80%'
+                alignItems='center'
+                justifyContent='center'
+                gap={[4]}
+                display={['none', null, null, 'flex']}
+            >
                 <SelectAllergy
                     title='Выберите из списка...'
                     options={allergyOptions}

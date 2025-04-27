@@ -16,7 +16,7 @@ import {
     TagLabel,
     Text,
 } from '@chakra-ui/react';
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, KeyboardEvent, useState } from 'react';
 
 import { PlusIcon } from '~/shared/Icons';
 import { FieldForFilterProps, FiltersData } from '~/widgets/Content/modal/filtersType';
@@ -50,10 +50,25 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
         });
     };
 
-    const handleClick = () => {
-        if (addNewAllergy !== '' && !allOptions.includes(addNewAllergy)) {
-            setAllOptions((prev) => [...prev, addNewAllergy]);
-            setNewAllergy('');
+    const handleAddAllergy = () => {
+        const trimmedValue = addNewAllergy.trim();
+        if (!trimmedValue) return;
+
+        if (!allOptions.includes(trimmedValue)) {
+            setAllOptions((prev) => [...prev, trimmedValue]);
+        }
+
+        setfullFilters((prev: FiltersData) => ({
+            ...prev,
+            [filterKey]: [...(prev[filterKey] || []), trimmedValue],
+        }));
+
+        setNewAllergy('');
+    };
+
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            handleAddAllergy();
         }
     };
 
@@ -87,7 +102,7 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                     colorScheme='lime'
                     onChange={handleSwitch}
                     isChecked={activated}
-                    data-test-id='allergens-menu-button-filter'
+                    data-test-id='allergens-switcher-filter'
                 />
             </Flex>
             <Menu closeOnSelect={false}>
@@ -113,6 +128,7 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                                 }
                             }}
                             h='auto'
+                            data-test-id='allergens-menu-button-filter'
                         >
                             {fullFilters[filterKey].length > 0 ? (
                                 <Box display='flex' flexWrap='wrap' gap={1} h='auto'>
@@ -124,7 +140,6 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                                             borderColor='lime.400'
                                             border='1px'
                                             mr={1}
-                                            data-test-id='filter-tag'
                                         >
                                             <TagLabel>{option}</TagLabel>
                                         </Tag>
@@ -148,26 +163,29 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                                     {option}
                                 </Checkbox>
                             ))}
-                            <InputGroup size='md' mt={2}>
-                                <Input
-                                    type='text'
-                                    value={addNewAllergy}
-                                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                        setNewAllergy(event.target.value)
-                                    }
-                                    placeholder='Добавить аллерген'
-                                    data-test-id='add-other-allergen'
-                                />
-                                <InputRightElement>
-                                    <IconButton
-                                        onClick={handleClick}
-                                        aria-label='add'
-                                        size='xs'
-                                        icon={<PlusIcon />}
-                                        data-test-id='add-allergen-button'
+                            {isOpen && (
+                                <InputGroup size='md' mt={2}>
+                                    <Input
+                                        type='text'
+                                        value={addNewAllergy}
+                                        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                                            setNewAllergy(event.target.value)
+                                        }
+                                        placeholder='Добавить аллерген'
+                                        data-test-id='add-other-allergen'
+                                        onKeyDown={handleKeyDown}
                                     />
-                                </InputRightElement>
-                            </InputGroup>
+                                    <InputRightElement>
+                                        <IconButton
+                                            aria-label='add'
+                                            size='xs'
+                                            icon={<PlusIcon />}
+                                            data-test-id='add-allergen-button'
+                                            onClick={handleAddAllergy}
+                                        />
+                                    </InputRightElement>
+                                </InputGroup>
+                            )}
                         </MenuList>
                     </>
                 )}

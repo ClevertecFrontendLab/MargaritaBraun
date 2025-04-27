@@ -18,6 +18,7 @@ export const FilterDisplay: FC<FilterDisplayProps> = ({ fullFilters }) => (
                     borderColor='lime.400'
                     border='1px'
                     mr={1}
+                    data-test-id='filter-tag'
                 >
                     <TagLabel>{value}</TagLabel>
                 </Tag>

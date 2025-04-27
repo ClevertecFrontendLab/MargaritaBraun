@@ -9,7 +9,7 @@ export const Footer = () => {
         <GridItem
             area='footer'
             bg='lime.50'
-            display={{ base: 'flex', lg: 'none' }}
+            display={['flex', null, null, null, 'none']}
             as='footer'
             justifyContent='space-around'
             zIndex='docked'

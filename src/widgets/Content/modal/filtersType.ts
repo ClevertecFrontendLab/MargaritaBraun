@@ -23,4 +23,5 @@ export interface FieldForFilterProps {
     fullFilters: FiltersData;
     setfullFilters: React.Dispatch<React.SetStateAction<FiltersData>>;
     filterKey: keyof FiltersData;
+    dataTestId?: string;
 }

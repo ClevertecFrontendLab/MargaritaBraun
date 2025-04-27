@@ -16,12 +16,15 @@ import { AccordionIcon } from '~/shared/Icons';
 import navigationData from '../const/navigationData';
 
 export const NavMenu = () => {
-    const { category } = useParams();
+    const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
+        category: string;
+        subcategory: string;
+    }>();
     const location = useLocation();
     const isHomePage = location.pathname === '/';
 
     const indexCategory = navigationData.findIndex((item) => {
-        if (item.url === category) return true;
+        if (item.url === currentCategory) return true;
 
         if (item.subitems) {
             return item.subitems.some((subitem) => {
@@ -41,6 +44,7 @@ export const NavMenu = () => {
             p={['0', null, null, '10px 16px 10px 10px']}
             h='100%'
             w='100%'
+            zIndex='10'
         >
             <Accordion allowToggle p='0' index={indexOpenMenu} w='100%' data-test-id='nav'>
                 {navigationData.map((item) => (
@@ -50,11 +54,13 @@ export const NavMenu = () => {
                                 <AccordionButton
                                     as={ReachLink}
                                     to={item.subitems ? item.subitems[0].url : item.url}
-                                    data-test-id={`${item.url}`}
                                     px='2'
                                     py='3'
                                     bg={isExpanded ? '#EAFFC7' : 'transparent'}
                                     _hover={{ bg: '#EAFFC7' }}
+                                    data-test-id={
+                                        item.url === 'vegan' ? 'vegan-cuisine' : `${item.url}`
+                                    }
                                 >
                                     <Box
                                         flex='1'
@@ -92,12 +98,17 @@ export const NavMenu = () => {
                                                     pos='relative'
                                                 >
                                                     <ChakraLink
+                                                        data-test-id={
+                                                            currentSubCategory ===
+                                                            subitem.url.split('/').pop()
+                                                                ? `${currentSubCategory}-active`
+                                                                : null
+                                                        }
                                                         _activeLink={{
                                                             fontWeight: 'bold',
                                                             _before: {
                                                                 width: '7px',
                                                             },
-                                                            'data-test-id': `${item.url.split('/').pop()}-active`,
                                                         }}
                                                         _before={{
                                                             height: '100%',
