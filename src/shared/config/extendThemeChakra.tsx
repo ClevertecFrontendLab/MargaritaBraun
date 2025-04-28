@@ -105,7 +105,6 @@ const theme = extendTheme({
 
                 control: {
                     borderColor: 'lime.600',
-                    // background: 'lime.300',
                 },
                 icon: {
                     color: 'black',
@@ -132,7 +131,7 @@ const theme = extendTheme({
                     color: 'black',
                 },
                 solid: {
-                    bg: 'lime.400',
+                    // bg: 'lime.400',
                     color: 'black',
                 },
             },

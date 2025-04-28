@@ -65,7 +65,12 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                     backdropFilter='blur(2px)'
                 />
                 <DrawerContent data-test-id='filter-drawer'>
-                    <DrawerCloseButton data-test-id='close-filter-drawer' />
+                    <DrawerCloseButton
+                        data-test-id='close-filter-drawer'
+                        borderRadius='1000'
+                        color='white'
+                        bg='black'
+                    />
                     <DrawerHeader>Фильтр</DrawerHeader>
 
                     <DrawerBody

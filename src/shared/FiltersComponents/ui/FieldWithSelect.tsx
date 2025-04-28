@@ -58,8 +58,9 @@ export const FieldWithSelect: FC<FieldForFilterProps> = ({
                                 />
                             }
                             colorScheme='white'
-                            borderColor='lime.600'
                             p={['10px 12px']}
+                            borderColor='blackAlpha.200'
+                            _focus={{ borderColor: 'lime.300' }}
                         >
                             {fullFilters[filterKey].length > 0 ? (
                                 <Box display='flex' flexWrap='wrap' gap={1} h='auto'>

@@ -2,6 +2,7 @@ import { CloseIcon, SearchIcon } from '@chakra-ui/icons';
 import {
     Flex,
     Heading,
+    Hide,
     IconButton,
     Input,
     InputGroup,
@@ -9,7 +10,7 @@ import {
     Text,
     useDisclosure,
 } from '@chakra-ui/react';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
 
 import { FiltersDrawer } from '~/shared/Filters';
@@ -37,32 +38,19 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
     const [searchParams, setSearchParams] = useSearchParams();
     const btnRef = useRef<HTMLButtonElement | null>(null);
 
-    useEffect(() => {
-        if (inputSearch.length === 0) {
-            searchParams.delete('search');
-            setSearchParams(searchParams);
-        }
-    }, [inputSearch]);
-
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const placeholderForInput = 'Название или ингредиент...';
     const allergyOptions = filterAllergy;
 
     return (
-        <Flex
-            direction='column'
-            align='center'
-            gap={['4', null, null, '8', '8']}
-            pt='8'
-            bg='blue.100'
-        >
+        <Flex direction='column' align='center' gap={['4', null, null, '8', '8']} pt='8'>
             <Flex gap='3' direction='column' align='center'>
                 <Heading
                     as='h1'
                     fontFamily='Inter'
-                    fontSize={{ base: '24px', md: '48px' }}
-                    lineHeight={{ base: '32px', md: '48px' }}
+                    fontSize={['24px', null, null, '48px']}
+                    lineHeight={['32px', null, null, '48px']}
                     textAlign='center'
                 >
                     {title}
@@ -78,7 +66,7 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     </Text>
                 )}
             </Flex>
-            <Flex gap='3' align='center' justify='space-between' w='80%'>
+            <Flex gap='3' align='center' justify='space-between' w='80%' alignItems='center'>
                 <IconButton
                     variant='outline'
                     bg='transparent'
@@ -86,20 +74,33 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     aria-label='Filters Button'
                     p={['0 10px', null, null, '0 12px']}
                     colorScheme='blackAlpha'
-                    size={['sm', 'lg']}
+                    size={['sm', null, null, 'lg']}
                     icon={<FiltersIcon />}
                     borderColor='blackAlpha.600'
                     ref={btnRef}
-                    onClick={onOpen}
                     data-test-id='filter-button'
+                    onClick={() => {
+                        setfullFilters({
+                            categoryFilter: [],
+                            autorsFilter: [],
+                            meatTypeFilter: [],
+                            sideDishFilter: [],
+                            allergyFilter: [],
+                        });
+                        onOpen();
+                    }}
                 />
                 <InputGroup
-                    size={['sm', 'lg']}
+                    size={['sm', null, null, 'lg']}
                     colorScheme='grey'
                     borderColor='blackAlpha.600'
                     w='100%'
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
                 >
                     <Input
+                        size={['sm', null, null, 'lg']}
                         placeholder={placeholderForInput}
                         _placeholder={{ color: 'lime.800' }}
                         data-test-id='search-input'
@@ -117,10 +118,11 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     />
                     {inputSearch.length > 2 && (
                         <IconButton
+                            size={['sm', null, null, 'lg']}
                             position='absolute'
                             icon={<CloseIcon />}
                             aria-label='delete'
-                            bg='orange.400'
+                            bg='transparent'
                             onClick={() => {
                                 setInputSearch(() => '');
                                 searchParams.delete('search');
@@ -147,21 +149,17 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     </InputRightElement>
                 </InputGroup>
             </Flex>
-            <Flex
-                w='80%'
-                alignItems='center'
-                justifyContent='center'
-                gap={[4]}
-                display={['none', null, null, 'flex']}
-            >
-                <SelectAllergy
-                    title='Выберите из списка...'
-                    options={allergyOptions}
-                    fullFilters={fullFilters}
-                    setfullFilters={setfullFilters}
-                    filterKey='allergyFilter'
-                />
-            </Flex>
+            <Hide below='lg'>
+                <Flex w='80%' alignItems='center' justifyContent='center' gap={[4]}>
+                    <SelectAllergy
+                        title='Выберите из списка...'
+                        options={allergyOptions}
+                        fullFilters={fullFilters}
+                        setfullFilters={setfullFilters}
+                        filterKey='allergyFilter'
+                    />
+                </Flex>
+            </Hide>
             <FiltersDrawer
                 btnRef={btnRef}
                 isOpen={isOpen}

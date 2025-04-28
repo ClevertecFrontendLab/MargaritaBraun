@@ -6,7 +6,7 @@ interface EmptyRecipesBlockProps {
 
 export const EmptyRecipesBlock = ({ message }: EmptyRecipesBlockProps) => (
     <>
-        <Flex>
+        <Flex w='100%' justify='center'>
             <Text fontSize='xl'>{message}</Text>
         </Flex>
     </>

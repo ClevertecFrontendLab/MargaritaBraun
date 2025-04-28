@@ -44,6 +44,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         fontWeight='400'
                         lineHeight='20px'
                         color='blackAlpha.600'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         калорийность
                     </Text>
@@ -57,6 +58,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         color='lime.800'
                         w='100px'
                         textAlign='center'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         {calories}
                     </Text>
@@ -68,6 +70,8 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         fontWeight='600'
                         lineHeight='20px'
                         color='blackAlpha.900'
+                        textAlign='center'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         ККАЛ
                     </Text>
@@ -92,6 +96,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         fontWeight='400'
                         lineHeight='20px'
                         color='blackAlpha.600'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         белки
                     </Text>
@@ -105,6 +110,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         color='lime.800'
                         w='100px'
                         textAlign='center'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         {proteins}
                     </Text>
@@ -116,6 +122,8 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         fontWeight='600'
                         lineHeight='20px'
                         color='blackAlpha.900'
+                        textAlign='center'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         ГРАММ
                     </Text>
@@ -140,6 +148,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         fontWeight='400'
                         lineHeight='20px'
                         color='blackAlpha.600'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         жиры
                     </Text>
@@ -153,6 +162,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         color='lime.800'
                         w='100px'
                         textAlign='center'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         {fats}
                     </Text>
@@ -164,6 +174,8 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         fontWeight='600'
                         lineHeight='20px'
                         color='blackAlpha.900'
+                        textAlign='center'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         ГРАММ
                     </Text>
@@ -188,6 +200,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         fontWeight='400'
                         lineHeight='20px'
                         color='blackAlpha.600'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         углеводы
                     </Text>
@@ -201,6 +214,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         color='lime.800'
                         w='100px'
                         textAlign='center'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         {carbohydrates}
                     </Text>
@@ -212,6 +226,8 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         fontWeight='600'
                         lineHeight='20px'
                         color='blackAlpha.900'
+                        textAlign='center'
+                        flexBasis={['33%', null, 'auto']}
                     >
                         ГРАММ
                     </Text>

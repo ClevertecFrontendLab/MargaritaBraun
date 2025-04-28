@@ -13,17 +13,16 @@ export const SliderNewRecipes = () => {
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
     );
     const dataForSlidersCards = sortedRecipes.slice(0, 10);
-    // console.log(' dataForSlidersCards', dataForSlidersCards);
-    // console.log('len dataForSlidersCards', dataForSlidersCards.length);
     const swiperRef = useRef<SwiperType | null>(null);
 
     return (
         <Flex as='section' direction='column' gap='6' pt={[0, 5]} w='100%' position='relative'>
             <Heading
                 as='h3'
-                fontSize={['24px', '36px', '48px']}
-                lineHeight={['48px', '40px', '32px']}
+                fontSize={['24px', null, null, '36px', '48px']}
+                lineHeight={['32px', null, '40px', '48px']}
                 fontWeight='500'
+                fontFamily='Inter'
             >
                 Новые рецепты
             </Heading>

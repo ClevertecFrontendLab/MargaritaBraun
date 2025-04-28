@@ -13,8 +13,8 @@ export interface BurgerMenuProps {
 
 export const BurgerMenuModal: FC<BurgerMenuProps> = ({ isOpen, onClose }) => (
     <>
-        <Modal isOpen={isOpen} onClose={onClose}>
-            <ModalOverlay top='64px' zIndex='20' />
+        <Modal isOpen={isOpen} onClose={onClose} blockScrollOnMount={true}>
+            <ModalOverlay top='64px' />
             <ModalContent
                 display='flex'
                 justifyContent='flex-end'
@@ -22,9 +22,7 @@ export const BurgerMenuModal: FC<BurgerMenuProps> = ({ isOpen, onClose }) => (
                 marginLeft='auto'
                 marginRight='0'
                 borderTopRadius='0'
-                mt={['80px', null, null, null, 0]}
-                // zIndex='sticky'
-                zIndex='21'
+                mt={['64px', null, null, null, 0]}
             >
                 <ModalBody
                     display='flex'

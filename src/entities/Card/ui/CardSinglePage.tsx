@@ -1,7 +1,6 @@
 import { Badge, Button, Flex, Heading, HStack, Image, Text, VStack } from '@chakra-ui/react';
 import { FC } from 'react';
 
-// import { JSX } from 'react/jsx-runtime';
 import navigationData from '~/entities/NavMenu/const/navigationData';
 import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { ClocksIcon, FavoritesIcon, LikeyIcon } from '~/shared/Icons';
@@ -23,11 +22,24 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
     };
     return (
         <>
-            <HStack w='100%' gap={['4', null, null, '6']} flexDirection={['column', null, 'row']}>
-                <Flex w='40%' h='100%'>
+            <HStack
+                w='100%'
+                gap={['4', null, null, '6']}
+                flexDirection={['column', 'row', null, null]}
+            >
+                <Flex
+                    // w='40%'
+                    w={['100%', null, '40%']}
+                    // h='100%'
+                    h='auto'
+                    position='relative'
+                    overflow='hidden'
+                    alignItems='center'
+                    borderRadius='8px'
+                >
                     <Image w='100%' h='auto' objectFit='cover' src={image} alt={title} />
                 </Flex>
-                <VStack w={['100%', null, '60%']}>
+                <VStack w={['100%', null, '60%']} h='100%' justifyContent='space-between'>
                     <Flex display='flex' justifyContent='space-between' p='0' w='100%'>
                         <Flex
                             gap={['0', null, '2']}
@@ -50,6 +62,7 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                                     >
                                         <CategoryIcon w='30px' h='30px' />
                                         <Text
+                                            fontFamily='Inter'
                                             fontSize='14px'
                                             fontWeight='500'
                                             lineHeight='20px'
@@ -66,6 +79,7 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                                 <FavoritesIcon />
 
                                 <Text
+                                    fontFamily='Inter'
                                     fontSize='12px'
                                     fontWeight='600'
                                     lineHeight='16px'
@@ -78,6 +92,7 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                                 <LikeyIcon />
 
                                 <Text
+                                    fontFamily='Inter'
                                     fontSize='12px'
                                     fontWeight='600'
                                     lineHeight='16px'
@@ -88,7 +103,7 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                             </Flex>
                         </Flex>
                     </Flex>
-                    <VStack>
+                    <VStack alignItems='flex-start'>
                         <Heading
                             as='h1'
                             fontFamily='Inter'
@@ -139,8 +154,6 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                             </Button>
                             <Button
                                 leftIcon={<LikeyIcon />}
-                                // colorScheme='lime'
-                                // color='black'
                                 variant='solid'
                                 size={['xs', null, null, 'sm', 'lg']}
                             >
@@ -149,7 +162,6 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                         </Flex>
                     </HStack>
                 </VStack>
-                {/* </Flex> */}
             </HStack>
         </>
     );
