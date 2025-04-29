@@ -22,6 +22,7 @@ export const BurgerMenuList: FC<BurgerMenuListProps> = ({ isActive }) => (
                         display='flex'
                         flexDirection='column'
                         closeOnSelect={false}
+                        bg='white'
                     >
                         <Flex
                             direction='column'
@@ -38,7 +39,7 @@ export const BurgerMenuList: FC<BurgerMenuListProps> = ({ isActive }) => (
                             <NavMenu />
                         </Flex>
                     </MenuItem>
-                    <MenuItem as='div'>
+                    <MenuItem as='div' w='400px' bg='white'>
                         <FooterMenu />
                     </MenuItem>
                 </>

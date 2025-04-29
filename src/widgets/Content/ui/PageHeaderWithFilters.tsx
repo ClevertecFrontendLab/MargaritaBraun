@@ -10,9 +10,10 @@ import {
     Text,
     useDisclosure,
 } from '@chakra-ui/react';
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
 
+import { useColorInput } from '~/pages/CategoryPage/utils/useColorInput';
 import { FiltersDrawer } from '~/shared/Filters';
 import filterAllergy from '~/shared/Filters/consts/filterAllergy';
 import { SelectAllergy } from '~/shared/FiltersComponents';
@@ -40,8 +41,17 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
+    useEffect(() => {
+        if (inputSearch.length === 0) {
+            searchParams.delete('search');
+            setSearchParams(searchParams);
+        }
+    }, [inputSearch]);
+
     const placeholderForInput = 'Название или ингредиент...';
     const allergyOptions = filterAllergy;
+
+    const currentColor = useColorInput();
 
     return (
         <Flex direction='column' align='center' gap={['4', null, null, '8', '8']} pt='8'>
@@ -103,6 +113,7 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                         size={['sm', null, null, 'lg']}
                         placeholder={placeholderForInput}
                         _placeholder={{ color: 'lime.800' }}
+                        _focus={{ borderColor: 'lime.600' }}
                         data-test-id='search-input'
                         value={inputSearch}
                         onChange={(event: ChangeEvent<HTMLInputElement>) =>
@@ -115,10 +126,11 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                             }
                         }}
                         position='relative'
+                        borderColor={currentColor}
                     />
                     {inputSearch.length > 2 && (
                         <IconButton
-                            size={['sm', null, null, 'lg']}
+                            size='sm'
                             position='absolute'
                             icon={<CloseIcon />}
                             aria-label='delete'

@@ -42,7 +42,7 @@ export const FieldWithSelect: FC<FieldForFilterProps> = ({
 
     return (
         <>
-            <Menu closeOnSelect={false}>
+            <Menu closeOnSelect={false} matchWidth={true}>
                 {({ isOpen }) => (
                     <>
                         <MenuButton
@@ -61,6 +61,7 @@ export const FieldWithSelect: FC<FieldForFilterProps> = ({
                             p={['10px 12px']}
                             borderColor='blackAlpha.200'
                             _focus={{ borderColor: 'lime.300' }}
+                            display='flex'
                         >
                             {fullFilters[filterKey].length > 0 ? (
                                 <Box display='flex' flexWrap='wrap' gap={1} h='auto'>
@@ -81,7 +82,13 @@ export const FieldWithSelect: FC<FieldForFilterProps> = ({
                                 <Text textAlign='left'>{title}</Text>
                             )}
                         </MenuButton>
-                        <MenuList zIndex='10' w='100%' display='flex' flexDirection='column'>
+                        <MenuList
+                            zIndex='10'
+                            w='100%'
+                            display='flex'
+                            flexDirection='column'
+                            justifyContent='space-between'
+                        >
                             {options.map((option, index) => (
                                 <Checkbox
                                     key={option}

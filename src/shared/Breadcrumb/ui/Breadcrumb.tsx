@@ -73,7 +73,11 @@ export const Breadcrumbs = () => {
                     }
                 }
                 return (
-                    <BreadcrumbItem key={routeTo} isCurrentPage={isCurrentPage}>
+                    <BreadcrumbItem
+                        key={routeTo}
+                        isCurrentPage={isCurrentPage}
+                        color={isCurrentPage ? 'black' : 'blackAlpha.700'}
+                    >
                         <BreadcrumbLink href={routeTo}>{categoryLabel}</BreadcrumbLink>
                     </BreadcrumbItem>
                 );

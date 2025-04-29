@@ -9,6 +9,7 @@ import {
     DrawerOverlay,
     Flex,
     Stack,
+    Text,
 } from '@chakra-ui/react';
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -64,19 +65,37 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                     background='var(--blackAlpha-300, rgba(0, 0, 0, 0.16))'
                     backdropFilter='blur(2px)'
                 />
-                <DrawerContent data-test-id='filter-drawer'>
-                    <DrawerCloseButton
-                        data-test-id='close-filter-drawer'
-                        borderRadius='1000'
-                        color='white'
-                        bg='black'
-                    />
-                    <DrawerHeader>Фильтр</DrawerHeader>
+                <DrawerContent
+                    data-test-id='filter-drawer'
+                    boxShadow='0px 20px 25px -5px rgba(0, 0, 0, 0.10), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                    padding={['8px', null, '32px', null, '48px 32px 32px 32px']}
+                >
+                    <DrawerHeader
+                        position='relative'
+                        p='0'
+                        display='flex'
+                        alignItems='center'
+                        paddingBottom='16px'
+                        justifyContent='space-between'
+                    >
+                        <Text fontFamily='Inter' fontSize='24px' fontWeight='700' lineHeight='32px'>
+                            Фильтр
+                        </Text>
+                        <DrawerCloseButton
+                            data-test-id='close-filter-drawer'
+                            borderRadius='1000'
+                            color='white'
+                            bg='black'
+                            pos='static'
+                        />
+                    </DrawerHeader>
 
                     <DrawerBody
                         display='flex'
                         flexDirection='column'
                         gap={['4', null, null, null, '6']}
+                        w='100%'
+                        p='0'
                     >
                         <FieldWithSelect
                             title='Категория'
@@ -118,7 +137,7 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                         </Flex>
                     </DrawerBody>
 
-                    <DrawerFooter display='flex' flexDirection='column'>
+                    <DrawerFooter display='flex' flexDirection='column' gap={[2]}>
                         <FilterDisplay fullFilters={fullFilters} />
                         <Stack direction='row' w='100%' justifyContent='flex-end'>
                             <Button

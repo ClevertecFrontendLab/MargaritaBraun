@@ -137,6 +137,9 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                             justifyContent='space-around'
                             alignSelf='center'
                             justifySelf='flex-start'
+                            alignItems='center'
+                            fontFamily='Inter'
+                            bg='blackAlpha.100'
                         >
                             <ClocksIcon />
                             <Text fontSize='sm' fontFamily='Inter' fontWeight='400' lineHeight='5'>

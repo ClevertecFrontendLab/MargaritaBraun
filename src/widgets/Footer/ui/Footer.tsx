@@ -22,7 +22,7 @@ export const Footer = () => {
                 direction='column'
                 justify='space-between'
                 align='center'
-                bg='radial-gradient(50% 50% at 50% 50%, rgba(196, 255, 97, 0.70) 0%, rgba(255, 255, 255, 0.00) 100%)'
+                bg='radial-gradient(23% 40% at 48.89% 37.5%, rgba(196, 255, 97, 0.70) 0%, rgba(255, 255, 255, 0.00) 100%),#FFFFD3'
                 py='2.5'
                 gap='1'
                 w='100%'

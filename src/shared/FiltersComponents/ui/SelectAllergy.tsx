@@ -112,7 +112,7 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
                     data-test-id='allergens-switcher'
                 />
             </Flex>
-            <Menu closeOnSelect={false}>
+            <Menu closeOnSelect={false} matchWidth={true}>
                 {({ isOpen }) => (
                     <>
                         <MenuButton
@@ -126,7 +126,9 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
                                 />
                             }
                             colorScheme='white'
-                            borderColor='lime.600'
+                            borderColor='blackAlpha.200'
+                            _disabled={{ borderColor: 'blackAlpha.200' }}
+                            _focus={{ borderColor: 'lime.300' }}
                             p={['10px 12px']}
                             isDisabled={!activated}
                             onClick={(e) => {
@@ -153,7 +155,7 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
                                     ))}
                                 </Box>
                             ) : (
-                                <Text textAlign='left' as='span'>
+                                <Text textAlign='left' as='span' color='blackAlpha.700'>
                                     {title}
                                 </Text>
                             )}

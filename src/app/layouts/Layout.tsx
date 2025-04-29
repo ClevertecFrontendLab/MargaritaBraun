@@ -17,10 +17,16 @@ const Layout = () => (
             position='relative'
             gap={[2, null, 4]}
             direction='column'
+            flexShrink='3'
         >
             <Header />
 
-            <Flex as='main' w='100%' justifyContent={['center', null, null, 'space-between']}>
+            <Flex
+                as='main'
+                w='100%'
+                justifyContent={['center', null, null, 'space-between']}
+                flexShrink='3'
+            >
                 <MenuSection />
                 <Flex
                     w='100%'
@@ -29,6 +35,7 @@ const Layout = () => (
                     gap={['8', null, null, null, '10']}
                     mb={['80px', null, null, null, '0']}
                     maxW={['100%', null, '728px', '880px', ' 1360px']}
+                    flexShrink='3'
                 >
                     <Outlet />
                 </Flex>

@@ -52,7 +52,12 @@ export const CardRecipe = ({
     const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
 
     return (
-        <Card direction='row' variant='outline' data-test-id={`food-card-${index}`}>
+        <Card
+            direction='row'
+            variant='outline'
+            data-test-id={`food-card-${index}`}
+            h={['128px', null, null, '244px']}
+        >
             <Flex flex='1 1 55%'>
                 <Image objectFit='cover' w='100%' src={image} alt={title} borderLeftRadius='8px' />
             </Flex>
@@ -136,9 +141,7 @@ export const CardRecipe = ({
                             <Highlight
                                 query={searchQuery}
                                 styles={{
-                                    bg: 'lime.400',
-                                    fontWeight: 'bold',
-                                    color: 'black',
+                                    color: 'lime.600',
                                 }}
                             >
                                 {title}
