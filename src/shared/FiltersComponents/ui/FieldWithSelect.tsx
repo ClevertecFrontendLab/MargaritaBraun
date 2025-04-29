@@ -79,7 +79,14 @@ export const FieldWithSelect: FC<FieldForFilterProps> = ({
                                     ))}
                                 </Box>
                             ) : (
-                                <Text textAlign='left'>{title}</Text>
+                                <Text
+                                    textAlign='left'
+                                    fontFamily='Inter'
+                                    fontWeight='400'
+                                    fontSize='14px'
+                                >
+                                    {title}
+                                </Text>
                             )}
                         </MenuButton>
                         <MenuList

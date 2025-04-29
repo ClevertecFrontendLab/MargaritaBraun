@@ -164,7 +164,12 @@ export const CardRecipe = ({
                 </CardBody>
 
                 <CardFooter display='flex' gap='3' justify='flex-end' p='0'>
-                    <Button variant='outline' display='flex' gap='2' size={['xs', null, 'sm']}>
+                    <Button
+                        variant='outline'
+                        display='flex'
+                        gap='2'
+                        size={['xs', null, null, 'sm']}
+                    >
                         <FavoritesIcon />
                         <Text as='span' display={{ base: 'none', md: 'block' }}>
                             {btnSave}
@@ -175,10 +180,11 @@ export const CardRecipe = ({
                         bg='black'
                         color='white'
                         colorScheme='blackAlpha'
-                        size={['xs', null, 'sm']}
+                        size={['xs', null, null, 'sm']}
                         as={ReachLink}
                         to={recipePath}
                         data-test-id={`card-link-${index}`}
+                        fontSize='14px'
                     >
                         {btnCooking}
                     </Button>

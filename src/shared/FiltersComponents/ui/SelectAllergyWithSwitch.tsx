@@ -152,7 +152,7 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                                 </Text>
                             )}
                         </MenuButton>
-                        <MenuList zIndex='10' w='269px' display='flex' flexDirection='column'>
+                        <MenuList zIndex='10' w='100%' display='flex' flexDirection='column'>
                             {allOptions.map((option, index) => (
                                 <Checkbox
                                     key={option}

@@ -47,7 +47,15 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
     const currentColor = useColorInput();
 
     return (
-        <Flex direction='column' align='center' gap={['4', null, null, '8', '8']} pt='8'>
+        <Flex
+            direction='column'
+            align='center'
+            gap={['4', null, null, '8', '8']}
+            pt='8'
+            justifyContent='center'
+            m='0 auto'
+            w={['75%', null, '70%', '60%']}
+        >
             <Flex gap='3' direction='column' align='center'>
                 <Heading
                     as='h1'

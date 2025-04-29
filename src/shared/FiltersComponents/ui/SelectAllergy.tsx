@@ -93,7 +93,7 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
 
     return (
         <>
-            <Flex alignItems='center' gap={[3]}>
+            <Flex alignItems='center' gap={[3]} w='100%'>
                 <Text
                     whiteSpace='nowrap'
                     fontFamily='Inter'
@@ -155,17 +155,24 @@ export const SelectAllergy: FC<FieldForFilterProps> = ({
                                     ))}
                                 </Box>
                             ) : (
-                                <Text textAlign='left' as='span' color='blackAlpha.700'>
+                                <Text
+                                    textAlign='left'
+                                    as='span'
+                                    color='blackAlpha.700'
+                                    noOfLines={1}
+                                    fontWeight='400'
+                                >
                                     {title}
                                 </Text>
                             )}
                         </MenuButton>
                         <MenuList
                             zIndex='10'
-                            w='269px'
+                            // w='269px'
                             display='flex'
                             flexDirection='column'
                             data-test-id='allergens-menu'
+                            w='100%'
                         >
                             {allOptions.map((option, index) => (
                                 <Checkbox

@@ -49,7 +49,7 @@ export const HomeJuiciest = () => {
                     </Button>
                 </Box>
             </Flex>
-            <SimpleGrid columns={[1, 1, 2, 1, 1, 2]} w='100%' spacing={['12px', '16px', '24px']}>
+            <SimpleGrid columns={[1, 1, 2, 2, 1, 2]} w='100%' spacing={['12px', '16px', '24px']}>
                 {sortedRecipes.map((dataCard, index) => (
                     <CardRecipe key={dataCard.title} {...dataCard} index={index}></CardRecipe>
                 ))}

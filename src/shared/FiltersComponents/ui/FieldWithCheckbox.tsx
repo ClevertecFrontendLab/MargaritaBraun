@@ -31,7 +31,9 @@ export const FieldWithCheckbox: FC<FieldForFilterProps> = ({
     return (
         <>
             <Stack flexDirection='column' gap='3'>
-                <Text>{title}</Text>
+                <Text fontFamily='Inter' fontWeight='500' fontSize='16px'>
+                    {title}
+                </Text>
                 {options.map((option) => (
                     <Checkbox
                         key={option}

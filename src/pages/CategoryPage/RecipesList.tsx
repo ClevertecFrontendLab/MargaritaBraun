@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { SimpleGrid } from '@chakra-ui/react';
 import { useSearchParams } from 'react-router';
 
 import { CardRecipe } from '~/entities/Card';
@@ -25,7 +25,11 @@ export const RecipesList = ({ category, subcategory }: RecipesListProps) => {
     return (
         <>
             {filteredRecipes.length > 0 ? (
-                <Flex direction='column' gap={[2, 2, 2, 3, 3]}>
+                <SimpleGrid
+                    columns={[1, 1, 2, 1, 1, 2]}
+                    w='100%'
+                    spacing={['12px', '16px', '24px']}
+                >
                     {filteredRecipes.map((recipeData, index) => (
                         <CardRecipe
                             key={recipeData.id}
@@ -34,7 +38,7 @@ export const RecipesList = ({ category, subcategory }: RecipesListProps) => {
                             index={index}
                         />
                     ))}
-                </Flex>
+                </SimpleGrid>
             ) : (
                 <EmptyRecipesBlock message='Нет данных о рецептах'></EmptyRecipesBlock>
             )}
