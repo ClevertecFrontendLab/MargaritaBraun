@@ -51,6 +51,7 @@ export const SliderNewRecipes = () => {
                     onSwiper={(swiper) => {
                         swiperRef.current = swiper;
                     }}
+                    speed={500}
                     loop={true}
                     modules={[Navigation]}
                     breakpoints={{

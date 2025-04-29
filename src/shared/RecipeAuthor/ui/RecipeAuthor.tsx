@@ -35,6 +35,7 @@ export const RecipeAuthor = () => (
                         top={['-8px', null, '5px']}
                         right='10px'
                         textStyle='textCardDescription'
+                        fontFamily='Inter'
                     >
                         Автор рецепта
                     </Text>

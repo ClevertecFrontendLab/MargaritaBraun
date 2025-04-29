@@ -26,6 +26,7 @@ const Layout = () => (
                 w='100%'
                 justifyContent={['center', null, null, 'space-between']}
                 flexShrink='3'
+                h='100%'
             >
                 <MenuSection />
                 <Flex
@@ -34,7 +35,7 @@ const Layout = () => (
                     p={['0 16px', null, '0 20px', '0 24px']}
                     gap={['8', null, null, null, '10']}
                     mb={['80px', null, null, null, '0']}
-                    maxW={['100%', null, '728px', '880px', ' 1360px']}
+                    maxW={['100%', null, null, '728px', '880px', '1360px']}
                     flexShrink='3'
                 >
                     <Outlet />

@@ -38,7 +38,7 @@ export const IngredientCalculator: FC<IngredientCalculatorProps> = ({ ingredient
 
     return (
         <>
-            <Stack flexDirection='column'>
+            <Stack flexDirection='column' w='100%'>
                 <HStack gap='6' h='56px'>
                     <Text
                         textAlign='left'

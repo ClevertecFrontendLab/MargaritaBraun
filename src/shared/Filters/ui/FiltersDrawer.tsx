@@ -72,10 +72,9 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                 >
                     <DrawerHeader
                         position='relative'
-                        p='0'
                         display='flex'
                         alignItems='center'
-                        paddingBottom='16px'
+                        p={['0 0 8px 0', null, null, '0 0 16px 0']}
                         justifyContent='space-between'
                     >
                         <Text fontFamily='Inter' fontSize='24px' fontWeight='700' lineHeight='32px'>
@@ -126,7 +125,7 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                             setfullFilters={setfullFilters}
                             filterKey='sideDishFilter'
                         />
-                        <Flex direction='column'>
+                        <Flex direction='column' gap='2'>
                             <SelectAllergyWithSwitch
                                 title='Выберите из списка аллергенов...'
                                 options={allergyOptions}

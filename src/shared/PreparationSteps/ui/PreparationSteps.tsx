@@ -19,16 +19,28 @@ export const PreparationSteps: FC<{ steps: PreparationStep[] }> = ({ steps }) =>
             </Heading>
             {steps &&
                 steps.map((nowStep) => (
-                    <Card direction='row' key={nowStep.stepNumber}>
+                    <Card direction='row' key={nowStep.stepNumber} w='100%'>
                         {nowStep.image && (
-                            <Flex w='45%'>
+                            <Flex
+                                w={['158px', null, null, '346px']}
+                                height={['128px', null, null, '244px']}
+                                borderLeftRadius='4px'
+                                overflow='hidden'
+                            >
                                 <Image
+                                    w='100%'
+                                    h='auto'
+                                    objectFit='cover'
                                     src={nowStep.image === 'url' ? defaultImage : nowStep.image}
                                 />
                             </Flex>
                         )}
-                        <Flex direction='column' gap={['4', '4']} p={['20px 24px']}>
-                            <Badge w='57px'>
+                        <Flex
+                            direction='column'
+                            gap={['4', '4']}
+                            p={['8px 8px 4px 8px', '20px 24px']}
+                        >
+                            <Badge w='57px' borderRadius='4px'>
                                 <Text textStyle='textCardDescription'>{`Шаг ${nowStep.stepNumber}`}</Text>
                             </Badge>
                             <Text textStyle='textCardDescription'>{nowStep.description}</Text>

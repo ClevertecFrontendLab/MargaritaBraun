@@ -114,6 +114,15 @@ const theme = extendTheme({
             },
         },
 
+        Badge: {
+            baseStyle: {
+                fontFamily: 'Inter, sans-serif',
+            },
+            defaultProps: {
+                fontFamily: 'Inter, sans-serif',
+            },
+        },
+
         Button: {
             baseStyle: {
                 fontWeight: '600',

@@ -147,7 +147,9 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
                                     ))}
                                 </Box>
                             ) : (
-                                <Text textAlign='left'>{title}</Text>
+                                <Text textAlign='left' as='span' color='blackAlpha.700'>
+                                    {title}
+                                </Text>
                             )}
                         </MenuButton>
                         <MenuList zIndex='10' w='269px' display='flex' flexDirection='column'>

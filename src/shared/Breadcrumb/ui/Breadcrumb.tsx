@@ -34,7 +34,9 @@ export const Breadcrumbs = () => {
             }}
         >
             <BreadcrumbItem>
-                <BreadcrumbLink href='/'>{title}</BreadcrumbLink>
+                <BreadcrumbLink href='/' color='blackAlpha.700'>
+                    {title}
+                </BreadcrumbLink>
             </BreadcrumbItem>
 
             {pathnames.map((currentPath, index) => {

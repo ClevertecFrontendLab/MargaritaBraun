@@ -12,8 +12,8 @@ export const HomeJuiciest = () => {
             <Flex justify='space-between'>
                 <Heading
                     as='h3'
-                    fontSize={['24px', '36px', '48px']}
-                    lineHeight={['48px', '40px', '32px']}
+                    fontSize={['24px', null, '36px', '48px']}
+                    lineHeight={['32px', null, '40px', '48px']}
                     fontWeight='500'
                 >
                     Самое сочное

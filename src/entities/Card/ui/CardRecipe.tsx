@@ -57,16 +57,24 @@ export const CardRecipe = ({
             variant='outline'
             data-test-id={`food-card-${index}`}
             h={['128px', null, null, '244px']}
+            w='100%'
         >
-            <Flex flex='1 1 55%'>
-                <Image objectFit='cover' w='100%' src={image} alt={title} borderLeftRadius='8px' />
+            <Flex w='50%'>
+                <Image
+                    objectFit='cover'
+                    w='100%'
+                    h='auto'
+                    src={image}
+                    alt={title}
+                    borderLeftRadius='8px'
+                />
             </Flex>
             <Flex
-                flex='1 1 45%'
+                w='45%'
                 direction='column'
                 justify='space-between'
-                padding={['8px 8px 4px 8px', '8px 8px 4px 8px', '20px 24px']}
-                gap={{ base: '0', sm: '0', '2xl': '6' }}
+                padding={['8px 8px 4px 8px', null, null, '20px 24px']}
+                gap={['0', null, null, null, null, '6']}
             >
                 <CardHeader display='flex' justifyContent='space-between' p='0'>
                     <Flex

@@ -28,7 +28,7 @@ const SingleRecipePage = () => {
                     >
                         <CardSinglePage {...dataForSingleRecipe} />
                         <Flex
-                            w={['100%', null, null, null, '80%', '60%']}
+                            w={['95%', null, '80%', '60%']}
                             alignItems='center'
                             direction='column'
                             margin='0 auto'

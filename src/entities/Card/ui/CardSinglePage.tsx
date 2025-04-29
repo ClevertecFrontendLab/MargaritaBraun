@@ -6,12 +6,10 @@ import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { ClocksIcon, FavoritesIcon, LikeyIcon } from '~/shared/Icons';
 
 export const CardSinglePage: FC<dataAllCategoryProps> = ({
-    // id,
     title,
     description,
     image,
     category,
-    // subcategory,
     bookmarks,
     likes,
     time,
@@ -28,10 +26,8 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                 flexDirection={['column', 'row', null, null]}
             >
                 <Flex
-                    // w='40%'
                     w={['100%', null, '40%']}
-                    // h='100%'
-                    h='auto'
+                    h={['224px', null, null, '410px']}
                     position='relative'
                     overflow='hidden'
                     alignItems='center'
@@ -159,6 +155,7 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                                 leftIcon={<LikeyIcon />}
                                 variant='solid'
                                 size={['xs', null, null, 'sm', 'lg']}
+                                bg='lime.400'
                             >
                                 Сохранить в закладки
                             </Button>

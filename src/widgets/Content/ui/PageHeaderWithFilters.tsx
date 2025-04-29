@@ -10,7 +10,7 @@ import {
     Text,
     useDisclosure,
 } from '@chakra-ui/react';
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
 
 import { useColorInput } from '~/pages/CategoryPage/utils/useColorInput';
@@ -40,13 +40,6 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
     const btnRef = useRef<HTMLButtonElement | null>(null);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
-
-    useEffect(() => {
-        if (inputSearch.length === 0) {
-            searchParams.delete('search');
-            setSearchParams(searchParams);
-        }
-    }, [inputSearch]);
 
     const placeholderForInput = 'Название или ингредиент...';
     const allergyOptions = filterAllergy;
