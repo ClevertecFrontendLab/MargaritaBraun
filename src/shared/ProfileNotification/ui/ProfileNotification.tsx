@@ -7,15 +7,7 @@ export const ProfileNotification = () => {
     const isPeople = 589;
     const isLiked = 587;
     return (
-        <Flex
-            direction={{ base: 'row', lg: 'column' }}
-            justify='flex-end'
-            top='102px'
-            right='56px'
-            gap={[0, null, 6]}
-            flexGrow='2'
-            position={{ md: 'static', lg: 'absolute' }}
-        >
+        <>
             <Flex align='center' gap={[1.5, 2]} px={[3, 4]} py={[0, 1.5]}>
                 <FavoritesIcon />
                 <Text textStyle='profileNotific'>{isFavorites}</Text>
@@ -30,6 +22,6 @@ export const ProfileNotification = () => {
 
                 <Text textStyle='profileNotific'>{isLiked}</Text>
             </Flex>
-        </Flex>
+        </>
     );
 };

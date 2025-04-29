@@ -1,22 +1,22 @@
-import { Flex, GridItem, Hide } from '@chakra-ui/react';
+import { Flex, Hide } from '@chakra-ui/react';
 
-import { WriteRecipeBlock } from '~/shared/ProfileNotification';
+import { ProfileNotification, WriteRecipeBlock } from '~/shared/ProfileNotification';
 
 export const Aside = () => (
     <Hide below='lg'>
-        <GridItem
-            area='aside'
+        <Flex
             as='aside'
-            display='flex'
-            flexDirection='column'
-            justifyContent='space-between'
-            colStart={3}
-            colEnd={4}
-            rowStart={2}
-            rowEnd={4}
+            direction='column'
+            justify='space-between'
+            w='280px'
+            position='sticky'
+            top='10px'
+            height='calc(100vh - 80px)'
         >
-            <Flex flexGrow='1' />
+            <Flex direction='column' alignItems='center' gap='30px' p={['16px 56px']}>
+                <ProfileNotification />
+            </Flex>
             <WriteRecipeBlock />
-        </GridItem>
+        </Flex>
     </Hide>
 );

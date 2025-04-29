@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { Outlet } from 'react-router';
 
 import { Aside } from '~/widgets/Aside';
@@ -8,47 +8,43 @@ import { MenuSection } from '~/widgets/Menu';
 
 const Layout = () => (
     <>
-        <Grid
+        <Flex
             w='100%'
-            maxW='120rem'
+            minH='100vh'
+            maxW={['100%', null, null, '90rem', '120rem']}
             m='0 auto'
-            justify-items='center'
-            templateAreas={`"header header header"
-                "nav main aside"
-                "footer footer footer"`}
-            templateColumns={[
-                'repeat(3, 1fr)',
-                'repeat(3, 1fr)',
-                'repeat(3, 1fr)',
-                '256px 1fr 280px',
-                '256px 1fr 280px',
-            ]}
-            templateRows={['64px 1fr 84px', '64px 1fr 84px', '64px 1fr 84px', '80px 1fr']}
+            justifyItems='center'
             position='relative'
+            gap={[2, null, 4]}
+            direction='column'
+            flexShrink='3'
         >
             <Header />
-            <MenuSection />
-            <GridItem
-                area='main'
+
+            <Flex
                 as='main'
-                colStart={[1, 1, 1, 2, 2]}
-                colEnd={[4, 4, 4, 3, 3]}
-                rowStart={2}
-                rowEnd={[2, 2, 2, 3, 3]}
-                display='flex'
                 w='100%'
-                maxWidth={['100%', '100%', '100%', '100%', '100%', '1355px']}
-                justifyContent='center'
-                flexDirection='column'
-                p={['0 16px', null, '0 20px', null, '0 0 0 24px', null]}
-                gap={['8', null, '10']}
+                justifyContent={['center', null, null, 'space-between']}
+                flexShrink='3'
+                h='100%'
             >
-                <Outlet />
-            </GridItem>
-            <Aside />
+                <MenuSection />
+                <Flex
+                    w='100%'
+                    flexDirection='column'
+                    p={['0 16px', null, '0 20px', '0 24px']}
+                    gap={['8', null, null, null, '10']}
+                    mb={['80px', null, null, null, '0']}
+                    maxW={['100%', null, null, '728px', '880px', '1360px']}
+                    flexShrink='3'
+                >
+                    <Outlet />
+                </Flex>
+                <Aside />
+            </Flex>
 
             <Footer />
-        </Grid>
+        </Flex>
     </>
 );
 

@@ -1,5 +1,5 @@
 import { JuiciestKitchen } from '~/entities/KitchenSection';
-import dataForDishesJusty from '~/shared/consts/dataForDishesJusty';
+import dataAllCategory from '~/shared/consts/dataAllCategory';
 import { PageHeaderWithFilters, RecipesSections } from '~/widgets/Content';
 import { PageHeaderWithFiltersProps } from '~/widgets/Content/ui/PageHeaderWithFilters';
 
@@ -10,7 +10,7 @@ const dataForPage: PageHeaderWithFiltersProps = {
 const Juiciest = () => (
     <>
         <PageHeaderWithFilters {...dataForPage}></PageHeaderWithFilters>
-        <RecipesSections dataForDishes={dataForDishesJusty}></RecipesSections>
+        <RecipesSections dataAllCategory={dataAllCategory}></RecipesSections>
         <JuiciestKitchen />
     </>
 );

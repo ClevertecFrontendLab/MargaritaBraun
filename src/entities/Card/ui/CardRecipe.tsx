@@ -6,67 +6,109 @@ import {
     CardFooter,
     CardHeader,
     Flex,
-    Heading,
+    Highlight,
     Image,
     Text,
 } from '@chakra-ui/react';
+import { NavLink as ReachLink, useParams } from 'react-router';
 
 import navigationData from '~/entities/NavMenu/const/navigationData';
-import { dataForDishesProps } from '~/shared/consts/dataForDishes';
+import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
 
+interface CardRecipeProps extends dataAllCategoryProps {
+    searchQuery?: string;
+    index: number;
+}
+
 export const CardRecipe = ({
-    imageUrl,
-    category,
-    isFavorites,
-    isLiked,
+    id,
     title,
     description,
-}: dataForDishesProps) => {
+    image,
+    category,
+    subcategory,
+    bookmarks,
+    likes,
+    searchQuery,
+    index,
+}: CardRecipeProps) => {
+    const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
+        category: string;
+        subcategory: string;
+    }>();
     const btnSave = 'Сохранить';
     const btnCooking = 'Готовить';
-    const categoryData = navigationData.filter((item) => item.label === category);
-    const CategoryIcon = categoryData[0].icon;
+
+    const getThisCategoryObject = (currentCategory: string) => {
+        const categoryData = navigationData.filter((item) => item.url === currentCategory);
+        return categoryData[0];
+    };
+
+    const checkCategory = currentCategory ? currentCategory : category[0];
+    const findSubcategory = currentSubCategory ? currentSubCategory : subcategory[0];
+
+    const checkSubcategory = currentSubCategory ? currentSubCategory : findSubcategory;
+    const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
+
     return (
-        <Card direction='row' variant='outline' maxH={['128px', null, null, '244px']}>
-            <Flex flex='1 1 55%'>
+        <Card
+            direction='row'
+            variant='outline'
+            data-test-id={`food-card-${index}`}
+            h={['128px', null, null, '244px']}
+            w='100%'
+        >
+            <Flex w='50%'>
                 <Image
                     objectFit='cover'
                     w='100%'
-                    src={imageUrl}
+                    h='auto'
+                    src={image}
                     alt={title}
                     borderLeftRadius='8px'
                 />
             </Flex>
             <Flex
-                flex='1 1 45%'
+                w='45%'
                 direction='column'
                 justify='space-between'
-                padding={['8px 8px 4px 8px', '8px 8px 4px 8px', '20px 24px']}
-                gap={{ base: '0', sm: '0', '2xl': '6' }}
+                padding={['8px 8px 4px 8px', null, null, '20px 24px']}
+                gap={['0', null, null, null, null, '6']}
             >
                 <CardHeader display='flex' justifyContent='space-between' p='0'>
                     <Flex
-                        bg='lime.50'
-                        borderRadius='md'
-                        px='2'
-                        py='0.5'
-                        align='center'
-                        gap={['0', null, '2']}
-                        position={['absolute', 'absolute', 'static']}
+                        gap={['0.5', null, '2']}
+                        position={['absolute', null, null, 'static']}
                         zIndex='2'
                         top='2'
                         left='2'
+                        direction='column'
                     >
-                        <CategoryIcon w='30px' h='30px' />
-                        <Text
-                            fontSize='14px'
-                            fontWeight='500'
-                            lineHeight='20px'
-                            whiteSpace='nowrap'
-                        >
-                            {category}
-                        </Text>
+                        {category.map((item: string) => {
+                            const currentCategory = getThisCategoryObject(item);
+                            const CategoryIcon = currentCategory.icon;
+                            return (
+                                <Flex
+                                    key={item}
+                                    align='center'
+                                    bg='lime.50'
+                                    borderRadius='md'
+                                    gap={['0', null, '2']}
+                                    p='0.5px 3.5px'
+                                >
+                                    <CategoryIcon w='30px' h='30px' />
+                                    <Text
+                                        fontSize='14px'
+                                        fontWeight='500'
+                                        lineHeight='20px'
+                                        whiteSpace='nowrap'
+                                    >
+                                        {currentCategory.label}
+                                    </Text>
+                                </Flex>
+                            );
+                        })}
                     </Flex>
                     <Flex>
                         <Flex align='center' gap='2'>
@@ -78,7 +120,7 @@ export const CardRecipe = ({
                                 lineHeight='16px'
                                 color='lime.600'
                             >
-                                {isFavorites}
+                                {bookmarks}
                             </Text>
                         </Flex>
                         <Flex align='center' gap='2' padding='0px 4px' justify='center'>
@@ -90,28 +132,44 @@ export const CardRecipe = ({
                                 lineHeight='16px'
                                 color='lime.600'
                             >
-                                {isLiked}
+                                {likes}
                             </Text>
                         </Flex>
                     </Flex>
                 </CardHeader>
                 <CardBody p='0' display='flex' gap='3' flexDirection='column'>
-                    <Heading
-                        fontSize={['16px', null, '20px']}
+                    <Box
                         as='h3'
+                        fontSize={['16px', null, '20px']}
                         fontWeight='500'
                         noOfLines={[2, 2, 1]}
                         lineHeight={['5', null, '7']}
                     >
-                        {title}
-                    </Heading>
+                        {searchQuery ? (
+                            <Highlight
+                                query={searchQuery}
+                                styles={{
+                                    color: 'lime.600',
+                                }}
+                            >
+                                {title}
+                            </Highlight>
+                        ) : (
+                            title
+                        )}
+                    </Box>
                     <Box display={{ base: 'none', lg: 'block' }}>
                         <Text noOfLines={3}>{description}</Text>
                     </Box>
                 </CardBody>
 
                 <CardFooter display='flex' gap='3' justify='flex-end' p='0'>
-                    <Button variant='outline' display='flex' gap='2' size={['xs', null, 'sm']}>
+                    <Button
+                        variant='outline'
+                        display='flex'
+                        gap='2'
+                        size={['xs', null, null, 'sm']}
+                    >
                         <FavoritesIcon />
                         <Text as='span' display={{ base: 'none', md: 'block' }}>
                             {btnSave}
@@ -122,7 +180,11 @@ export const CardRecipe = ({
                         bg='black'
                         color='white'
                         colorScheme='blackAlpha'
-                        size={['xs', null, 'sm']}
+                        size={['xs', null, null, 'sm']}
+                        as={ReachLink}
+                        to={recipePath}
+                        data-test-id={`card-link-${index}`}
+                        fontSize='14px'
                     >
                         {btnCooking}
                     </Button>

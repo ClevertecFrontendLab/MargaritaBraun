@@ -1,15 +1,14 @@
 import { SearchIcon } from '@chakra-ui/icons';
-import { Avatar, Flex, GridItem, IconButton, Text } from '@chakra-ui/react';
+import { Avatar, Flex, IconButton, Text } from '@chakra-ui/react';
 
 import avatarFoto from '~/assets/Breakfast.png';
 import { HomeIcon, WriteRecipeIcon } from '~/shared/Icons';
 export const Footer = () => {
     const profileName = 'Екатерина Константинопольская';
     return (
-        <GridItem
-            area='footer'
+        <Flex
             bg='lime.50'
-            display={{ base: 'flex', lg: 'none' }}
+            display={['flex', null, null, 'none']}
             as='footer'
             justifyContent='space-around'
             zIndex='docked'
@@ -23,9 +22,10 @@ export const Footer = () => {
                 direction='column'
                 justify='space-between'
                 align='center'
-                bg='radial-gradient(50% 50% at 50% 50%, rgba(196, 255, 97, 0.70) 0%, rgba(255, 255, 255, 0.00) 100%)'
+                bg='radial-gradient(23% 40% at 48.89% 37.5%, rgba(196, 255, 97, 0.70) 0%, rgba(255, 255, 255, 0.00) 100%),#FFFFD3'
                 py='2.5'
                 gap='1'
+                w='100%'
             >
                 <IconButton
                     size='md'
@@ -39,7 +39,7 @@ export const Footer = () => {
                     Главная
                 </Text>
             </Flex>
-            <Flex direction='column' justify='space-between' align='center' py='2.5'>
+            <Flex direction='column' justify='space-between' align='center' py='2.5' w='100%'>
                 <IconButton
                     size='lg'
                     isRound={true}
@@ -57,7 +57,7 @@ export const Footer = () => {
                     Поиск
                 </Text>
             </Flex>
-            <Flex direction='column' justify='space-between' align='center' py='2.5'>
+            <Flex direction='column' justify='space-between' align='center' py='2.5' w='100%'>
                 <IconButton
                     size='lg'
                     isRound={true}
@@ -75,7 +75,14 @@ export const Footer = () => {
                     Записать
                 </Text>
             </Flex>
-            <Flex direction='column' justify='space-between' align='center' py='2.5' gap='1'>
+            <Flex
+                direction='column'
+                justify='space-between'
+                align='center'
+                py='2.5'
+                gap='1'
+                w='100%'
+            >
                 <Avatar size='md' name={profileName} src={avatarFoto} />
                 <Text
                     fontSize='12px'
@@ -87,6 +94,6 @@ export const Footer = () => {
                     Мой профиль
                 </Text>
             </Flex>
-        </GridItem>
+        </Flex>
     );
 };

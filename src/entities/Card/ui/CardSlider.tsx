@@ -1,29 +1,56 @@
 import { Box, Card, CardBody, CardFooter, Flex, Image, Text } from '@chakra-ui/react';
+import { useNavigate, useParams } from 'react-router';
 
 import navigationData from '~/entities/NavMenu/const/navigationData';
-import { dataForSliderProps } from '~/entities/Slider/consts/dataForSlider';
+import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
 
+interface CardSliderProps extends dataAllCategoryProps {
+    index: number;
+}
+
 export const CardSlider = ({
-    imageUrl,
-    category,
-    isFavorites,
-    isLiked,
+    id,
     title,
     description,
-}: dataForSliderProps) => {
-    const categoryData = navigationData.filter((item) => item.label === category);
-    const CategoryIcon = categoryData[0].icon;
+    image,
+    category,
+    subcategory,
+    bookmarks,
+    likes,
+    index,
+}: CardSliderProps) => {
+    const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
+        category: string;
+        subcategory: string;
+    }>();
+    const navigate = useNavigate();
+
+    const getThisCategoryObject = (currentCategory: string) => {
+        const categoryData = navigationData.filter((item) => item.url === currentCategory);
+        return categoryData[0];
+    };
+
+    const checkCategory = currentCategory ? currentCategory : category[0];
+    const findSubcategory = currentSubCategory ? currentSubCategory : subcategory[0];
+
+    const checkSubcategory = currentSubCategory ? currentSubCategory : findSubcategory;
+    const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
+
     return (
         <Card
             variant='outline'
-            w={['158px', '158px', '158px', '24%', '24%']}
-            h={['220px', null, null, '402px', '402px', '414px']}
+            onClick={() => {
+                navigate(recipePath);
+            }}
+            h='100%'
+            position='relative'
+            data-test-id={`carousel-card-${index}`}
         >
             <Flex overflow='hidden' borderTopRadius='8px' flex='1 1 47%'>
                 <Image
                     objectFit='cover'
-                    src={imageUrl}
+                    src={image}
                     alt={title}
                     w='100%'
                     h='auto'
@@ -47,27 +74,45 @@ export const CardSlider = ({
                     </Box>
                 </CardBody>
 
-                <CardFooter display='flex' justifyContent='space-between' p='0'>
+                <CardFooter
+                    display='flex'
+                    justifyContent='space-between'
+                    p='0'
+                    alignItems='flex-end'
+                >
                     <Flex
-                        bg='lime.150'
-                        borderRadius='md'
-                        px='2'
-                        py='0.5'
-                        align='center'
-                        gap='2'
-                        position={{ base: 'absolute', md: 'static', xl: 'static' }}
-                        zIndex='2'
-                        top='2'
-                        left='2'
-                        color='black'
+                        direction='column'
+                        gap={[1]}
+                        position={['absolute', null, null, 'static']}
+                        top='5px'
                     >
-                        <CategoryIcon />
-                        <Text fontSize='14px' fontWeight='500' lineHeight='20px' noOfLines={1}>
-                            {category}
-                        </Text>
+                        {category.map((item: string) => {
+                            const currentCategory = getThisCategoryObject(item);
+                            const CategoryIcon = currentCategory.icon;
+                            return (
+                                <Flex
+                                    key={item}
+                                    align='center'
+                                    bg='lime.50'
+                                    borderRadius='md'
+                                    gap={['0', null, '2']}
+                                    p='0.5px 3.5px'
+                                >
+                                    <CategoryIcon w='30px' h='30px' />
+                                    <Text
+                                        fontSize='14px'
+                                        fontWeight='500'
+                                        lineHeight='20px'
+                                        whiteSpace='nowrap'
+                                    >
+                                        {currentCategory.label}
+                                    </Text>
+                                </Flex>
+                            );
+                        })}
                     </Flex>
                     <Flex gap={{ base: '2' }}>
-                        {isFavorites && (
+                        {bookmarks && (
                             <Flex align='center' gap={{ base: '1.5', md: '2' }}>
                                 <FavoritesIcon />
 
@@ -77,11 +122,11 @@ export const CardSlider = ({
                                     lineHeight='16px'
                                     color='lime.600'
                                 >
-                                    {isFavorites}
+                                    {bookmarks}
                                 </Text>
                             </Flex>
                         )}
-                        {isLiked && (
+                        {likes && (
                             <Flex align='center' gap='2' padding='0px 4px' justify='center'>
                                 <LikeyIcon />
 
@@ -91,7 +136,7 @@ export const CardSlider = ({
                                     lineHeight='16px'
                                     color='lime.600'
                                 >
-                                    {isLiked}
+                                    {likes}
                                 </Text>
                             </Flex>
                         )}

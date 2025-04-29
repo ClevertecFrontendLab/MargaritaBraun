@@ -10,11 +10,10 @@ export const FooterMenu = () => {
         <Flex
             direction='column'
             gap='4'
-            p='0px 24px 32px 24px'
-            position='fixed'
-            bottom='0'
-            maxW='256px'
+            p={['0', null, null, '0px 24px 32px 24px']}
+            maxW={['344px', null, null, '256px']}
             bg='white'
+            w='100%'
         >
             <Text fontSize='12px' lineHeight='16px' color='blackAlpha.400'>
                 {version}

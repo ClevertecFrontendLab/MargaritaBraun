@@ -1,19 +1,25 @@
-import { SearchIcon } from '@chakra-ui/icons';
+import { CloseIcon, SearchIcon } from '@chakra-ui/icons';
 import {
     Flex,
-    FormControl,
-    FormLabel,
     Heading,
+    Hide,
     IconButton,
     Input,
     InputGroup,
     InputRightElement,
-    Select,
-    Switch,
     Text,
+    useDisclosure,
 } from '@chakra-ui/react';
+import { ChangeEvent, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router';
 
+import { useColorInput } from '~/pages/CategoryPage/utils/useColorInput';
+import { FiltersDrawer } from '~/shared/Filters';
+import filterAllergy from '~/shared/Filters/consts/filterAllergy';
+import { SelectAllergy } from '~/shared/FiltersComponents';
 import { FiltersIcon } from '~/shared/Icons';
+
+import { FiltersData } from '../modal/filtersType';
 
 export interface PageHeaderWithFiltersProps {
     title: string;
@@ -21,21 +27,41 @@ export interface PageHeaderWithFiltersProps {
 }
 
 export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFiltersProps) => {
+    const [fullFilters, setfullFilters] = useState<FiltersData>({
+        categoryFilter: [],
+        autorsFilter: [],
+        meatTypeFilter: [],
+        sideDishFilter: [],
+        allergyFilter: [],
+    });
+
+    const [inputSearch, setInputSearch] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const btnRef = useRef<HTMLButtonElement | null>(null);
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
     const placeholderForInput = 'Название или ингредиент...';
+    const allergyOptions = filterAllergy;
+
+    const currentColor = useColorInput();
+
     return (
         <Flex
             direction='column'
             align='center'
             gap={['4', null, null, '8', '8']}
             pt='8'
-            flex='1 1 auto'
+            justifyContent='center'
+            m='0 auto'
+            w={['75%', null, '70%', '60%']}
         >
             <Flex gap='3' direction='column' align='center'>
                 <Heading
                     as='h1'
                     fontFamily='Inter'
-                    fontSize={{ base: '24px', md: '48px' }}
-                    lineHeight={{ base: '32px', md: '48px' }}
+                    fontSize={['24px', null, null, '48px']}
+                    lineHeight={['32px', null, null, '48px']}
                     textAlign='center'
                 >
                     {title}
@@ -51,56 +77,110 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                     </Text>
                 )}
             </Flex>
-            <Flex gap='3' align='center' justify='center'>
+            <Flex gap='3' align='center' justify='space-between' w='80%' alignItems='center'>
                 <IconButton
                     variant='outline'
                     bg='transparent'
                     color='black'
                     aria-label='Filters Button'
-                    p={['0 10px', '0 10px', '0 12px']}
+                    p={['0 10px', null, null, '0 12px']}
                     colorScheme='blackAlpha'
-                    size={['sm', 'lg']}
+                    size={['sm', null, null, 'lg']}
                     icon={<FiltersIcon />}
                     borderColor='blackAlpha.600'
+                    ref={btnRef}
+                    data-test-id='filter-button'
+                    onClick={() => {
+                        setfullFilters({
+                            categoryFilter: [],
+                            autorsFilter: [],
+                            meatTypeFilter: [],
+                            sideDishFilter: [],
+                            allergyFilter: [],
+                        });
+                        onOpen();
+                    }}
                 />
                 <InputGroup
-                    size={['sm', 'lg']}
+                    size={['sm', null, null, 'lg']}
                     colorScheme='grey'
                     borderColor='blackAlpha.600'
-                    maxW={['100%', null, null, '458px']}
+                    w='100%'
+                    display='flex'
+                    justifyContent='center'
+                    alignItems='center'
                 >
-                    <Input placeholder={placeholderForInput} _placeholder={{ color: 'lime.800' }} />
-                    <InputRightElement>
-                        <SearchIcon color='black' />
+                    <Input
+                        size={['sm', null, null, 'lg']}
+                        placeholder={placeholderForInput}
+                        _placeholder={{ color: 'lime.800' }}
+                        _focus={{ borderColor: 'lime.600' }}
+                        data-test-id='search-input'
+                        value={inputSearch}
+                        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                            setInputSearch(() => event.target.value)
+                        }
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' && inputSearch.length > 2) {
+                                searchParams.set('search', inputSearch);
+                                setSearchParams(searchParams);
+                            }
+                        }}
+                        position='relative'
+                        borderColor={currentColor}
+                    />
+                    {inputSearch.length > 2 && (
+                        <IconButton
+                            size='sm'
+                            position='absolute'
+                            icon={<CloseIcon />}
+                            aria-label='delete'
+                            bg='transparent'
+                            onClick={() => {
+                                setInputSearch(() => '');
+                                searchParams.delete('search');
+                                setSearchParams(searchParams);
+                            }}
+                            right='50px'
+                            p='0'
+                            zIndex='2'
+                            boxSize='5'
+                        />
+                    )}
+                    <InputRightElement
+                        data-test-id='search-button'
+                        pointerEvents={inputSearch.length > 2 ? 'auto' : 'none'}
+                        cursor={inputSearch.length > 2 ? 'pointer' : 'not-allowed'}
+                        onClick={() => {
+                            if (inputSearch.length > 2) {
+                                searchParams.set('search', inputSearch);
+                                setSearchParams(searchParams);
+                            }
+                        }}
+                    >
+                        <SearchIcon color={inputSearch.length > 2 ? 'black' : 'gray.400'} />
                     </InputRightElement>
                 </InputGroup>
             </Flex>
-            <Flex gap='4' display={['none', 'flex']}>
-                <FormControl
-                    display='flex'
-                    alignItems='center'
-                    padding='6px 0px 6px 8px'
-                    gap='3'
-                    w='260px'
-                >
-                    <FormLabel
-                        htmlFor='exclude-my-allergens'
-                        m='0'
-                        size='md'
-                        lineHeight='24px'
-                        fontFamily='Inter'
-                        whiteSpace='nowrap'
-                    >
-                        Исключить мои аллергены
-                    </FormLabel>
-                    <Switch id='exclude-my-allergens' />
-                </FormControl>
-                <Select placeholder='Выберите из списка...' size='lg'>
-                    <option value='option1'>Option 1</option>
-                    <option value='option2'>Option 2</option>
-                    <option value='option3'>Option 3</option>
-                </Select>
-            </Flex>
+            <Hide below='lg'>
+                <Flex w='80%' alignItems='center' justifyContent='center' gap={[4]}>
+                    <SelectAllergy
+                        title='Выберите из списка...'
+                        options={allergyOptions}
+                        fullFilters={fullFilters}
+                        setfullFilters={setfullFilters}
+                        filterKey='allergyFilter'
+                    />
+                </Flex>
+            </Hide>
+            <FiltersDrawer
+                btnRef={btnRef}
+                isOpen={isOpen}
+                onOpen={onOpen}
+                onClose={onClose}
+                fullFilters={fullFilters}
+                setfullFilters={setfullFilters}
+            />
         </Flex>
     );
 };

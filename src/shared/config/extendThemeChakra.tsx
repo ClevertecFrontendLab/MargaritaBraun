@@ -33,11 +33,12 @@ const theme = extendTheme({
     },
     textStyles: {
         h1: {
-            fontSize: ['20px', '20px', '30px', '48px'],
+            fontSize: ['24px', '24px', '24px', '48px'],
             fontFamily: 'Inter',
             fontWeight: '700',
             lineHeight: ['32px', '48px'],
             fontStyle: 'normal',
+            color: 'red',
         },
         h3: {
             fontSize: ['16px', '20px'],
@@ -68,6 +69,13 @@ const theme = extendTheme({
             fontStyle: 'normal',
             color: 'lime.600',
         },
+        textCardDescription: {
+            fontFamily: 'Inter',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '20px',
+        },
     },
 
     colors: {
@@ -76,14 +84,71 @@ const theme = extendTheme({
             150: '#D7FF94',
             300: '#C4FF61',
             400: '#B1FF2E',
-            600: '#2DB100',
+            // 500: '#FFFFD3', // повтор для 400
+            500: '#B1FF2E', // повтор для 400
+            600: '#2DB100', // #2DB100;
             800: '#134B00',
+            900: '#364e0d', // повтор для 400
         },
     },
     breakpoints: {
         sm: '22.5rem',
         xl: '90rem',
         '2xl': '120rem',
+    },
+
+    components: {
+        Checkbox: {
+            baseStyle: {
+                color: 'lime.600',
+                backgroundColor: 'lime.300',
+
+                control: {
+                    borderColor: 'lime.600',
+                },
+                icon: {
+                    color: 'black',
+                    // backgroundColor: 'transparent',
+                    background: 'lime.300',
+                },
+            },
+        },
+
+        Badge: {
+            baseStyle: {
+                fontFamily: 'Inter, sans-serif',
+            },
+            defaultProps: {
+                fontFamily: 'Inter, sans-serif',
+            },
+        },
+
+        Button: {
+            baseStyle: {
+                fontWeight: '600',
+                color: 'black',
+                fontFamily: 'Inter',
+            },
+            colorScheme: {
+                lime: {
+                    color: 'black',
+                },
+            },
+            variants: {
+                'lime-brand': {
+                    bg: 'lime.400',
+                    color: 'black',
+                },
+                solid: {
+                    // bg: 'lime.400',
+                    color: 'black',
+                },
+            },
+
+            defaultProps: {
+                color: 'black',
+            },
+        },
     },
 });
 

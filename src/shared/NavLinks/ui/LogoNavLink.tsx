@@ -16,7 +16,7 @@ export const LogoNavLink = () => (
         alignItems='flex-end'
     >
         <PotLogoIcon />
-        <Hide below='sm'>
+        <Hide breakpoint='(max-width: 450px)'>
             <TextLogoIcon />
         </Hide>
     </Button>
