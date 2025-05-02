@@ -10,46 +10,63 @@ import {
     Image,
     Text,
 } from '@chakra-ui/react';
-import { NavLink as ReachLink, useParams } from 'react-router';
+import {
+    NavLink as ReachLink,
+    useLocation,
+    // useNavigate,
+    // useParams
+} from 'react-router';
 
-import navigationData from '~/entities/NavMenu/const/navigationData';
-import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
+// import navigationData from '~/entities/NavMenu/const/navigationData';
+// import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
+// import { useGetCategoriesAtSubcategoryQuery } from '~/store/apiQuery/marathonApi';
+import { IMAGE_URL } from '~/store/consts/apiConsts';
+import { Recipe } from '~/store/model/categoryType';
 
-interface CardRecipeProps extends dataAllCategoryProps {
+import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
+
+interface CardRecipeProps extends Recipe {
     searchQuery?: string;
     index: number;
 }
 
 export const CardRecipe = ({
-    id,
+    _id,
     title,
     description,
     image,
-    category,
-    subcategory,
+    categoriesIds,
+    // subcategory,
     bookmarks,
     likes,
     searchQuery,
     index,
 }: CardRecipeProps) => {
-    const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
-        category: string;
-        subcategory: string;
-    }>();
+    // const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
+    //     category: string;
+    //     subcategory: string;
+    // }>();
+    const location = useLocation();
+    // const navigate = useNavigate();
+    const currentPath = location.pathname;
     const btnSave = 'Сохранить';
     const btnCooking = 'Готовить';
+    // console.log('categoriesIds', categoriesIds);
+    const associatedCategories = useCategoryAtSubCategID(categoriesIds);
+    // console.log('associatedCategories', associatedCategories);
+    // const useThisCategoryObject = (currentIDSubcategory: string) => {
+    //     const { data: currentObj } = useGetCategoriesAtSubcategoryQuery(currentIDSubcategory);
+    //     return currentObj;
+    //     // const categoryData = navigationData.filter((item) => item.url === currentCategory);
+    //     // return categoryData[0];
+    // };
 
-    const getThisCategoryObject = (currentCategory: string) => {
-        const categoryData = navigationData.filter((item) => item.url === currentCategory);
-        return categoryData[0];
-    };
+    // const checkCategory = currentCategory ? currentCategory : category[0];
+    // const findSubcategory = currentSubCategory ? currentSubCategory : subcategory[0];
 
-    const checkCategory = currentCategory ? currentCategory : category[0];
-    const findSubcategory = currentSubCategory ? currentSubCategory : subcategory[0];
-
-    const checkSubcategory = currentSubCategory ? currentSubCategory : findSubcategory;
-    const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
+    // const checkSubcategory = currentSubCategory ? currentSubCategory : findSubcategory;
+    // const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
 
     return (
         <Card
@@ -64,7 +81,7 @@ export const CardRecipe = ({
                     objectFit='cover'
                     w='100%'
                     h='auto'
-                    src={image}
+                    src={`${IMAGE_URL}${image}`}
                     alt={title}
                     borderLeftRadius='8px'
                 />
@@ -85,30 +102,30 @@ export const CardRecipe = ({
                         left='2'
                         direction='column'
                     >
-                        {category.map((item: string) => {
-                            const currentCategory = getThisCategoryObject(item);
-                            const CategoryIcon = currentCategory.icon;
-                            return (
+                        {associatedCategories &&
+                            associatedCategories.map((currentCategory) => (
                                 <Flex
-                                    key={item}
+                                    key={currentCategory._id}
                                     align='center'
                                     bg='lime.50'
                                     borderRadius='md'
                                     gap={['0', null, '2']}
                                     p='0.5px 3.5px'
                                 >
-                                    <CategoryIcon w='30px' h='30px' />
+                                    <Image
+                                        src={`${IMAGE_URL}${currentCategory?.icon}`}
+                                        boxSize={['14px', null, null, '16px']}
+                                    />
                                     <Text
                                         fontSize='14px'
                                         fontWeight='500'
                                         lineHeight='20px'
                                         whiteSpace='nowrap'
                                     >
-                                        {currentCategory.label}
+                                        {currentCategory.title}
                                     </Text>
                                 </Flex>
-                            );
-                        })}
+                            ))}
                     </Flex>
                     <Flex>
                         <Flex align='center' gap='2'>
@@ -182,7 +199,7 @@ export const CardRecipe = ({
                         colorScheme='blackAlpha'
                         size={['xs', null, null, 'sm']}
                         as={ReachLink}
-                        to={recipePath}
+                        to={`${currentPath}/${_id}`}
                         data-test-id={`card-link-${index}`}
                         fontSize='14px'
                     >
