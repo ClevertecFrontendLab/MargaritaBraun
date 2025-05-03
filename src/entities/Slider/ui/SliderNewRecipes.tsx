@@ -6,13 +6,15 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { CardSlider } from '~/entities/Card';
-import dataAllCategory from '~/shared/consts/dataAllCategory';
+import { useGetRecipesForSliderQuery } from '~/store/apiQuery/marathonApi';
+// import dataAllCategory from '~/shared/consts/dataAllCategory';
 
 export const SliderNewRecipes = () => {
-    const sortedRecipes = dataAllCategory.sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-    );
-    const dataForSlidersCards = sortedRecipes.slice(0, 10);
+    // const sortedRecipes = dataAllCategory.sort(
+    //     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+    // );
+    // const dataForSlidersCards = sortedRecipes.slice(0, 10);
+    const { data: dataForSlidersCards } = useGetRecipesForSliderQuery();
     const swiperRef = useRef<SwiperType | null>(null);
 
     return (
@@ -99,7 +101,7 @@ export const SliderNewRecipes = () => {
                 >
                     {dataForSlidersCards &&
                         dataForSlidersCards.map((dataForSlide, index) => (
-                            <SwiperSlide key={dataForSlide.id}>
+                            <SwiperSlide key={dataForSlide._id}>
                                 <CardSlider {...dataForSlide} index={index} />
                             </SwiperSlide>
                         ))}
