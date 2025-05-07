@@ -7,7 +7,6 @@ const ErrorNotification: FC = () => (
             status='error'
             variant='solid'
             w='400px'
-            // m='0 auto'
             position='fixed'
             bottom='50px'
             right='35vw'

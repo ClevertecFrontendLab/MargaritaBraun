@@ -12,7 +12,6 @@ import NotFoundPage from '~/pages/NotFoundPage/NotFoundPage';
 import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
 
 import Layout from './layouts/Layout';
-import { Testing } from './Testing';
 interface CategoryRouteValidatorProps {
     children: ReactNode;
 }
@@ -78,7 +77,6 @@ const AppRouter = () => (
 
             <Route path=':category/:subcategory/:id' element={<SingleRecipePage />} />
             <Route path='the-juiciest' element={<Juiciest />} />
-            <Route path='test' element={<Testing />} />
         </Route>
 
         <Route path='/not-found' element={<NotFoundPage />} />

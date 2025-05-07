@@ -194,10 +194,13 @@ export const PageHeaderWithFilters = ({
                                     />
                                 )}
                                 <InputRightElement
+                                    position='relative'
+                                    zIndex='10'
                                     data-test-id='search-button'
                                     pointerEvents={inputSearch.length > 2 ? 'auto' : 'none'}
                                     cursor={inputSearch.length > 2 ? 'pointer' : 'not-allowed'}
                                     onClick={() => {
+                                        console.log('click search');
                                         if (inputSearch.length > 2) {
                                             searchParams.set('search', inputSearch);
                                             setSearchParams(searchParams);

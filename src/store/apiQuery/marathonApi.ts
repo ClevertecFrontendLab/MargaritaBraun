@@ -125,13 +125,21 @@ export const marathonApi = createApi({
             providesTags: ['Recipes'],
         }),
 
-        getRecipesForSlider: build.query<Recipe[], void>({
-            query: () => '/recipe',
-            transformResponse: (response: RecipesListResponce): Recipe[] => {
-                const sorted: Recipe[] = response.data.sort((a, b) => b.time - a.time).slice(0, 10);
+        getRecipesForSlider: build.query<RecipesListResponce, void>({
+            query: () => ({
+                url: '/recipe',
+                params: {
+                    limit: 10,
+                    sortBy: 'createdAt',
+                    sortOrder: 'desc',
+                },
+            }),
+            // transformResponse: (response: RecipesListResponce): Recipe[] => {
+            //     limit: 10, sortBy: 'createdAt', sortOrder: 'desc'
+            //     const sorted: Recipe[] = response.data.sort((a, b) => b.time - a.time).slice(0, 10);
 
-                return sorted;
-            },
+            //     return sorted;
+            // },
             providesTags: ['Recipes'],
         }),
 

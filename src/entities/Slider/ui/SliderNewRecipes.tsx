@@ -9,7 +9,8 @@ import { CardSlider } from '~/entities/Card';
 import { useGetRecipesForSliderQuery } from '~/store/apiQuery/marathonApi';
 
 export const SliderNewRecipes = () => {
-    const { data: dataForSlidersCards } = useGetRecipesForSliderQuery();
+    const { data: dataRecipes } = useGetRecipesForSliderQuery();
+    const dataForSlidersCards = dataRecipes?.data;
     const swiperRef = useRef<SwiperType | null>(null);
 
     return (

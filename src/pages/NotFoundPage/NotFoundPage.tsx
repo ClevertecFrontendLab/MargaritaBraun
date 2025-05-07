@@ -1,4 +1,5 @@
 import { Flex, Heading, Image, Link, Text } from '@chakra-ui/react';
+import { Link as ReachLink } from 'react-router';
 
 import notFoundImage from '~/assets/notFoundImage.png';
 import { Footer } from '~/widgets/Footer';
@@ -22,7 +23,7 @@ const NotFoundPage = () => (
             </Heading>
             <Text>
                 Можете поискать другой рецепт{' '}
-                <Link color='teal.500' href='/'>
+                <Link color='teal.500' as={ReachLink} to='/'>
                     здесь.
                 </Link>
             </Text>

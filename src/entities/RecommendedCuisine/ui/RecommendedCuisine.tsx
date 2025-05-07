@@ -15,15 +15,11 @@ export const RecommendedCuisine = () => {
 
     const randomCategory = allCategoryData[getRandomIndex(allCategoryData)];
 
-    const paramsSubcategoryIds = randomCategory.subCategories.map((item) => item._id).join(',');
+    const idSubcategory = randomCategory ? randomCategory.subCategories[0]._id : '';
     const title = randomCategory.title;
     const description = randomCategory.description;
 
     return (
-        <RecommendedSection
-            title={title}
-            description={description}
-            paramsSubcategoryIds={paramsSubcategoryIds}
-        />
+        <RecommendedSection title={title} description={description} idSubcategory={idSubcategory} />
     );
 };

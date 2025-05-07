@@ -1,6 +1,6 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
 
-import { useGetAllRecipesQuery } from '~/store/apiQuery/marathonApi';
+import { useGetRecipesBySubCategoryQuery } from '~/store/apiQuery/marathonApi';
 import { Recipe } from '~/store/model/categoryType';
 
 import { BlockCardNoFoto } from './BlockCardNoFoto';
@@ -9,17 +9,19 @@ import { BlockRowRecipe } from './BlockRowRecipe';
 interface RecommendedSectionProps {
     title: string;
     description: string;
-    paramsSubcategoryIds: string;
+    idSubcategory: string;
 }
 
 export const RecommendedSection = ({
     title,
     description,
-    paramsSubcategoryIds,
+    idSubcategory,
 }: RecommendedSectionProps) => {
-    const { data: allRecipes } = useGetAllRecipesQuery({
-        limit: 5,
-        subcategoriesIds: paramsSubcategoryIds,
+    const { data: allRecipes } = useGetRecipesBySubCategoryQuery({
+        subCategoryId: idSubcategory,
+        params: {
+            limit: 5,
+        },
     });
     const currentRecipes: Recipe[] = allRecipes ? allRecipes.data : [];
     return (

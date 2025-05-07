@@ -1,5 +1,5 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Heading, Show, SimpleGrid } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, SimpleGrid } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router';
 
 import { CardRecipe } from '~/entities/Card';
@@ -34,7 +34,7 @@ export const HomeJuiciest = () => {
                         bg='lime.400'
                         color='black'
                         size='md'
-                        data-test-id='juiciest-link-mobile'
+                        data-test-id='juiciest-link'
                         as={ReachLink}
                         to='/the-juiciest'
                     >
@@ -47,23 +47,21 @@ export const HomeJuiciest = () => {
                     <CardRecipe key={dataCard.title} {...dataCard} index={index}></CardRecipe>
                 ))}
             </SimpleGrid>
-            <Show below='md'>
-                <Flex align='center' justify='center'>
-                    <Button
-                        rightIcon={<ArrowForwardIcon />}
-                        colorScheme='teal'
-                        variant='solid'
-                        bg='lime.400'
-                        color='black'
-                        size='md'
-                        data-test-id='juiciest-link-mobile'
-                        as={ReachLink}
-                        to='/the-juiciest'
-                    >
-                        Вся подборка
-                    </Button>
-                </Flex>
-            </Show>
+            <Flex align='center' justify='center' display={['flex', null, 'none']}>
+                <Button
+                    rightIcon={<ArrowForwardIcon />}
+                    colorScheme='teal'
+                    variant='solid'
+                    bg='lime.400'
+                    color='black'
+                    size='md'
+                    data-test-id='juiciest-link-mobile'
+                    as={ReachLink}
+                    to='/the-juiciest'
+                >
+                    Вся подборка
+                </Button>
+            </Flex>
         </Flex>
     );
 };
