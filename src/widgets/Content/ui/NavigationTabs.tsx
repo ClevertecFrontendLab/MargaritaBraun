@@ -1,15 +1,19 @@
 import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
 import { NavLink as ReachLink } from 'react-router';
 
-import { CategoryInterface } from '~/store/model/categoryType';
+import { Category } from '~/store/model/categoryType';
 
-export const NavigationTabs = ({ category, subCategories }: CategoryInterface) => (
+interface NavigationTabsProps {
+    categoryObject: Category;
+}
+
+export const NavigationTabs = ({ categoryObject }: NavigationTabsProps) => (
     <>
-        {subCategories && subCategories.length > 0 && (
+        {categoryObject && categoryObject.subCategories.length > 0 && (
             <Flex align='center' justify='center' pb='12px'>
                 <Tabs variant='unstyled'>
                     <TabList flexWrap='wrap' justifyContent='center'>
-                        {subCategories.map((item, index) => (
+                        {categoryObject.subCategories.map((item, index) => (
                             <Tab
                                 as={ReachLink}
                                 textStyle='textParagraph'
@@ -20,7 +24,7 @@ export const NavigationTabs = ({ category, subCategories }: CategoryInterface) =
                                     color: 'lime.600',
                                     borderBottom: '2px solid #2DB100',
                                 }}
-                                to={`/${category}/${item.category}`}
+                                to={`/${categoryObject.category}/${item.category}`}
                                 key={item._id}
                             >
                                 {item.title}

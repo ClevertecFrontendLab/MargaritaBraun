@@ -7,13 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { CardSlider } from '~/entities/Card';
 import { useGetRecipesForSliderQuery } from '~/store/apiQuery/marathonApi';
-// import dataAllCategory from '~/shared/consts/dataAllCategory';
 
 export const SliderNewRecipes = () => {
-    // const sortedRecipes = dataAllCategory.sort(
-    //     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-    // );
-    // const dataForSlidersCards = sortedRecipes.slice(0, 10);
     const { data: dataForSlidersCards } = useGetRecipesForSliderQuery();
     const swiperRef = useRef<SwiperType | null>(null);
 
@@ -54,7 +49,7 @@ export const SliderNewRecipes = () => {
                         swiperRef.current = swiper;
                     }}
                     speed={500}
-                    loop={true}
+                    loop={dataForSlidersCards ? true : false}
                     modules={[Navigation]}
                     breakpoints={{
                         200: {
@@ -81,10 +76,6 @@ export const SliderNewRecipes = () => {
                             slidesPerView: 3,
                             spaceBetween: 12,
                         },
-                        // 1440: {
-                        //     slidesPerView: 3,
-                        //     spaceBetween: 40,
-                        // },
                         1480: {
                             slidesPerView: 3,
                             spaceBetween: 12,

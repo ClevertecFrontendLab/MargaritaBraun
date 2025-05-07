@@ -17,9 +17,22 @@ export interface FiltersData {
     allergyFilter: string[];
 }
 
+export interface ObjectCategoryForFilters {
+    _id: string;
+    title: string;
+}
+
 export interface FieldForFilterProps {
     title: string;
     options: string[];
+    fullFilters: FiltersData;
+    setfullFilters: React.Dispatch<React.SetStateAction<FiltersData>>;
+    filterKey: keyof FiltersData;
+    dataTestId?: string;
+}
+export interface FieldForFilterCategoryProps {
+    title: string;
+    options: ObjectCategoryForFilters[];
     fullFilters: FiltersData;
     setfullFilters: React.Dispatch<React.SetStateAction<FiltersData>>;
     filterKey: keyof FiltersData;

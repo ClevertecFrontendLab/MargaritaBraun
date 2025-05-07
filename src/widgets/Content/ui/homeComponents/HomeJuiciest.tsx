@@ -16,7 +16,7 @@ export const HomeJuiciest = () => {
     const sortedRecipes = allResipesSortedLikes ? allResipesSortedLikes.data : [];
 
     return (
-        <Flex direction='column' gap={['3', '6']} as='section'>
+        <Flex direction='column' gap={['3', '6']} as='section' p={['20px 0', null, null, '30px 0']}>
             <Flex justify='space-between'>
                 <Heading
                     as='h3'
@@ -26,7 +26,7 @@ export const HomeJuiciest = () => {
                 >
                     Самое сочное
                 </Heading>
-                <Box display='none'>
+                <Box display={['none', null, 'flex']}>
                     <Button
                         rightIcon={<ArrowForwardIcon />}
                         colorScheme='teal'

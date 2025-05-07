@@ -1,19 +1,26 @@
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box } from '@chakra-ui/react';
 import { FC } from 'react';
 
-interface ErrorNotificationProps {
-    message: string;
-    onClose: () => void;
-}
-
-const ErrorNotification: FC<ErrorNotificationProps> = ({ message, onClose }) => (
-    <div className='fixed top-4 right-4 bg-red-500 text-white p-4 rounded shadow-lg z-50'>
-        <div className='flex justify-between items-center'>
-            <span>{message}</span>
-            <button onClick={onClose} className='ml-4'>
-                ×
-            </button>
-        </div>
-    </div>
+const ErrorNotification: FC = () => (
+    <>
+        <Alert
+            status='error'
+            variant='solid'
+            w='400px'
+            // m='0 auto'
+            position='fixed'
+            bottom='50px'
+            right='35vw'
+            zIndex='modal'
+            data-test-id='error-notification'
+        >
+            <AlertIcon data-test-id='close-alert-button' />
+            <Box>
+                <AlertTitle color='white'>Ошибка сервера</AlertTitle>
+                <AlertDescription color='white'>Попробуйте поискать снова попозже</AlertDescription>
+            </Box>
+        </Alert>
+    </>
 );
 
 export default ErrorNotification;

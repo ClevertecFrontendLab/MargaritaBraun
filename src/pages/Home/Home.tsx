@@ -1,39 +1,26 @@
-import { useSearchParams } from 'react-router';
-
-import { HomeKitchen } from '~/entities/KitchenSection';
+import { RecommendedCuisine } from '~/entities/RecommendedCuisine';
 import { SliderNewRecipes } from '~/entities/Slider';
 import { CookingBlogs } from '~/shared/CookingBlogs';
-import { HomeJuiciest, PageHeaderWithFilters, RecipesSections } from '~/widgets/Content';
-import { PageHeaderWithFiltersProps } from '~/widgets/Content/ui/PageHeaderWithFilters';
+import { HomeJuiciest } from '~/widgets/Content';
 
 import { useCheckActiveFilters } from '../CategoryPage/utils/useCheckActiveFilters';
-import { useFilteredRecipes } from '../CategoryPage/utils/useFilteredRecipes';
-
-const dataForPage: PageHeaderWithFiltersProps = {
-    title: 'Приятного аппетита!',
-};
+import ContentLayout from '../Layout/ContentLayout';
 
 const Home = () => {
-    const [searchParams] = useSearchParams();
-    const searchQuery = searchParams.get('search') || '';
     const check = useCheckActiveFilters();
-    const filteredData = useFilteredRecipes();
+
     return (
-        <>
-            <PageHeaderWithFilters {...dataForPage}></PageHeaderWithFilters>
-            {check ? (
-                <>
-                    <RecipesSections dataAllCategory={filteredData} searchQuery={searchQuery} />
-                </>
-            ) : (
+        <ContentLayout title='Приятного аппетита!' showFiltered={check}>
+            {!check && (
                 <>
                     <SliderNewRecipes />
                     <HomeJuiciest />
                     <CookingBlogs />
-                    <HomeKitchen />
+                    <RecommendedCuisine />
                 </>
             )}
-        </>
+        </ContentLayout>
     );
 };
+
 export default Home;

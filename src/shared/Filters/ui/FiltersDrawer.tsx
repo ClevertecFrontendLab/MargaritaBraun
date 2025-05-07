@@ -14,10 +14,10 @@ import {
 import { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import navigationData from '~/entities/NavMenu/const/navigationData';
 import {
     FieldWithCheckbox,
     FieldWithSelect,
+    FieldWithSelectCategory,
     FilterDisplay,
     SelectAllergyWithSwitch,
 } from '~/shared/FiltersComponents';
@@ -28,6 +28,7 @@ import filterAllergy from '../consts/filterAllergy';
 import filterAutors from '../consts/filterAutors';
 import filterTypeGarnish from '../consts/filterTypeGarnish';
 import filterTypeMeat from '../consts/filterTypeMeat';
+import useFiltersCategory from '../consts/useFiltersCategory';
 
 export const FiltersDrawer: FC<FiltersDrawerProps> = ({
     isOpen,
@@ -35,7 +36,7 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
     fullFilters,
     setfullFilters,
 }) => {
-    const categoryOptions = navigationData.map((item) => item.label);
+    const categoryOptions = useFiltersCategory();
     const typeMeatOptions = filterTypeMeat;
     const typeGarnishOptions = filterTypeGarnish;
     const autorsOptions = filterAutors;
@@ -96,7 +97,7 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                         w='100%'
                         p='0'
                     >
-                        <FieldWithSelect
+                        <FieldWithSelectCategory
                             title='Категория'
                             options={categoryOptions}
                             fullFilters={fullFilters}

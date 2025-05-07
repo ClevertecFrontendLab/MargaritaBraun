@@ -4,6 +4,7 @@ import { API_URL } from '../consts/apiConsts';
 import {
     AllCategoryInterface,
     Category,
+    OptionsQuery,
     // CategoryInterface,
     Recipe,
     RecipesListResponce,
@@ -72,8 +73,55 @@ export const marathonApi = createApi({
         }),
 
         // Рецепты
-        getAllRecipes: build.query<Recipe[], void>({
-            query: () => '/recipe',
+        // getAllRecipes: build.query<RecipesListResponce, void>({
+        //     query: () => '/recipe',
+        //     providesTags: ['Recipes'],
+        // }),
+
+        // getAllRecipes: build.query<RecipesListResponce, OptionsQuery>({
+        //     query: (params) => {
+        //         const queryString = new URLSearchParams(params as OptionsQuery).toString();
+        //         return `/recipe?${queryString}`;
+        //     },
+        //     providesTags: ['Recipes'],
+        // }),
+
+        getAllRecipes: build.query<RecipesListResponce, OptionsQuery>({
+            query: (params) => {
+                console.log('Sending request with params:', params);
+                const query: Record<string, string> = {};
+
+                if (params.page !== undefined) {
+                    query.page = String(params.page);
+                }
+                if (params.limit !== undefined) {
+                    query.limit = String(params.limit);
+                }
+                if (params.allergens) {
+                    query.allergens = params.allergens;
+                }
+                if (params.searchString) {
+                    query.searchString = params.searchString;
+                }
+                if (params.meat) {
+                    query.meat = params.meat;
+                }
+                if (params.garnish) {
+                    query.garnish = params.garnish;
+                }
+                if (params.subcategoriesIds) {
+                    query.subcategoriesIds = params.subcategoriesIds;
+                }
+                if (params.sortBy) {
+                    query.sortBy = String(params.sortBy);
+                }
+                if (params.sortOrder) {
+                    query.sortOrder = params.sortOrder;
+                }
+
+                const queryString = new URLSearchParams(query).toString();
+                return `/recipe?${queryString}`;
+            },
             providesTags: ['Recipes'],
         }),
 
@@ -121,10 +169,53 @@ export const marathonApi = createApi({
         // getRecipesBySubCategory: build.query<Recipe[], string>({
         //     query: (subCategory) => `/recipe?subCategory=${subCategory}`,
         // }),
+        // /recipe/category/{id}
+        // getRecipesBySubCategory: build.query<RecipesListResponce, string>({
+        //     query: (subCategoryId) => `/recipe/category/${subCategoryId}`,
+        //     // providesTags: (result, error, subCategoryId) => [{ type: 'Recipes', id: subCategoryId }],
+        // }),
 
-        getRecipesBySubCategory: build.query<RecipesListResponce, string>({
-            query: (subCategoryId) => `/recipe/category/${subCategoryId}`,
-            // providesTags: (result, error, subCategoryId) => [{ type: 'Recipes', id: subCategoryId }],
+        getRecipesBySubCategory: build.query<
+            RecipesListResponce,
+            { subCategoryId: string; params: OptionsQuery }
+        >({
+            query: ({ subCategoryId, params }) => {
+                console.log('Sending request with params:', params);
+                const query: Record<string, string> = {};
+
+                // Добавление параметров к запросу
+                if (params.page !== undefined) {
+                    query.page = String(params.page);
+                }
+                if (params.limit !== undefined) {
+                    query.limit = String(params.limit);
+                }
+                if (params.allergens) {
+                    query.allergens = params.allergens;
+                }
+                if (params.searchString) {
+                    query.searchString = params.searchString;
+                }
+                if (params.meat) {
+                    query.meat = params.meat;
+                }
+                if (params.garnish) {
+                    query.garnish = params.garnish;
+                }
+                if (params.subcategoriesIds) {
+                    query.subcategoriesIds = params.subcategoriesIds;
+                }
+                if (params.sortBy) {
+                    query.sortBy = String(params.sortBy);
+                }
+                if (params.sortOrder) {
+                    query.sortOrder = params.sortOrder;
+                }
+
+                const queryString = new URLSearchParams(query).toString();
+                return `/recipe/category/${subCategoryId}?${queryString}`; // Добавьте '?' для параметров
+            },
+            providesTags: ['Recipes'],
         }),
 
         getRecipeById: build.query<Recipe, string>({

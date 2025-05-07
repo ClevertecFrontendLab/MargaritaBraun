@@ -1,18 +1,26 @@
-import { Card, CardBody, CardFooter, Flex, Text } from '@chakra-ui/react';
+import { Card, CardBody, CardFooter, Flex, Image, Text } from '@chakra-ui/react';
 
-import { blockCardNoFotoProps } from '~/entities/KitchenSection/consts/sectionsType';
-import navigationData from '~/entities/NavMenu/const/navigationData';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
+import { IMAGE_URL } from '~/store/consts/apiConsts';
+
+import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
+
+export interface CardWithOutFotoProps {
+    title: string;
+    description: string;
+    likes: number;
+    bookmarks: number;
+    categoriesIds: string[];
+}
 
 export const CardWithOutFoto = ({
-    category,
-    isFavorites,
-    isLiked,
     title,
     description,
-}: blockCardNoFotoProps) => {
-    const categoryData = navigationData.filter((item) => item.label === category);
-    const CategoryIcon = categoryData[0].icon;
+    likes,
+    categoriesIds,
+    bookmarks,
+}: CardWithOutFotoProps) => {
+    const associatedCategories = useCategoryAtSubCategID(categoriesIds);
     return (
         <Card variant='outline' w='100%' flexBasis={[null, null, '40%', '30%', '22%']}>
             <Flex
@@ -46,28 +54,35 @@ export const CardWithOutFoto = ({
                         align-items='center'
                         gap='2'
                         zIndex='2'
+                        direction='column'
                     >
-                        <Flex
-                            boxSize={['16px', null, null, '24px']}
-                            justify='center'
-                            align='center'
-                        >
-                            <CategoryIcon
-                                boxSize={['16px', '16px', '16px', '24px']}
-                                objectFit='contain'
-                            />
-                        </Flex>
-                        <Text
-                            fontSize='14px'
-                            fontWeight='500'
-                            lineHeight='20px'
-                            whiteSpace='nowrap'
-                        >
-                            {category}
-                        </Text>
+                        {associatedCategories &&
+                            associatedCategories.map((currentCategory) => (
+                                <Flex
+                                    key={currentCategory._id}
+                                    align='center'
+                                    bg='lime.50'
+                                    borderRadius='md'
+                                    gap={['0', null, '2']}
+                                    p='0.5px 3.5px'
+                                >
+                                    <Image
+                                        src={`${IMAGE_URL}${currentCategory?.icon}`}
+                                        boxSize={['14px', null, null, '16px']}
+                                    />
+                                    <Text
+                                        fontSize='14px'
+                                        fontWeight='500'
+                                        lineHeight='20px'
+                                        whiteSpace='nowrap'
+                                    >
+                                        {currentCategory.title}
+                                    </Text>
+                                </Flex>
+                            ))}
                     </Flex>
                     <Flex gap='2'>
-                        {isFavorites && (
+                        {bookmarks && (
                             <Flex align='center' gap='2'>
                                 <FavoritesIcon size='40px' />
                                 <Text
@@ -76,11 +91,11 @@ export const CardWithOutFoto = ({
                                     lineHeight='16px'
                                     color='lime.600'
                                 >
-                                    {isFavorites}
+                                    {bookmarks}
                                 </Text>
                             </Flex>
                         )}
-                        {isLiked && (
+                        {likes && (
                             <Flex align='center' gap='2' padding='0px 4px' justify='center'>
                                 <LikeyIcon />
                                 <Text
@@ -89,7 +104,7 @@ export const CardWithOutFoto = ({
                                     lineHeight='16px'
                                     color='lime.600'
                                 >
-                                    {isLiked}
+                                    {likes}
                                 </Text>
                             </Flex>
                         )}

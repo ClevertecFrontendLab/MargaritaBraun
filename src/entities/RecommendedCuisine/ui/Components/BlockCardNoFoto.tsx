@@ -1,9 +1,8 @@
 import { CardWithOutFoto } from '~/entities/Card';
-
-import { blockCardNoFotoProps } from '../consts/sectionsType';
+import { Recipe } from '~/store/model/categoryType';
 
 interface blockProps {
-    dataForCardWithoutFoto: blockCardNoFotoProps[];
+    dataForCardWithoutFoto: Recipe[];
 }
 export const BlockCardNoFoto = ({ dataForCardWithoutFoto }: blockProps) => (
     <>

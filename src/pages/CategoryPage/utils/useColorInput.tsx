@@ -7,7 +7,7 @@ export const useColorInput = () => {
     const searchQuery = searchParams.get('search') || '';
     let currentColor = 'blackAlpha.600';
 
-    if (searchQuery) {
+    if (searchQuery && searchQuery !== '') {
         const filtered = dataAllCategory.filter((recipe) => recipe.title.includes(searchQuery));
         currentColor = filtered.length === 0 ? 'red.200' : 'lime.600';
     }

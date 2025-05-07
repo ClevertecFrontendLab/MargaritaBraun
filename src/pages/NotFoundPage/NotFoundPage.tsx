@@ -22,7 +22,7 @@ const NotFoundPage = () => (
             </Heading>
             <Text>
                 Можете поискать другой рецепт{' '}
-                <Link color='teal.500' href='#'>
+                <Link color='teal.500' href='/'>
                     здесь.
                 </Link>
             </Text>
