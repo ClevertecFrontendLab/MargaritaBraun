@@ -46,7 +46,12 @@ export const Breadcrumbs = () => {
 
             {navigationData &&
                 pathnames.map((currentPath, index) => {
-                    const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
+                    // if (index === 1) {
+                    //     let myPathnames =
+                    // }
+                    // console.log('currentPath', currentPath);
+                    // console.log('index', index);
+                    const routeTo = `/${pathnames.slice(0, 2).join('/')}`;
                     const isCurrentPage = index === pathnames.length - 1;
 
                     const categoryObj = navigationData.find(
