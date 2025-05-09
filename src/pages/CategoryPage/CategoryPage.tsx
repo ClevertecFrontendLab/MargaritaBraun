@@ -7,11 +7,14 @@ import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
 
 import ContentLayoutCategory from '../Layout/ContentLayoutCategory';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { RecipesListCategory } from './RecipesListCategory';
+import { useCheckActiveFilters } from './utils/useCheckActiveFilters';
 
 const MemoizedRecommendedCuisine = memo(RecommendedCuisine);
 
 const CategoryPage = () => {
     const { category, subcategory } = useParams<{ category: string; subcategory: string }>();
+    const check = useCheckActiveFilters();
     const {
         data: navigationData,
         isLoading: catsLoading,
@@ -31,7 +34,6 @@ const CategoryPage = () => {
     const title = categoryObject.title || 'Вкусная кухня для вас';
     const idSubcategory =
         subcategoryObject.find((item) => item.category === subcategory)?._id || '';
-
     return (
         <>
             <ContentLayoutCategory
@@ -42,6 +44,7 @@ const CategoryPage = () => {
                 subcategoryObject={subcategoryObject}
                 idSubcategory={idSubcategory}
             />
+            {!check && <RecipesListCategory idSubcategory={idSubcategory} />}
             <MemoizedRecommendedCuisine />
         </>
     );

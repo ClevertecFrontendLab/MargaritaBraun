@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 
 // import Loading from '~/app/Loading/Loading';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
+import { useGetRecipeByIdQuery } from '~/store/apiQuery/marathonApi';
 // import { useGetAllCategoriesWithSubcategoryQuery } from '~/store/apiQuery/marathonApi';
 import { IMAGE_URL } from '~/store/consts/apiConsts';
 import {
@@ -56,6 +57,8 @@ export const CardSlider = ({
                     navigate(
                         `${associatedCategories[0].category}/${associatedCategories[0].subCategories[0].category}/${_id}`,
                     );
+                    // eslint-disable-next-line react-hooks/rules-of-hooks
+                    useGetRecipeByIdQuery(_id);
                 }
                 // if (categoryObj && subCategoryObj) {
                 //     navigate(`${categoryObj.category}/${subCategoryObj.category}/${_id}`);

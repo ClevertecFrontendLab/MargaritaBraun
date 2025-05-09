@@ -135,7 +135,7 @@ const ContentLayoutCategory = ({
                 handleRefresh={handleRefresh}
             />
             {subcategoryObject && categoryObject && (
-                <NavigationTabs categoryObject={categoryObject} />
+                <NavigationTabs categoryObject={categoryObject} handleRefresh={handleRefresh} />
             )}
             {isError && <ErrorNotification />}
             {showFiltered === true ? (
