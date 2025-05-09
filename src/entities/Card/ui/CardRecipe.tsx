@@ -12,7 +12,7 @@ import {
 } from '@chakra-ui/react';
 import {
     NavLink as ReachLink,
-    useLocation,
+    // useLocation,
     // useNavigate,
     // useParams
 } from 'react-router';
@@ -47,9 +47,9 @@ export const CardRecipe = ({
     //     category: string;
     //     subcategory: string;
     // }>();
-    const location = useLocation();
+    // const location = useLocation();
     // const navigate = useNavigate();
-    const currentPath = location.pathname;
+    // const currentPath = location.pathname;
     const btnSave = 'Сохранить';
     const btnCooking = 'Готовить';
     // console.log('categoriesIds', categoriesIds);
@@ -199,7 +199,7 @@ export const CardRecipe = ({
                         colorScheme='blackAlpha'
                         size={['xs', null, null, 'sm']}
                         as={ReachLink}
-                        to={`${currentPath}/${_id}`}
+                        to={`${associatedCategories[0]?.category}/${associatedCategories[0]?.subCategories[0]?.category}/${_id}`}
                         data-test-id={`card-link-${index}`}
                         fontSize='14px'
                     >

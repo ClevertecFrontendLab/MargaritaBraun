@@ -1,5 +1,6 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
 
+import ErrorNotification from '~/app/ErrorNotification';
 import { useGetRecipesBySubCategoryQuery } from '~/store/apiQuery/marathonApi';
 import { Recipe } from '~/store/model/categoryType';
 
@@ -17,12 +18,17 @@ export const RecommendedSection = ({
     description,
     idSubcategory,
 }: RecommendedSectionProps) => {
-    const { data: allRecipes } = useGetRecipesBySubCategoryQuery({
+    const { data: allRecipes, isError } = useGetRecipesBySubCategoryQuery({
         subCategoryId: idSubcategory,
         params: {
             limit: 5,
         },
     });
+
+    if (isError) {
+        return <ErrorNotification />;
+    }
+
     const currentRecipes: Recipe[] = allRecipes ? allRecipes.data : [];
     return (
         <>

@@ -30,7 +30,8 @@ export const SelectAllergyWithSwitch: FC<FieldForFilterProps> = ({
 }) => {
     const [allOptions, setAllOptions] = useState<string[]>(options);
     const [addNewAllergy, setNewAllergy] = useState('');
-    const [activated, setActivated] = useState(false);
+    const initSwitsh = () => (fullFilters.allergyFilter.length > 0 ? true : false);
+    const [activated, setActivated] = useState(initSwitsh);
 
     const handleSelect = (value: string) => {
         setfullFilters((prev: FiltersData) => {

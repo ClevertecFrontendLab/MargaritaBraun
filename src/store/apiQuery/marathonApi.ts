@@ -87,8 +87,9 @@ export const marathonApi = createApi({
         // }),
 
         getAllRecipes: build.query<RecipesListResponce, OptionsQuery>({
+            // console.log('getAllRecipes'),
             query: (params) => {
-                console.log('Sending request with params:', params);
+                console.log('getAllRecipes sending request with params:', params);
                 const query: Record<string, string> = {};
 
                 if (params.page !== undefined) {
@@ -156,10 +157,11 @@ export const marathonApi = createApi({
         // { page: number;
         getRecipesForJuiciest: build.query<
             RecipesListResponce,
-            { page: number; sortBy: 'likes'; sortOrder: 'asc' | 'desc' }
+            { limit: number; page: number; sortBy: 'likes'; sortOrder: 'asc' | 'desc' }
         >({
-            query: ({ page = 1, sortBy = 'likes', sortOrder = 'desc' }) => {
+            query: ({ limit = 8, page = 1, sortBy = 'likes', sortOrder = 'desc' }) => {
                 const params = new URLSearchParams({
+                    limit: limit.toString(),
                     page: page.toString(),
                     sortBy,
                     sortOrder,

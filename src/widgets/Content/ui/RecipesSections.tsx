@@ -1,6 +1,7 @@
 import { Button, Flex, SimpleGrid } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
+import ErrorNotification from '~/app/ErrorNotification';
 import Loading from '~/app/Loading/Loading';
 import { CardRecipe } from '~/entities/Card';
 import { EmptyRecipesBlock } from '~/shared/helpers/EmptyRecipesBlock';
@@ -16,20 +17,21 @@ export const RecipesSections = () => {
         isLoading: catsLoading,
         error: catsError,
     } = useGetRecipesForJuiciestQuery({
+        limit: 8,
         page: page,
         sortBy: 'likes',
         sortOrder: 'desc',
     });
 
     useEffect(() => {
-        if (newResipesSortedLikes && newResipesSortedLikes.data.length > 0) {
+        if (newResipesSortedLikes) {
             setAllRecipes((prevRecipes) => [...prevRecipes, ...newResipesSortedLikes.data]);
         }
-    }, [newResipesSortedLikes, page]);
+    }, [newResipesSortedLikes]);
 
-    if (catsError) return <div>An error has occurred!</div>;
+    if (catsError) return <ErrorNotification />;
 
-    if (catsLoading) return <Loading />;
+    if (catsLoading && page === 1) return <Loading />;
 
     const addRecipes = () => {
         setPage((prevPage) => prevPage + 1);
@@ -43,10 +45,14 @@ export const RecipesSections = () => {
                 <>
                     <SimpleGrid columns={[1, 1, 2, 2, 2, 2]} w='100%' gap='16px 24px'>
                         {allRecipes.map((dataCard, index) => (
-                            <CardRecipe key={dataCard._id} {...dataCard} index={index} />
+                            <CardRecipe
+                                key={`${dataCard._id}-${index}`}
+                                {...dataCard}
+                                index={index}
+                            />
                         ))}
                     </SimpleGrid>
-                    {options && options.page < options.total && (
+                    {options && options.page < options.totalPages && (
                         <Flex justify='center' align='center' pt='4'>
                             <Button
                                 variant='solid'
@@ -54,8 +60,10 @@ export const RecipesSections = () => {
                                 color='black'
                                 bg='lime.300'
                                 onClick={addRecipes}
+                                data-test-id='load-more-button'
+                                isLoading={catsLoading && page > 1}
                             >
-                                Загрузить еще
+                                Загрузка
                             </Button>
                         </Flex>
                     )}

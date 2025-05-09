@@ -6,6 +6,7 @@ import { RecommendedCuisine } from '~/entities/RecommendedCuisine';
 import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
 
 import ContentLayoutCategory from '../Layout/ContentLayoutCategory';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const MemoizedRecommendedCuisine = memo(RecommendedCuisine);
 
@@ -23,7 +24,7 @@ const CategoryPage = () => {
     const categoryObject = navigationData?.find((item) => item.category === category);
 
     if (!categoryObject) {
-        return <div>Категория не найдена.</div>;
+        return <NotFoundPage />;
     }
 
     const subcategoryObject = categoryObject.subCategories;

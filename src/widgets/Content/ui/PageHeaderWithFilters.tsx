@@ -25,14 +25,9 @@ import { FiltersData } from '../modal/filtersType';
 export interface PageHeaderWithFiltersProps {
     title: string;
     subtitle?: string;
-    isLoading: boolean;
 }
 
-export const PageHeaderWithFilters = ({
-    title,
-    subtitle,
-    isLoading,
-}: PageHeaderWithFiltersProps) => {
+export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFiltersProps) => {
     const [fullFilters, setfullFilters] = useState<FiltersData>({
         categoryFilter: [],
         autorsFilter: [],
@@ -44,23 +39,28 @@ export const PageHeaderWithFilters = ({
     const [inputSearch, setInputSearch] = useState('');
     const [searchParams, setSearchParams] = useSearchParams();
     const btnRef = useRef<HTMLButtonElement | null>(null);
-
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [loading, setLoading] = useState(false);
 
+    const stopLoading = () => {
+        setLoading(true);
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    };
     const placeholderForInput = 'Название или ингредиент...';
     const allergyOptions = filterAllergy;
 
     const currentColor = useColorInput();
 
-    // if (isLoading) return <LoadingPageFilters />
-
     return (
         <>
-            {isLoading && <LoadingPageFilters />}
-            {!isLoading && (
+            {loading && <LoadingPageFilters />}
+            {!loading && (
                 <>
                     <Flex
-                        // marginBottom='24px'
                         direction='column'
                         align='center'
                         gap={['4', null, null, '8', '8']}
@@ -68,55 +68,32 @@ export const PageHeaderWithFilters = ({
                         justifyContent='center'
                         m='0 auto'
                         w={['80%', null, '80%', '70%']}
-                        // border='3px solid grey'
                         borderRadius='24px'
                         boxShadow='0px 20px 25px -5px rgba(0, 0, 0, 0.10), 0px 10px 10px -5px rgba(0, 0, 0, 0.04)'
                         padding='30px 0'
                     >
-                        {currentColor !== 'red.200' ? (
-                            <Flex gap='3' direction='column' align='center'>
-                                <Heading
-                                    as='h1'
-                                    fontFamily='Inter'
-                                    fontSize={['24px', null, null, '48px']}
-                                    lineHeight={['32px', null, null, '48px']}
+                        <Flex gap='3' direction='column' align='center'>
+                            <Heading
+                                as='h1'
+                                fontFamily='Inter'
+                                fontSize={['24px', null, null, '48px']}
+                                lineHeight={['32px', null, null, '48px']}
+                                textAlign='center'
+                            >
+                                {title}
+                            </Heading>
+                            {subtitle && (
+                                <Text
+                                    textStyle='textParagraph'
+                                    color='blackAlpha.600'
+                                    maxW={['100%', null, null, '696px']}
                                     textAlign='center'
                                 >
-                                    {title}
-                                </Heading>
-                                {subtitle && (
-                                    <Text
-                                        textStyle='textParagraph'
-                                        color='blackAlpha.600'
-                                        maxW={['100%', null, null, '696px']}
-                                        textAlign='center'
-                                    >
-                                        {subtitle}
-                                    </Text>
-                                )}
-                            </Flex>
-                        ) : (
-                            <>
-                                <Flex gap='3' direction='column' align='center'>
-                                    <Text
-                                        textStyle='textParagraph'
-                                        color='blackAlpha.600'
-                                        maxW={['100%', null, null, '696px']}
-                                        textAlign='center'
-                                    >
-                                        По вашему запросу ничего не найдено.
-                                    </Text>
-                                    <Text
-                                        textStyle='textParagraph'
-                                        color='blackAlpha.600'
-                                        maxW={['100%', null, null, '696px']}
-                                        textAlign='center'
-                                    >
-                                        Попробуйте другой запрос
-                                    </Text>
-                                </Flex>
-                            </>
-                        )}
+                                    {subtitle}
+                                </Text>
+                            )}
+                        </Flex>
+
                         <Flex
                             gap='3'
                             align='center'
@@ -136,16 +113,7 @@ export const PageHeaderWithFilters = ({
                                 borderColor='blackAlpha.600'
                                 ref={btnRef}
                                 data-test-id='filter-button'
-                                onClick={() => {
-                                    setfullFilters({
-                                        categoryFilter: [],
-                                        autorsFilter: [],
-                                        meatTypeFilter: [],
-                                        sideDishFilter: [],
-                                        allergyFilter: [],
-                                    });
-                                    onOpen();
-                                }}
+                                onClick={onOpen}
                             />
                             <InputGroup
                                 size={['sm', null, null, 'lg']}
@@ -170,11 +138,13 @@ export const PageHeaderWithFilters = ({
                                         if (e.key === 'Enter' && inputSearch.length > 2) {
                                             searchParams.set('search', inputSearch);
                                             setSearchParams(searchParams);
+                                            stopLoading();
                                         }
                                     }}
                                     position='relative'
                                     borderColor={currentColor}
                                 />
+                                ;
                                 {inputSearch.length > 2 && (
                                     <IconButton
                                         size='sm'
@@ -200,10 +170,10 @@ export const PageHeaderWithFilters = ({
                                     pointerEvents={inputSearch.length > 2 ? 'auto' : 'none'}
                                     cursor={inputSearch.length > 2 ? 'pointer' : 'not-allowed'}
                                     onClick={() => {
-                                        console.log('click search');
                                         if (inputSearch.length > 2) {
                                             searchParams.set('search', inputSearch);
                                             setSearchParams(searchParams);
+                                            stopLoading();
                                         }
                                     }}
                                 >
@@ -211,6 +181,7 @@ export const PageHeaderWithFilters = ({
                                         color={inputSearch.length > 2 ? 'black' : 'gray.400'}
                                     />
                                 </InputRightElement>
+                                ; ;
                             </InputGroup>
                         </Flex>
                         <Hide below='lg'>
@@ -232,7 +203,7 @@ export const PageHeaderWithFilters = ({
                             fullFilters={fullFilters}
                             setfullFilters={setfullFilters}
                         />
-                        <FilterDisplay fullFilters={fullFilters} />
+                        {!isOpen && <FilterDisplay fullFilters={fullFilters} />}
                     </Flex>
                 </>
             )}

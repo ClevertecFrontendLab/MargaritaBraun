@@ -27,9 +27,13 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
     const categoriesIDS = useSubcategoryIDs(filters.categoryFilter);
 
     const objectQuery: OptionsQuery = {
-        page,
-        limit: 8,
+        // page,
+        // limit: 8,
     };
+
+    if (page > 1) {
+        objectQuery.page = page;
+    }
 
     if (filters.allergyFilter.length > 0) {
         objectQuery.allergens = filters.allergyFilter.join(',');
@@ -65,7 +69,7 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
 
     return (
         <Flex direction='column' justify='flex-start' height='100%'>
-            <PageHeaderWithFilters title={title} subtitle={subtitle} isLoading={isLoading} />
+            <PageHeaderWithFilters title={title} subtitle={subtitle} />
             {isError && <ErrorNotification />}
             {isLoading === false && showFiltered ? (
                 <OnlyRecipesList
