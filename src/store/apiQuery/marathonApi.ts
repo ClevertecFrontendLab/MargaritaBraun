@@ -135,12 +135,15 @@ export const marathonApi = createApi({
                     sortOrder: 'desc',
                 },
             }),
-            // transformResponse: (response: RecipesListResponce): Recipe[] => {
-            //     limit: 10, sortBy: 'createdAt', sortOrder: 'desc'
-            //     const sorted: Recipe[] = response.data.sort((a, b) => b.time - a.time).slice(0, 10);
-
-            //     return sorted;
-            // },
+            transformResponse: (response: RecipesListResponce): RecipesListResponce => {
+                const sortedData = [...response.data].sort(
+                    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+                );
+                return {
+                    data: sortedData,
+                    meta: response.meta,
+                };
+            },
             providesTags: ['Recipes'],
         }),
 
@@ -223,7 +226,7 @@ export const marathonApi = createApi({
                 }
 
                 const queryString = new URLSearchParams(query).toString();
-                return `/recipe/category/${subCategoryId}?${queryString}`; // Добавьте '?' для параметров
+                return `/recipe/category/${subCategoryId}?${queryString}`;
             },
             providesTags: ['Recipes'],
         }),

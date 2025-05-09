@@ -170,7 +170,10 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                                     pointerEvents={inputSearch.length > 2 ? 'auto' : 'none'}
                                     cursor={inputSearch.length > 2 ? 'pointer' : 'not-allowed'}
                                     onClick={() => {
-                                        if (inputSearch.length > 2) {
+                                        if (
+                                            inputSearch.length > 2 ||
+                                            fullFilters.allergyFilter.length > 0
+                                        ) {
                                             searchParams.set('search', inputSearch);
                                             setSearchParams(searchParams);
                                             stopLoading();
