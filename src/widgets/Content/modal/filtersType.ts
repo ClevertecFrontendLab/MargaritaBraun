@@ -7,6 +7,7 @@ export interface FiltersDrawerProps {
     onClose: () => void;
     fullFilters: FiltersData;
     setfullFilters: React.Dispatch<React.SetStateAction<FiltersData>>;
+    handleRefresh: () => void;
 }
 
 export interface FiltersData {

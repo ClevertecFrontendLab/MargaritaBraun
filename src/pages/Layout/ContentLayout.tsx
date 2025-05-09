@@ -53,7 +53,11 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
         objectQuery.subcategoriesIds = categoriesIDS;
     }
 
-    const { data: recipesData, isLoading, isError } = useGetAllRecipesQuery(objectQuery);
+    const handleRefresh = () => {
+        refetch();
+    };
+
+    const { data: recipesData, isLoading, isError, refetch } = useGetAllRecipesQuery(objectQuery);
 
     const addRecipes = () => {
         setPage((prevPage: number) => prevPage + 1);
@@ -69,7 +73,11 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
 
     return (
         <Flex direction='column' justify='flex-start' height='100%'>
-            <PageHeaderWithFilters title={title} subtitle={subtitle} />
+            <PageHeaderWithFilters
+                title={title}
+                subtitle={subtitle}
+                handleRefresh={handleRefresh}
+            />
             {isError && <ErrorNotification />}
             {isLoading === false && showFiltered ? (
                 <OnlyRecipesList

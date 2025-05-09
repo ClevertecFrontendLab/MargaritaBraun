@@ -2,6 +2,7 @@ import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { useLocation } from 'react-router';
 
+import Loading from '~/app/Loading/Loading';
 import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
 
 import { useRecipesIDTitle } from '../hooks/useRecipesIDTitle';
@@ -17,10 +18,12 @@ export const Breadcrumbs = () => {
     const title = 'Главная';
     const location = useLocation();
     const pathnames = location.pathname.split('/').filter((x) => x);
-    const { data: navigationData } = useGetAllCategoriesQuery();
+    const { data: navigationData, isLoading } = useGetAllCategoriesQuery();
 
     const recipeId = pathnames.length > 2 ? pathnames[pathnames.length - 1] : '';
     const recipeTitle = useRecipesIDTitle(recipeId);
+
+    if (isLoading) return <Loading />;
 
     return (
         <Breadcrumb

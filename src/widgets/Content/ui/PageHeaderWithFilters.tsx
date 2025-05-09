@@ -25,9 +25,14 @@ import { FiltersData } from '../modal/filtersType';
 export interface PageHeaderWithFiltersProps {
     title: string;
     subtitle?: string;
+    handleRefresh: () => void;
 }
 
-export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFiltersProps) => {
+export const PageHeaderWithFilters = ({
+    title,
+    subtitle,
+    handleRefresh,
+}: PageHeaderWithFiltersProps) => {
     const [fullFilters, setfullFilters] = useState<FiltersData>({
         categoryFilter: [],
         autorsFilter: [],
@@ -167,8 +172,18 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                                     position='relative'
                                     zIndex='10'
                                     data-test-id='search-button'
-                                    pointerEvents={inputSearch.length > 2 ? 'auto' : 'none'}
-                                    cursor={inputSearch.length > 2 ? 'pointer' : 'not-allowed'}
+                                    pointerEvents={
+                                        inputSearch.length > 2 ||
+                                        fullFilters.allergyFilter.length > 0
+                                            ? 'auto'
+                                            : 'none'
+                                    }
+                                    cursor={
+                                        inputSearch.length > 2 ||
+                                        fullFilters.allergyFilter.length > 0
+                                            ? 'pointer'
+                                            : 'not-allowed'
+                                    }
                                     onClick={() => {
                                         if (
                                             inputSearch.length > 2 ||
@@ -177,6 +192,7 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                                             searchParams.set('search', inputSearch);
                                             setSearchParams(searchParams);
                                             stopLoading();
+                                            handleRefresh();
                                         }
                                     }}
                                 >
@@ -205,6 +221,7 @@ export const PageHeaderWithFilters = ({ title, subtitle }: PageHeaderWithFilters
                             onClose={onClose}
                             fullFilters={fullFilters}
                             setfullFilters={setfullFilters}
+                            handleRefresh={handleRefresh}
                         />
                         {!isOpen && <FilterDisplay fullFilters={fullFilters} />}
                     </Flex>

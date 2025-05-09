@@ -1,13 +1,13 @@
 export interface OptionsQuery {
-    page?: number; // Номер страницы
-    limit?: number; // Лимит на количество элементов
-    allergens?: string; // Аллергены, например: 'Яйцо,Курица'
-    searchString?: string; // Строка поиска, например: 'Салат'
-    meat?: string; // Мясо, например: 'Говядина,Курица'
-    garnish?: string; // Гарнир, например: 'Картофель,Лапша'
-    subcategoriesIds?: string; // ID подкатегорий, например: '67c46dc5f51967aa8390bee6,67c46df5f51967aa8390bee7'
-    sortBy?: keyof Recipe; // Поле для сортировки, соответствует ключам интерфейса Recipe
-    sortOrder?: 'asc' | 'desc'; // Порядок сортировки
+    page?: number;
+    limit?: number;
+    allergens?: string;
+    searchString?: string;
+    meat?: string;
+    garnish?: string;
+    subcategoriesIds?: string;
+    sortBy?: keyof Recipe;
+    sortOrder?: 'asc' | 'desc';
 }
 
 interface BaseCategory {

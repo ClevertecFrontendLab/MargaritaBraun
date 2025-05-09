@@ -10,17 +10,9 @@ import {
     Image,
     Text,
 } from '@chakra-ui/react';
-import {
-    NavLink as ReachLink,
-    // useLocation,
-    // useNavigate,
-    // useParams
-} from 'react-router';
+import { NavLink as ReachLink } from 'react-router';
 
-// import navigationData from '~/entities/NavMenu/const/navigationData';
-// import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
-// import { useGetCategoriesAtSubcategoryQuery } from '~/store/apiQuery/marathonApi';
 import { IMAGE_URL } from '~/store/consts/apiConsts';
 import { Recipe } from '~/store/model/categoryType';
 
@@ -37,36 +29,14 @@ export const CardRecipe = ({
     description,
     image,
     categoriesIds,
-    // subcategory,
     bookmarks,
     likes,
     searchQuery,
     index,
 }: CardRecipeProps) => {
-    // const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
-    //     category: string;
-    //     subcategory: string;
-    // }>();
-    // const location = useLocation();
-    // const navigate = useNavigate();
-    // const currentPath = location.pathname;
     const btnSave = 'Сохранить';
     const btnCooking = 'Готовить';
-    // console.log('categoriesIds', categoriesIds);
     const associatedCategories = useCategoryAtSubCategID(categoriesIds);
-    // console.log('associatedCategories', associatedCategories);
-    // const useThisCategoryObject = (currentIDSubcategory: string) => {
-    //     const { data: currentObj } = useGetCategoriesAtSubcategoryQuery(currentIDSubcategory);
-    //     return currentObj;
-    //     // const categoryData = navigationData.filter((item) => item.url === currentCategory);
-    //     // return categoryData[0];
-    // };
-
-    // const checkCategory = currentCategory ? currentCategory : category[0];
-    // const findSubcategory = currentSubCategory ? currentSubCategory : subcategory[0];
-
-    // const checkSubcategory = currentSubCategory ? currentSubCategory : findSubcategory;
-    // const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
 
     return (
         <Card

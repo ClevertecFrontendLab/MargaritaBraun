@@ -92,7 +92,11 @@ const ContentLayoutCategory = ({
     //           });
 
     // const { data: recipesData, isLoading, isError } = checkSearchParams(requestParams);
-    const { data: recipesData, isLoading, isError } = useGetAllRecipesQuery(objectQuery);
+    const handleRefresh = () => {
+        refetch();
+    };
+
+    const { data: recipesData, isLoading, isError, refetch } = useGetAllRecipesQuery(objectQuery);
     // console.log('checkSearchParams', checkSearchParams(requestParams));
     // console.log('requestParams', requestParams);
     console.log('searchQuery', searchQuery);
@@ -128,6 +132,7 @@ const ContentLayoutCategory = ({
                 title={title}
                 subtitle={subtitle}
                 // isLoading={filtersLoder}
+                handleRefresh={handleRefresh}
             />
             {subcategoryObject && categoryObject && (
                 <NavigationTabs categoryObject={categoryObject} />

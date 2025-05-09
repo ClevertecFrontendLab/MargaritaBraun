@@ -35,6 +35,7 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
     onClose,
     fullFilters,
     setfullFilters,
+    handleRefresh,
 }) => {
     const categoryOptions = useFiltersCategory();
     const typeMeatOptions = filterTypeMeat;
@@ -155,7 +156,10 @@ export const FiltersDrawer: FC<FiltersDrawerProps> = ({
                                 bg='black'
                                 color='white'
                                 size={['sm', 'sm', null, null, 'lg']}
-                                onClick={onClose}
+                                onClick={() => {
+                                    handleRefresh();
+                                    onClose();
+                                }}
                                 data-test-id='find-recipe-button'
                                 isDisabled={checkFiltersParams()}
                                 pointerEvents={checkFiltersParams() ? 'none' : 'auto'}
