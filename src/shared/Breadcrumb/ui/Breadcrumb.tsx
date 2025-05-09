@@ -46,11 +46,6 @@ export const Breadcrumbs = () => {
 
             {navigationData &&
                 pathnames.map((currentPath, index) => {
-                    // if (index === 1) {
-                    //     let myPathnames =
-                    // }
-                    // console.log('currentPath', currentPath);
-                    // console.log('index', index);
                     const routeTo = `/${pathnames.slice(0, 2).join('/')}`;
                     const isCurrentPage = index === pathnames.length - 1;
 

@@ -5,15 +5,11 @@ import { useParams, useSearchParams } from 'react-router';
 
 import ErrorNotification from '~/app/ErrorNotification';
 import Loading from '~/app/Loading/Loading';
-import {
-    useGetAllRecipesQuery,
-    // useGetRecipesBySubCategoryQuery,
-} from '~/store/apiQuery/marathonApi';
+import { useGetAllRecipesQuery } from '~/store/apiQuery/marathonApi';
 import { filtersSelector } from '~/store/filter-slice';
 import { Category, OptionsQuery, SubCategory } from '~/store/model/categoryType';
 import { NavigationTabs, PageHeaderWithFilters } from '~/widgets/Content';
 
-// import useSubcategoryIDs from './hooks/useSubcategoryIDs';
 import { OnlyRecipesList } from './OnlyRecipesList';
 
 interface ContentLayoutCategoryProps {
@@ -40,25 +36,16 @@ const ContentLayoutCategory = ({
     const [searchParams] = useSearchParams();
     const filters = useSelector(filtersSelector);
     const searchQuery = searchParams.get('search') || '';
-    // const categoriesIDS = useSubcategoryIDs(filters.categoryFilter);
 
     useEffect(() => {
         setPage(1);
     }, [category, subcategory, searchQuery]);
 
-    const objectQuery: OptionsQuery = {
-        // page,
-        // limit: 8,
-    };
+    const objectQuery: OptionsQuery = {};
 
     if (page > 1) {
         objectQuery.page = page;
     }
-
-    // if (searchQuery === '') {
-    //     objectQuery.page = page;
-    //     objectQuery.limit = 8;
-    // }
 
     if (filters.allergyFilter.length > 0) {
         objectQuery.allergens = filters.allergyFilter.join(',');
@@ -74,43 +61,20 @@ const ContentLayoutCategory = ({
         objectQuery.garnish = filters.sideDishFilter.join(',');
     }
 
-    // if (categoriesIDS !== '') {
-    //     objectQuery.subcategoriesIds = categoriesIDS;
-    // }
     if (searchQuery === '') {
         objectQuery.subcategoriesIds = idSubcategory;
     }
-    // const checkSearchParams =
-    //     searchQuery === '' ? useGetRecipesBySubCategoryQuery : useGetAllRecipesQuery;
 
-    // const requestParams =
-    //     searchQuery !== ''
-    //         ? objectQuery
-    //         : ({ subCategoryId: idSubcategory, params: objectQuery } as {
-    //               subCategoryId: string;
-    //               params: OptionsQuery;
-    //           });
-
-    // const { data: recipesData, isLoading, isError } = checkSearchParams(requestParams);
     const handleRefresh = () => {
         refetch();
     };
 
     const { data: recipesData, isLoading, isError, refetch } = useGetAllRecipesQuery(objectQuery);
-    // console.log('checkSearchParams', checkSearchParams(requestParams));
-    // console.log('requestParams', requestParams);
+
     console.log('searchQuery', searchQuery);
     if (isLoading) {
         return <Loading />;
     }
-    // const {
-    //     data: recipesData,
-    //     isLoading,
-    //     isError,
-    // } = checkSearchParams({
-    //     subCategoryId: idSubcategory,
-    //     params: objectQuery,
-    // });
 
     const addRecipes = () => {
         setPage((prevPage: number) => prevPage + 1);
@@ -124,14 +88,11 @@ const ContentLayoutCategory = ({
         showFiltered = false;
     }
 
-    console.log('recipesData', recipesData);
-
     return (
         <Flex direction='column' justify='flex-start' height='100%'>
             <PageHeaderWithFilters
                 title={title}
                 subtitle={subtitle}
-                // isLoading={filtersLoder}
                 handleRefresh={handleRefresh}
             />
             {subcategoryObject && categoryObject && (

@@ -28,11 +28,6 @@ export const NavigationTabs = ({ categoryObject, handleRefresh }: NavigationTabs
                                     color='lime.800'
                                     whiteSpace='nowrap'
                                     data-test-id={`tab-${item.category}-${index}`}
-                                    // data-test-id={
-                                    //     isActive
-                                    //         ? `tab-${item.category}-${index} tab-${item.category}-active`
-                                    //         : `tab-${item.category}-${index}`
-                                    // }
                                     _activeLink={{
                                         color: 'lime.600',
                                         borderBottom: '2px solid #2DB100',

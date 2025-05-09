@@ -1,15 +1,9 @@
 import { Box, Card, CardBody, CardFooter, Flex, Image, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router';
 
-// import Loading from '~/app/Loading/Loading';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
-import { useGetRecipeByIdQuery } from '~/store/apiQuery/marathonApi';
-// import { useGetAllCategoriesWithSubcategoryQuery } from '~/store/apiQuery/marathonApi';
 import { IMAGE_URL } from '~/store/consts/apiConsts';
-import {
-    Recipe,
-    // SubCategory
-} from '~/store/model/categoryType';
+import { Recipe } from '~/store/model/categoryType';
 
 import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
 
@@ -29,22 +23,6 @@ export const CardSlider = ({
 }: CardSliderProps) => {
     const associatedCategories = useCategoryAtSubCategID(categoriesIds);
     const navigate = useNavigate();
-
-    // const { data: allCategories, isLoading } = useGetAllCategoriesWithSubcategoryQuery();
-    // const curriendIDSubCategory = categoriesIds[0];
-    // const subCategoryObj: SubCategory | undefined = allCategories?.find(
-    //     (item): item is SubCategory =>
-    //         (item as SubCategory).rootCategoryId !== undefined &&
-    //         item._id === curriendIDSubCategory,
-    // );
-    // const categoryObj = subCategoryObj
-    //     ? allCategories?.find((item) => item._id === subCategoryObj.rootCategoryId)
-    //     : undefined;
-
-    // if (isLoading) {
-    //     return <Loading />;
-    // }
-
     return (
         <Card
             variant='outline'
@@ -57,12 +35,7 @@ export const CardSlider = ({
                     navigate(
                         `${associatedCategories[0].category}/${associatedCategories[0].subCategories[0].category}/${_id}`,
                     );
-                    // eslint-disable-next-line react-hooks/rules-of-hooks
-                    useGetRecipeByIdQuery(_id);
                 }
-                // if (categoryObj && subCategoryObj) {
-                //     navigate(`${categoryObj.category}/${subCategoryObj.category}/${_id}`);
-                // }
             }}
             h='100%'
             position='relative'

@@ -200,7 +200,6 @@ export const PageHeaderWithFilters = ({
                                         color={inputSearch.length > 2 ? 'black' : 'gray.400'}
                                     />
                                 </InputRightElement>
-                                ; ;
                             </InputGroup>
                         </Flex>
                         <Hide below='lg'>
