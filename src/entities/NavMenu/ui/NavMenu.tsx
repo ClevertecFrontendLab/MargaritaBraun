@@ -18,13 +18,7 @@ import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
 import { IMAGE_URL } from '~/store/consts/apiConsts';
 
 export const NavMenu = () => {
-    const {
-        data: navigationData,
-        isLoading: catsLoading,
-        error: catsError,
-    } = useGetAllCategoriesQuery();
-
-    if (catsError) return <div>An error has occurred!</div>;
+    const { data: navigationData, isLoading: catsLoading } = useGetAllCategoriesQuery();
 
     if (catsLoading) return <Loading />;
 
@@ -37,13 +31,7 @@ export const NavMenu = () => {
             w='100%'
             zIndex='10'
         >
-            <Accordion
-                allowToggle
-                p='0'
-                // index={indexOpenMenu}
-                w='100%'
-                data-test-id='nav'
-            >
+            <Accordion allowToggle p='0' w='100%' data-test-id='nav'>
                 {navigationData &&
                     navigationData.map((item) => (
                         <AccordionItem key={item.title} border='none' w='100%'>
@@ -108,12 +96,6 @@ export const NavMenu = () => {
                                                         pos='relative'
                                                     >
                                                         <ChakraLink
-                                                            // data-test-id={
-                                                            //     currentSubCategory ===
-                                                            //     subitem.url.split('/').pop()
-                                                            //         ? `${currentSubCategory}-active`
-                                                            //         : null
-                                                            // }
                                                             _activeLink={{
                                                                 fontWeight: 'bold',
                                                                 _before: {

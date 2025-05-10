@@ -22,8 +22,6 @@ export const RecipesListCategory = ({ idSubcategory }: RecipesListCategoryProps)
 
     const filteredRecipes = recipesObject?.data;
 
-    console.log('filteredRecipes', filteredRecipes);
-
     if (isLoading) return <Loading />;
 
     if (isError) return <ErrorNotification />;

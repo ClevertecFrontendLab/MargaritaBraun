@@ -11,6 +11,7 @@ import { PageHeaderWithFilters } from '~/widgets/Content';
 
 import useSubcategoryIDs from './hooks/useSubcategoryIDs';
 import { OnlyRecipesList } from './OnlyRecipesList';
+import { useQueryParams } from './utils/useQueryParams';
 
 interface ContentLayoutProps {
     title: string;
@@ -26,32 +27,29 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
     const searchQuery = searchParams.get('search') || '';
     const categoriesIDS = useSubcategoryIDs(filters.categoryFilter);
 
-    const objectQuery: OptionsQuery = {
-        // page,
-        // limit: 8,
-    };
+    const objectQuery: OptionsQuery = useQueryParams(page, searchQuery, categoriesIDS);
 
-    if (page > 1) {
-        objectQuery.page = page;
-    }
+    // if (page > 1) {
+    //     objectQuery.page = page;
+    // }
 
-    if (filters.allergyFilter.length > 0) {
-        objectQuery.allergens = filters.allergyFilter.join(',');
-    }
-    if (searchQuery) {
-        objectQuery.searchString = searchQuery;
-    }
-    if (filters.meatTypeFilter.length > 0) {
-        objectQuery.meat = filters.meatTypeFilter.join(',');
-    }
+    // if (filters.allergyFilter.length > 0) {
+    //     objectQuery.allergens = filters.allergyFilter.join(',');
+    // }
+    // if (searchQuery) {
+    //     objectQuery.searchString = searchQuery;
+    // }
+    // if (filters.meatTypeFilter.length > 0) {
+    //     objectQuery.meat = filters.meatTypeFilter.join(',');
+    // }
 
-    if (filters.sideDishFilter.length > 0) {
-        objectQuery.garnish = filters.sideDishFilter.join(',');
-    }
+    // if (filters.sideDishFilter.length > 0) {
+    //     objectQuery.garnish = filters.sideDishFilter.join(',');
+    // }
 
-    if (categoriesIDS !== '') {
-        objectQuery.subcategoriesIds = categoriesIDS;
-    }
+    // if (categoriesIDS !== '') {
+    //     objectQuery.subcategoriesIds = categoriesIDS;
+    // }
 
     const handleRefresh = () => {
         refetch();

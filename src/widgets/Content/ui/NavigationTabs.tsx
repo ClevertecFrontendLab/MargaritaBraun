@@ -15,12 +15,8 @@ export const NavigationTabs = ({ categoryObject, handleRefresh }: NavigationTabs
                 <Tabs variant='unstyled' onChange={handleRefresh}>
                     <TabList flexWrap='wrap' justifyContent='center'>
                         {categoryObject.subCategories.map((item, index) => {
-                            console.log('item', item.category);
-
                             const isActive = window.location.pathname.includes(item.category);
-                            console.log(
-                                `${item.category} ff ${isActive} hhh ${window.location.pathname.includes(item.category)}`,
-                            );
+
                             return (
                                 <Tab
                                     as={ReachLink}

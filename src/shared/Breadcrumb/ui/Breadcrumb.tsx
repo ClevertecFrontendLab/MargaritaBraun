@@ -46,8 +46,8 @@ export const Breadcrumbs = () => {
 
             {navigationData &&
                 pathnames.map((currentPath, index) => {
-                    const routeTo = `/${pathnames.slice(0, 2).join('/')}`;
                     const isCurrentPage = index === pathnames.length - 1;
+                    const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
 
                     const categoryObj = navigationData.find(
                         (item) => item.category === currentPath,
@@ -81,7 +81,9 @@ export const Breadcrumbs = () => {
                             isCurrentPage={isCurrentPage}
                             color={isCurrentPage ? 'black' : 'blackAlpha.700'}
                         >
-                            <BreadcrumbLink href={routeTo}>{categoryLabel}</BreadcrumbLink>
+                            <BreadcrumbLink href={isCurrentPage ? undefined : routeTo}>
+                                {categoryLabel}
+                            </BreadcrumbLink>
                         </BreadcrumbItem>
                     );
                 })}

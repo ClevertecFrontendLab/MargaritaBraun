@@ -23,20 +23,22 @@ export const CardSlider = ({
 }: CardSliderProps) => {
     const associatedCategories = useCategoryAtSubCategID(categoriesIds);
     const navigate = useNavigate();
+
+    const handlerClickCard = () => {
+        if (
+            associatedCategories[0] &&
+            associatedCategories[0].category &&
+            associatedCategories[0].subCategories
+        ) {
+            navigate(
+                `${associatedCategories[0].category}/${associatedCategories[0].subCategories[0].category}/${_id}`,
+            );
+        }
+    };
     return (
         <Card
             variant='outline'
-            onClick={() => {
-                if (
-                    associatedCategories[0] &&
-                    associatedCategories[0].category &&
-                    associatedCategories[0].subCategories
-                ) {
-                    navigate(
-                        `${associatedCategories[0].category}/${associatedCategories[0].subCategories[0].category}/${_id}`,
-                    );
-                }
-            }}
+            onClick={handlerClickCard}
             h='100%'
             position='relative'
             data-test-id={`carousel-card-${index}`}

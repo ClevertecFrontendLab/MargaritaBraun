@@ -54,14 +54,6 @@ export const marathonApi = createApi({
             providesTags: ['Categories'],
         }),
 
-        // getCategoryById: build.query<AllCategoryInterface[], string>({
-        //     query: (id) => `/category/${id}`,
-        // }),
-
-        // getSubCategories: build.query<AllCategoryInterface[], string>({
-        //     query: (categoryId) => `/category/${categoryId}/subcategories`,
-        // }),
-
         getAllRecipes: build.query<RecipesListResponce, OptionsQuery>({
             query: (params) => {
                 const query: Record<string, string> = {};
@@ -143,7 +135,6 @@ export const marathonApi = createApi({
             { subCategoryId: string; params: OptionsQuery }
         >({
             query: ({ subCategoryId, params }) => {
-                console.log('Sending request with params:', params);
                 const query: Record<string, string> = {};
 
                 if (params.page !== undefined) {
@@ -190,9 +181,6 @@ export const {
     useGetAllCategoriesWithSubcategoryQuery,
     useGetAllCategoriesQuery,
     useGetCategoriesAtSubcategoriesQuery,
-    // useGetCategoryByIdQuery,
-    // useGetSubCategoriesQuery,
-
     useGetAllRecipesQuery,
     useGetRecipesForSliderQuery,
     useGetRecipesForJuiciestQuery,
