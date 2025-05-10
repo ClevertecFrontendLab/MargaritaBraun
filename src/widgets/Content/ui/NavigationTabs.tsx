@@ -1,33 +1,46 @@
-import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react';
+import { Flex, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react';
 import { NavLink as ReachLink } from 'react-router';
 
-export interface subcategoryObject {
-    itemsNavigations?: Array<{ label: string; url: string }>;
+import { Category } from '~/store/model/categoryType';
+
+interface NavigationTabsProps {
+    categoryObject: Category;
+    handleRefresh: () => void;
 }
 
-export const NavigationTabs = ({ itemsNavigations }: subcategoryObject) => (
+export const NavigationTabs = ({ categoryObject, handleRefresh }: NavigationTabsProps) => (
     <>
-        {itemsNavigations && itemsNavigations.length > 0 && (
+        {categoryObject && categoryObject.subCategories.length > 0 && (
             <Flex align='center' justify='center' pb='12px'>
-                <Tabs variant='unstyled'>
+                <Tabs variant='unstyled' onChange={handleRefresh}>
                     <TabList flexWrap='wrap' justifyContent='center'>
-                        {itemsNavigations.map((item, index) => (
-                            <Tab
-                                as={ReachLink}
-                                textStyle='textParagraph'
-                                color='lime.800'
-                                whiteSpace='nowrap'
-                                data-test-id={`tab-${item.url.split('/').pop()}-${index}`}
-                                _activeLink={{
-                                    color: 'lime.600',
-                                    borderBottom: '2px solid #2DB100',
-                                }}
-                                to={item.url}
-                                key={item.label}
-                            >
-                                {item.label}
-                            </Tab>
-                        ))}
+                        {categoryObject.subCategories.map((item, index) => {
+                            const isActive = window.location.pathname.includes(item.category);
+
+                            return (
+                                <Tab
+                                    as={ReachLink}
+                                    textStyle='textParagraph'
+                                    color='lime.800'
+                                    whiteSpace='nowrap'
+                                    data-test-id={`tab-${item.category}-${index}`}
+                                    _activeLink={{
+                                        color: 'lime.600',
+                                        borderBottom: '2px solid #2DB100',
+                                    }}
+                                    to={`/${categoryObject.category}/${item.category}`}
+                                    key={item._id}
+                                    aria-selected={isActive}
+                                >
+                                    <Text
+                                        as='span'
+                                        data-test-id={isActive && `${item.category}-active`}
+                                    >
+                                        {item.title}
+                                    </Text>
+                                </Tab>
+                            );
+                        })}
                     </TabList>
                     <TabPanels display='none'>
                         <TabPanel></TabPanel>

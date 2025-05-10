@@ -1,48 +1,44 @@
 import { Box, Card, CardBody, CardFooter, Flex, Image, Text } from '@chakra-ui/react';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 
-import navigationData from '~/entities/NavMenu/const/navigationData';
-import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
+import { IMAGE_URL } from '~/store/consts/apiConsts';
+import { Recipe } from '~/store/model/categoryType';
 
-interface CardSliderProps extends dataAllCategoryProps {
+import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
+
+interface CardSliderProps extends Recipe {
     index: number;
 }
 
 export const CardSlider = ({
-    id,
+    _id,
     title,
     description,
     image,
-    category,
-    subcategory,
+    categoriesIds,
     bookmarks,
     likes,
     index,
 }: CardSliderProps) => {
-    const { category: currentCategory, subcategory: currentSubCategory } = useParams<{
-        category: string;
-        subcategory: string;
-    }>();
+    const associatedCategories = useCategoryAtSubCategID(categoriesIds);
     const navigate = useNavigate();
 
-    const getThisCategoryObject = (currentCategory: string) => {
-        const categoryData = navigationData.filter((item) => item.url === currentCategory);
-        return categoryData[0];
+    const handlerClickCard = () => {
+        if (
+            associatedCategories[0] &&
+            associatedCategories[0].category &&
+            associatedCategories[0].subCategories
+        ) {
+            navigate(
+                `${associatedCategories[0].category}/${associatedCategories[0].subCategories[0].category}/${_id}`,
+            );
+        }
     };
-
-    const checkCategory = currentCategory ? currentCategory : category[0];
-    const findSubcategory = currentSubCategory ? currentSubCategory : subcategory[0];
-
-    const checkSubcategory = currentSubCategory ? currentSubCategory : findSubcategory;
-    const recipePath = `/${checkCategory}/${checkSubcategory}/${id}`;
-
     return (
         <Card
             variant='outline'
-            onClick={() => {
-                navigate(recipePath);
-            }}
+            onClick={handlerClickCard}
             h='100%'
             position='relative'
             data-test-id={`carousel-card-${index}`}
@@ -50,7 +46,7 @@ export const CardSlider = ({
             <Flex overflow='hidden' borderTopRadius='8px' flex='1 1 47%'>
                 <Image
                     objectFit='cover'
-                    src={image}
+                    src={`${IMAGE_URL}${image}`}
                     alt={title}
                     w='100%'
                     h='auto'
@@ -86,30 +82,30 @@ export const CardSlider = ({
                         position={['absolute', null, null, 'static']}
                         top='5px'
                     >
-                        {category.map((item: string) => {
-                            const currentCategory = getThisCategoryObject(item);
-                            const CategoryIcon = currentCategory.icon;
-                            return (
+                        {associatedCategories &&
+                            associatedCategories.map((currentCategory) => (
                                 <Flex
-                                    key={item}
+                                    key={currentCategory._id}
                                     align='center'
                                     bg='lime.50'
                                     borderRadius='md'
                                     gap={['0', null, '2']}
                                     p='0.5px 3.5px'
                                 >
-                                    <CategoryIcon w='30px' h='30px' />
+                                    <Image
+                                        src={`${IMAGE_URL}${currentCategory?.icon}`}
+                                        boxSize={['14px', null, null, '16px']}
+                                    />
                                     <Text
                                         fontSize='14px'
                                         fontWeight='500'
                                         lineHeight='20px'
                                         whiteSpace='nowrap'
                                     >
-                                        {currentCategory.label}
+                                        {currentCategory.title}
                                     </Text>
                                 </Flex>
-                            );
-                        })}
+                            ))}
                     </Flex>
                     <Flex gap={{ base: '2' }}>
                         {bookmarks && (

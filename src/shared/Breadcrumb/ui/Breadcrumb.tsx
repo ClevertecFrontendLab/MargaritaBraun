@@ -2,17 +2,15 @@ import { ChevronRightIcon } from '@chakra-ui/icons';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react';
 import { useLocation } from 'react-router';
 
-import navigationData from '~/entities/NavMenu/const/navigationData';
-import dataAllCategory from '~/shared/consts/dataAllCategory';
+import Loading from '~/app/Loading/Loading';
+import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
+
+import { useRecipesIDTitle } from '../hooks/useRecipesIDTitle';
 
 const pagesParams = [
     {
         label: 'Самое сочное',
         url: 'the-juiciest',
-    },
-    {
-        label: 'Фильтрация',
-        url: 'filters',
     },
 ];
 
@@ -20,6 +18,13 @@ export const Breadcrumbs = () => {
     const title = 'Главная';
     const location = useLocation();
     const pathnames = location.pathname.split('/').filter((x) => x);
+    const { data: navigationData, isLoading } = useGetAllCategoriesQuery();
+
+    const recipeId = pathnames.length > 2 ? pathnames[pathnames.length - 1] : '';
+    const recipeTitle = useRecipesIDTitle(recipeId);
+
+    if (isLoading) return <Loading />;
+
     return (
         <Breadcrumb
             display='flex'
@@ -39,21 +44,25 @@ export const Breadcrumbs = () => {
                 </BreadcrumbLink>
             </BreadcrumbItem>
 
-            {pathnames.map((currentPath, index) => {
-                const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
-                const isCurrentPage = index === pathnames.length - 1;
+            {navigationData &&
+                pathnames.map((currentPath, index) => {
+                    const isCurrentPage = index === pathnames.length - 1;
+                    const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
 
-                let categoryLabel = currentPath;
+                    const categoryObj = navigationData.find(
+                        (item) => item.category === currentPath,
+                    );
+                    let categoryLabel = categoryObj ? categoryObj.title : currentPath;
 
-                const categoryObj = navigationData.find((item) => item.url === currentPath);
-                if (categoryObj) {
-                    categoryLabel = categoryObj.label;
-                } else {
-                    for (const item of navigationData) {
-                        const subitem = item.subitems?.find((sub) => sub.url === routeTo);
-                        if (subitem) {
-                            categoryLabel = subitem.label;
-                            break;
+                    if (!categoryObj) {
+                        for (const item of navigationData) {
+                            const subitem = item.subCategories?.find(
+                                (sub) => sub.category === currentPath,
+                            );
+                            if (subitem) {
+                                categoryLabel = subitem.title;
+                                break;
+                            }
                         }
                     }
 
@@ -62,28 +71,22 @@ export const Breadcrumbs = () => {
                         categoryLabel = pageObj.label;
                     }
 
-                    if (typeof +currentPath === 'number' && categoryLabel) {
-                        const currentRecipe = dataAllCategory.find(
-                            (recipe) => recipe.id === `${currentPath}`,
-                        );
-
-                        if (currentRecipe) {
-                            if (currentRecipe.title) {
-                                categoryLabel = currentRecipe.title;
-                            }
-                        }
+                    if (isCurrentPage && recipeId) {
+                        categoryLabel = recipeTitle || categoryLabel;
                     }
-                }
-                return (
-                    <BreadcrumbItem
-                        key={routeTo}
-                        isCurrentPage={isCurrentPage}
-                        color={isCurrentPage ? 'black' : 'blackAlpha.700'}
-                    >
-                        <BreadcrumbLink href={routeTo}>{categoryLabel}</BreadcrumbLink>
-                    </BreadcrumbItem>
-                );
-            })}
+
+                    return (
+                        <BreadcrumbItem
+                            key={routeTo}
+                            isCurrentPage={isCurrentPage}
+                            color={isCurrentPage ? 'black' : 'blackAlpha.700'}
+                        >
+                            <BreadcrumbLink href={isCurrentPage ? undefined : routeTo}>
+                                {categoryLabel}
+                            </BreadcrumbLink>
+                        </BreadcrumbItem>
+                    );
+                })}
         </Breadcrumb>
     );
 };

@@ -1,12 +1,13 @@
 import { Flex } from '@chakra-ui/react';
 import { useParams } from 'react-router';
 
+import Loading from '~/app/Loading/Loading';
 import { CardSinglePage } from '~/entities/Card';
 import { SliderNewRecipes } from '~/entities/Slider';
 import { IngredientCalculator, ShowColorfulness } from '~/shared/Colorfulness';
-import dataAllCategory from '~/shared/consts/dataAllCategory';
 import { PreparationSteps } from '~/shared/PreparationSteps';
 import { RecipeAuthor } from '~/shared/RecipeAuthor';
+import { useGetRecipeByIdQuery } from '~/store/apiQuery/marathonApi';
 
 const SingleRecipePage = () => {
     const { id } = useParams<{
@@ -14,7 +15,17 @@ const SingleRecipePage = () => {
         subcategory: string;
         id: string;
     }>();
-    const dataForSingleRecipe = dataAllCategory.find((item) => item.id === id);
+
+    const {
+        data: dataForSingleRecipe,
+        isLoading: catsLoading,
+        error: catsError,
+    } = useGetRecipeByIdQuery(id || '');
+
+    if (catsError) return <div>An error has occurred!</div>;
+
+    if (catsLoading) return <Loading />;
+
     return (
         <>
             {dataForSingleRecipe && (

@@ -1,37 +1,53 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { memo } from 'react';
 import { useParams } from 'react-router';
 
-import navigationData from '~/entities/NavMenu/const/navigationData';
-import { NavigationTabs, PageHeaderWithFilters } from '~/widgets/Content';
+import ErrorNotification from '~/app/ErrorNotification';
+import Loading from '~/app/Loading/Loading';
+import { RecommendedCuisine } from '~/entities/RecommendedCuisine';
+import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
 
-import { RecipesList } from './RecipesList';
+import ContentLayoutCategory from '../Layout/ContentLayoutCategory';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
+import { RecipesListCategory } from './RecipesListCategory';
+import { useCheckActiveFilters } from './utils/useCheckActiveFilters';
+
+const MemoizedRecommendedCuisine = memo(RecommendedCuisine);
 
 const CategoryPage = () => {
     const { category, subcategory } = useParams<{ category: string; subcategory: string }>();
+    const check = useCheckActiveFilters();
+    const {
+        data: navigationData,
+        isLoading: catsLoading,
+        error: catsError,
+    } = useGetAllCategoriesQuery();
 
-    const categoryObject = navigationData.find((item) => item.url === category);
+    if (catsError) return <ErrorNotification />;
+    if (catsLoading) return <Loading />;
+
+    const categoryObject = navigationData?.find((item) => item.category === category);
 
     if (!categoryObject) {
-        return (
-            <Flex justify='center' align='center' height='100%'>
-                <Text fontSize='xl' color='red.500'>
-                    Категория не найдена.
-                </Text>
-            </Flex>
-        );
+        return <NotFoundPage />;
     }
 
-    const subcategoryObject = categoryObject.subitems;
-    const title = categoryObject.label || 'Вкусная кухня для вас';
-
+    const subcategoryObject = categoryObject.subCategories;
+    const title = categoryObject.title || 'Вкусная кухня для вас';
+    const idSubcategory =
+        subcategoryObject.find((item) => item.category === subcategory)?._id || '';
     return (
-        <Flex direction='column' justify='flex-start' height='100%'>
-            <PageHeaderWithFilters title={title} />
-            {subcategoryObject && <NavigationTabs itemsNavigations={subcategoryObject} />}
-            {category && subcategory && (
-                <RecipesList category={category} subcategory={subcategory} />
-            )}
-        </Flex>
+        <>
+            <ContentLayoutCategory
+                title={title}
+                subtitle={categoryObject.description}
+                showFiltered={true}
+                categoryObject={categoryObject}
+                subcategoryObject={subcategoryObject}
+                idSubcategory={idSubcategory}
+            />
+            {!check && <RecipesListCategory idSubcategory={idSubcategory} />}
+            <MemoizedRecommendedCuisine />
+        </>
     );
 };
 

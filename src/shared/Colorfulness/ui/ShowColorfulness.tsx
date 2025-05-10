@@ -1,10 +1,11 @@
 import { SimpleGrid, Stack, Text, VStack } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import { NutritionalInformation } from '~/shared/consts/dataAllCategory';
+import { NutritionValue } from '~/store/model/categoryType';
 
-export const ShowColorfulness: FC<NutritionalInformation> = ({
+export const ShowColorfulness: FC<NutritionValue> = ({
     calories,
+    protein,
     proteins,
     fats,
     carbohydrates,
@@ -112,7 +113,7 @@ export const ShowColorfulness: FC<NutritionalInformation> = ({
                         textAlign='center'
                         flexBasis={['33%', null, 'auto']}
                     >
-                        {proteins}
+                        {protein ? protein : proteins}
                     </Text>
                     <Text
                         as='h5'

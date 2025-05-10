@@ -1,8 +1,8 @@
 import { Badge, Card, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import defaultImage from '~/assets/step-3.png';
 import { PreparationStep } from '~/shared/consts/dataAllCategory';
+import { IMAGE_URL } from '~/store/consts/apiConsts';
 
 export const PreparationSteps: FC<{ steps: PreparationStep[] }> = ({ steps }) => (
     <>
@@ -31,7 +31,8 @@ export const PreparationSteps: FC<{ steps: PreparationStep[] }> = ({ steps }) =>
                                     w='100%'
                                     h='auto'
                                     objectFit='cover'
-                                    src={nowStep.image === 'url' ? defaultImage : nowStep.image}
+                                    // src={nowStep.image === 'url' ? defaultImage : nowStep.image}
+                                    src={`${IMAGE_URL}${nowStep.image}`}
                                 />
                             </Flex>
                         )}

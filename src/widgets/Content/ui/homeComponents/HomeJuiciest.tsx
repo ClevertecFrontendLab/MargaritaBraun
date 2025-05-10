@@ -1,14 +1,22 @@
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Heading, Hide, Show, SimpleGrid } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, SimpleGrid } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router';
 
 import { CardRecipe } from '~/entities/Card';
-import dataAllCategory from '~/shared/consts/dataAllCategory';
+import { useGetRecipesForJuiciestQuery } from '~/store/apiQuery/marathonApi';
+import { Recipe } from '~/store/model/categoryType';
 
 export const HomeJuiciest = () => {
-    const sortedRecipes = dataAllCategory.sort((a, b) => b.likes - a.likes);
+    const { data: allResipesSortedLikes } = useGetRecipesForJuiciestQuery({
+        page: 1,
+        sortBy: 'likes',
+        sortOrder: 'desc',
+    });
+
+    const sortedRecipes = allResipesSortedLikes ? allResipesSortedLikes.data : [];
+
     return (
-        <Flex direction='column' gap={['3', '6']} as='section'>
+        <Flex direction='column' gap={['3', '6']} as='section' p={['20px 0', null, null, '30px 0']}>
             <Flex justify='space-between'>
                 <Heading
                     as='h3'
@@ -18,22 +26,7 @@ export const HomeJuiciest = () => {
                 >
                     Самое сочное
                 </Heading>
-                <Hide below='md'>
-                    <Button
-                        rightIcon={<ArrowForwardIcon />}
-                        colorScheme='teal'
-                        variant='solid'
-                        bg='lime.400'
-                        color='black'
-                        data-test-id='juiciest-link'
-                        as={ReachLink}
-                        to='/the-juiciest'
-                        size={[null, null, 'md', 'lg']}
-                    >
-                        Вся подборка
-                    </Button>
-                </Hide>
-                <Box display='none'>
+                <Box display={['none', null, 'flex']}>
                     <Button
                         rightIcon={<ArrowForwardIcon />}
                         colorScheme='teal'
@@ -41,7 +34,7 @@ export const HomeJuiciest = () => {
                         bg='lime.400'
                         color='black'
                         size='md'
-                        data-test-id='juiciest-link-mobile'
+                        data-test-id='juiciest-link'
                         as={ReachLink}
                         to='/the-juiciest'
                     >
@@ -50,27 +43,25 @@ export const HomeJuiciest = () => {
                 </Box>
             </Flex>
             <SimpleGrid columns={[1, 1, 2, 2, 1, 2]} w='100%' spacing={['12px', '16px', '24px']}>
-                {sortedRecipes.map((dataCard, index) => (
+                {sortedRecipes.map((dataCard: Recipe, index: number) => (
                     <CardRecipe key={dataCard.title} {...dataCard} index={index}></CardRecipe>
                 ))}
             </SimpleGrid>
-            <Show below='md'>
-                <Flex align='center' justify='center'>
-                    <Button
-                        rightIcon={<ArrowForwardIcon />}
-                        colorScheme='teal'
-                        variant='solid'
-                        bg='lime.400'
-                        color='black'
-                        size='md'
-                        data-test-id='juiciest-link-mobile'
-                        as={ReachLink}
-                        to='/the-juiciest'
-                    >
-                        Вся подборка
-                    </Button>
-                </Flex>
-            </Show>
+            <Flex align='center' justify='center' display={['flex', null, 'none']}>
+                <Button
+                    rightIcon={<ArrowForwardIcon />}
+                    colorScheme='teal'
+                    variant='solid'
+                    bg='lime.400'
+                    color='black'
+                    size='md'
+                    data-test-id='juiciest-link-mobile'
+                    as={ReachLink}
+                    to='/the-juiciest'
+                >
+                    Вся подборка
+                </Button>
+            </Flex>
         </Flex>
     );
 };

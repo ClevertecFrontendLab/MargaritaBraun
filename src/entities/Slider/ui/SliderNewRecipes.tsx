@@ -6,13 +6,11 @@ import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { CardSlider } from '~/entities/Card';
-import dataAllCategory from '~/shared/consts/dataAllCategory';
+import { useGetRecipesForSliderQuery } from '~/store/apiQuery/marathonApi';
 
 export const SliderNewRecipes = () => {
-    const sortedRecipes = dataAllCategory.sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-    );
-    const dataForSlidersCards = sortedRecipes.slice(0, 10);
+    const { data: dataRecipes } = useGetRecipesForSliderQuery();
+    const dataForSlidersCards = dataRecipes?.data;
     const swiperRef = useRef<SwiperType | null>(null);
 
     return (
@@ -52,7 +50,7 @@ export const SliderNewRecipes = () => {
                         swiperRef.current = swiper;
                     }}
                     speed={500}
-                    loop={true}
+                    loop={dataForSlidersCards ? true : false}
                     modules={[Navigation]}
                     breakpoints={{
                         200: {
@@ -79,10 +77,6 @@ export const SliderNewRecipes = () => {
                             slidesPerView: 3,
                             spaceBetween: 12,
                         },
-                        // 1440: {
-                        //     slidesPerView: 3,
-                        //     spaceBetween: 40,
-                        // },
                         1480: {
                             slidesPerView: 3,
                             spaceBetween: 12,
@@ -99,7 +93,7 @@ export const SliderNewRecipes = () => {
                 >
                     {dataForSlidersCards &&
                         dataForSlidersCards.map((dataForSlide, index) => (
-                            <SwiperSlide key={dataForSlide.id}>
+                            <SwiperSlide key={dataForSlide._id}>
                                 <CardSlider {...dataForSlide} index={index} />
                             </SwiperSlide>
                         ))}

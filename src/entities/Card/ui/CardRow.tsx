@@ -1,15 +1,16 @@
-import { Button, Card, Text } from '@chakra-ui/react';
+import { Button, Card, Image, Text } from '@chakra-ui/react';
 
-import getCategoryData from '~/entities/NavMenu/utils/getCategoryData';
+import { IMAGE_URL } from '~/store/consts/apiConsts';
 
+import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
 export interface CardRowProps {
-    category: string;
-    recipeTitle: string;
+    categoriesIds: string[];
+    title: string;
 }
 
-export const CardRow = ({ category, recipeTitle }: CardRowProps) => {
-    const categoryData = getCategoryData(category);
-    const Icon = categoryData.icon;
+export const CardRow = ({ title, categoriesIds }: CardRowProps) => {
+    const associatedCategories = useCategoryAtSubCategID(categoriesIds);
+    const currentCategory = associatedCategories[0];
     return (
         <Card
             flexDirection='row'
@@ -19,10 +20,15 @@ export const CardRow = ({ category, recipeTitle }: CardRowProps) => {
             p={['2', '2', '3']}
             gap='2'
         >
-            <Icon />
+            {currentCategory && (
+                <Image
+                    src={`${IMAGE_URL}${currentCategory?.icon}`}
+                    boxSize={['14px', null, null, '16px']}
+                />
+            )}
 
             <Text noOfLines={[1, 1]} w='100%' textAlign='left'>
-                {recipeTitle}
+                {title}
             </Text>
             <Button
                 colorScheme='teal'

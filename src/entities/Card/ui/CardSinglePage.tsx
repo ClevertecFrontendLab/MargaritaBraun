@@ -1,23 +1,22 @@
 import { Badge, Button, Flex, Heading, HStack, Image, Text, VStack } from '@chakra-ui/react';
 import { FC } from 'react';
 
-import navigationData from '~/entities/NavMenu/const/navigationData';
-import { dataAllCategoryProps } from '~/shared/consts/dataAllCategory';
 import { ClocksIcon, FavoritesIcon, LikeyIcon } from '~/shared/Icons';
+import { IMAGE_URL } from '~/store/consts/apiConsts';
+import { Recipe } from '~/store/model/categoryType';
 
-export const CardSinglePage: FC<dataAllCategoryProps> = ({
+import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
+
+export const CardSinglePage: FC<Recipe> = ({
     title,
     description,
     image,
-    category,
+    categoriesIds,
     bookmarks,
     likes,
     time,
 }) => {
-    const getThisCategoryObject = (currentCategory: string) => {
-        const categoryData = navigationData.filter((item) => item.url === currentCategory);
-        return categoryData[0];
-    };
+    const associatedCategories = useCategoryAtSubCategID(categoriesIds);
     return (
         <>
             <HStack
@@ -33,7 +32,13 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                     alignItems='center'
                     borderRadius='8px'
                 >
-                    <Image w='100%' h='auto' objectFit='cover' src={image} alt={title} />
+                    <Image
+                        w='100%'
+                        h='auto'
+                        objectFit='cover'
+                        src={`${IMAGE_URL}${image}`}
+                        alt={title}
+                    />
                 </Flex>
                 <VStack w={['100%', null, '60%']} h='100%' justifyContent='space-between'>
                     <Flex display='flex' justifyContent='space-between' p='0' w='100%'>
@@ -44,19 +49,21 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                             top='2'
                             left='2'
                         >
-                            {category.map((item: string) => {
-                                const currentCategory = getThisCategoryObject(item);
-                                const CategoryIcon = currentCategory.icon;
-                                return (
+                            {associatedCategories &&
+                                associatedCategories.map((currentCategory) => (
                                     <Flex
-                                        key={item}
+                                        key={currentCategory._id}
                                         align='center'
                                         bg='lime.50'
                                         borderRadius='md'
                                         gap={['0', null, '2']}
                                         p='0.5px 3.5px'
                                     >
-                                        <CategoryIcon w='30px' h='30px' />
+                                        <Image
+                                            src={`${IMAGE_URL}${currentCategory?.icon}`}
+                                            boxSize={['14px', null, null, '16px']}
+                                            alt={currentCategory.title}
+                                        />
                                         <Text
                                             fontFamily='Inter'
                                             fontSize='14px'
@@ -64,11 +71,10 @@ export const CardSinglePage: FC<dataAllCategoryProps> = ({
                                             lineHeight='20px'
                                             whiteSpace='nowrap'
                                         >
-                                            {currentCategory.label}
+                                            {currentCategory.title}
                                         </Text>
                                     </Flex>
-                                );
-                            })}
+                                ))}
                         </Flex>
                         <Flex>
                             <Flex align='center' gap='2'>

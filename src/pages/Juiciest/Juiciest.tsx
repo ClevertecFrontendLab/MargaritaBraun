@@ -1,17 +1,20 @@
-import { JuiciestKitchen } from '~/entities/KitchenSection';
-import dataAllCategory from '~/shared/consts/dataAllCategory';
-import { PageHeaderWithFilters, RecipesSections } from '~/widgets/Content';
-import { PageHeaderWithFiltersProps } from '~/widgets/Content/ui/PageHeaderWithFilters';
+import { RecommendedCuisine } from '~/entities/RecommendedCuisine';
+import { RecipesSections } from '~/widgets/Content';
 
-const dataForPage: PageHeaderWithFiltersProps = {
-    title: 'Самое сочное',
+import { useCheckActiveFilters } from '../CategoryPage/utils/useCheckActiveFilters';
+import ContentLayout from '../Layout/ContentLayout';
+
+const Juiciest = () => {
+    const check = useCheckActiveFilters();
+    return (
+        <ContentLayout title='Самое сочное' showFiltered={check}>
+            {!check && (
+                <>
+                    <RecipesSections />
+                    <RecommendedCuisine />
+                </>
+            )}
+        </ContentLayout>
+    );
 };
-
-const Juiciest = () => (
-    <>
-        <PageHeaderWithFilters {...dataForPage}></PageHeaderWithFilters>
-        <RecipesSections dataAllCategory={dataAllCategory}></RecipesSections>
-        <JuiciestKitchen />
-    </>
-);
 export default Juiciest;
