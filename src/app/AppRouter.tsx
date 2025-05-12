@@ -1,87 +1,66 @@
 // const { data: _data, isLoading: _isLoading } = useGetPostsQuery();
 // import { useGetPostsQuery } from '~/query/services/posts.ts';
 
-import { FC, ReactNode, useEffect } from 'react';
-import { Route, Routes, useNavigate, useParams } from 'react-router';
+import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router';
 
 import CategoryPage from '~/pages/CategoryPage/CategoryPage';
 import SingleRecipePage from '~/pages/CategoryPage/SingleRecipePage';
 import Home from '~/pages/Home/Home';
 import Juiciest from '~/pages/Juiciest/Juiciest';
 import NotFoundPage from '~/pages/NotFoundPage/NotFoundPage';
-import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
 
+import AuthLayout from './Authentication/AuthLayout';
+import Login from './Authentication/Login';
+import Registration from './Authentication/Registration';
 import Layout from './layouts/Layout';
-interface CategoryRouteValidatorProps {
-    children: ReactNode;
-}
+import { AuthUser } from './model/AuthenticationTypes';
+import { ProtectedRoute } from './ProtectedRoute';
+import { CategoryRouteValidator } from './utils/CategoryRouteValidator';
 
-const CategoryRouteValidator: FC<CategoryRouteValidatorProps> = ({ children }) => {
-    const { category, subcategory } = useParams();
-    const { data: categories, isLoading, isSuccess } = useGetAllCategoriesQuery();
-    const navigate = useNavigate();
-
+const AppRouter = () => {
+    const [user, setUser] = useState<AuthUser | null>(null);
+    // setUser({ id: '1', name: 'Margo' });
     useEffect(() => {
-        if (isSuccess && categories) {
-            const categoryExists = categories.some(
-                (cat) =>
-                    cat.category === category ||
-                    cat.subCategories?.some((sub) => sub.category === category),
-            );
+        setUser({ id: '1', name: 'Margo' });
+    }, []);
+    return (
+        <Routes>
+            <Route element={<AuthLayout />}>
+                <Route path='registration' element={<Registration />} />
+                <Route path='login' element={<Login />} />
+            </Route>
+            <Route element={<ProtectedRoute user={user} />}>
+                <Route element={<Layout />}>
+                    <Route index element={<Home />} />
 
-            if (!categoryExists) {
-                navigate('/not-found', { replace: true });
-                return;
-            }
+                    <Route path=':category'>
+                        <Route
+                            index
+                            element={
+                                <CategoryRouteValidator>
+                                    <CategoryPage />
+                                </CategoryRouteValidator>
+                            }
+                        />
+                        <Route
+                            path=':subcategory'
+                            element={
+                                <CategoryRouteValidator>
+                                    <CategoryPage />
+                                </CategoryRouteValidator>
+                            }
+                        />
+                    </Route>
 
-            if (subcategory) {
-                const subCategoryExists = categories.some((cat) =>
-                    cat.subCategories?.some((sub) => sub.category === subcategory),
-                );
-
-                if (!subCategoryExists) {
-                    navigate('/not-found', { replace: true });
-                }
-            }
-        }
-    }, [categories, isSuccess, category, subcategory, navigate]);
-
-    if (isLoading) return null;
-
-    return children;
-};
-
-const AppRouter = () => (
-    <Routes>
-        <Route element={<Layout />}>
-            <Route index element={<Home />} />
-
-            <Route path=':category'>
-                <Route
-                    index
-                    element={
-                        <CategoryRouteValidator>
-                            <CategoryPage />
-                        </CategoryRouteValidator>
-                    }
-                />
-                <Route
-                    path=':subcategory'
-                    element={
-                        <CategoryRouteValidator>
-                            <CategoryPage />
-                        </CategoryRouteValidator>
-                    }
-                />
+                    <Route path=':category/:subcategory/:id' element={<SingleRecipePage />} />
+                    <Route path='the-juiciest' element={<Juiciest />} />
+                </Route>
             </Route>
 
-            <Route path=':category/:subcategory/:id' element={<SingleRecipePage />} />
-            <Route path='the-juiciest' element={<Juiciest />} />
-        </Route>
-
-        <Route path='/not-found' element={<NotFoundPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-    </Routes>
-);
-
+            <Route path='/not-found' element={<NotFoundPage />} />
+            <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+    );
+};
 export default AppRouter;
