@@ -1,7 +1,10 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, CloseButton } from '@chakra-ui/react';
+import { Alert, AlertIcon, AlertTitle, Box, CloseButton } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 
-const ErrorNotification: FC = () => {
+interface SuccessAlertProps {
+    message: string;
+}
+export const SuccessAlert: FC<SuccessAlertProps> = ({ message }) => {
     const [isVisible, setIsVisible] = useState(true);
 
     const handleClose = () => {
@@ -12,7 +15,7 @@ const ErrorNotification: FC = () => {
 
     return (
         <Alert
-            status='error'
+            status='success'
             variant='solid'
             w={['320px', null, '400px']}
             position='fixed'
@@ -20,7 +23,6 @@ const ErrorNotification: FC = () => {
             left='50%'
             transform='translateX(-50%)'
             zIndex='modal'
-            data-test-id='error-notification'
         >
             <CloseButton
                 alignSelf='flex-start'
@@ -29,15 +31,11 @@ const ErrorNotification: FC = () => {
                 right={2}
                 top={1}
                 onClick={handleClose}
-                data-test-id='close-alert-button'
             />
             <AlertIcon />
             <Box>
-                <AlertTitle color='white'>Ошибка сервера</AlertTitle>
-                <AlertDescription color='white'>Попробуйте поискать снова попозже</AlertDescription>
+                <AlertTitle color='white'>{message}</AlertTitle>
             </Box>
         </Alert>
     );
 };
-
-export default ErrorNotification;

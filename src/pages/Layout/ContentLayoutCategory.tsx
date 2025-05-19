@@ -2,8 +2,8 @@ import { Flex } from '@chakra-ui/react';
 import { ReactNode, useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router';
 
-import ErrorNotification from '~/app/ErrorNotification';
 import Loading from '~/app/Loading/Loading';
+import { ErrorNotification } from '~/entities/Alert';
 import { useGetAllRecipesQuery } from '~/store/apiQuery/marathonApi';
 import { Category, OptionsQuery, SubCategory } from '~/store/model/categoryType';
 import { NavigationTabs, PageHeaderWithFilters } from '~/widgets/Content';
@@ -73,7 +73,7 @@ const ContentLayoutCategory = ({
             {subcategoryObject && categoryObject && (
                 <NavigationTabs categoryObject={categoryObject} handleRefresh={handleRefresh} />
             )}
-            {isError && <ErrorNotification />}
+            {isError && <ErrorNotification message='mistake' />}
             {showFiltered === true ? (
                 <OnlyRecipesList
                     searchQuery={searchQuery}

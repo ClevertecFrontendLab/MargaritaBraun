@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { useParams } from 'react-router';
 
-import ErrorNotification from '~/app/ErrorNotification';
 import Loading from '~/app/Loading/Loading';
+import { ErrorNotification } from '~/entities/Alert';
 import { RecommendedCuisine } from '~/entities/RecommendedCuisine';
 import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
 
@@ -22,7 +22,7 @@ const CategoryPage = () => {
         error: catsError,
     } = useGetAllCategoriesQuery();
 
-    if (catsError) return <ErrorNotification />;
+    if (catsError) return <ErrorNotification message='mistake' />;
     if (catsLoading) return <Loading />;
 
     const categoryObject = navigationData?.find((item) => item.category === category);

@@ -1,36 +1,22 @@
 import { Box, Flex, Image, Tab, TabIndicator, TabList, Tabs, Text } from '@chakra-ui/react';
-import {
-    FC,
-    // ReactNode
-} from 'react';
+import { FC } from 'react';
 import { Outlet } from 'react-router';
 import { NavLink as ReachLink } from 'react-router';
 
 import BackgroundImage from '~/assets/auth-background.png';
 import { LogoNavLink } from '~/shared/NavLinks';
 
-// interface AuthLayoutProps {
-//     children: ReactNode;
-// }
-{
-    /* <AuthLayoutProps> */
-}
 const AuthLayout: FC = () => (
-    // { children }
     <>
-        <Flex
-            w='100%'
-            // h='100vw'
-            h='100%'
-        >
+        <Flex w='100%' h='100svh' justifyContent='center'>
             <Flex
                 direction='column'
-                flexBasis='50%'
+                flexBasis={['100%', null, '50%']}
                 bgGradient='linear(to-br, #eaffc7 0%, #29813f 100%)'
                 justifyContent='center'
                 alignItems='center'
             >
-                <Flex w={['461px']} direction='column'>
+                <Flex w={['461px']} direction='column' gap={['10px', null, '30px']}>
                     <LogoNavLink />
                     <Tabs variant='unstyled' w='100%' borderBottom='2px solid rgba(0, 0, 0, 0.08)'>
                         <TabList>
@@ -42,7 +28,6 @@ const AuthLayout: FC = () => (
                                     color: 'lime.700',
                                     borderBottom: '2px solid lime.800',
                                 }}
-                                // _selected={{ color: 'white', bg: 'blue.500' }}
                             >
                                 Вход на сайт
                             </Tab>
@@ -54,7 +39,6 @@ const AuthLayout: FC = () => (
                                     borderBottom: '2px solid lime.800',
                                 }}
                                 to='/registration'
-                                // _selected={{ color: 'white', bg: 'green.400' }}
                             >
                                 Регистрация
                             </Tab>
@@ -69,7 +53,7 @@ const AuthLayout: FC = () => (
                     </Box>
                 </Flex>
             </Flex>
-            <Flex flexBasis='50%'>
+            <Flex flexBasis='50%' display={['none', null, 'flex']}>
                 <Image
                     w='100%'
                     h='auto'
@@ -84,8 +68,6 @@ const AuthLayout: FC = () => (
                 </Box>
             </Flex>
         </Flex>
-        {/* <p>AuthLayout</p> */}
-        {/* {children} */}
     </>
 );
 

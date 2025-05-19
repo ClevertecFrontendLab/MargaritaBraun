@@ -1,8 +1,8 @@
 import { Button, Flex, SimpleGrid } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-import ErrorNotification from '~/app/ErrorNotification';
 import Loading from '~/app/Loading/Loading';
+import { ErrorNotification } from '~/entities/Alert';
 import { CardRecipe } from '~/entities/Card';
 import { EmptyRecipesBlock } from '~/shared/helpers/EmptyRecipesBlock';
 import { useGetRecipesForJuiciestQuery } from '~/store/apiQuery/marathonApi';
@@ -29,7 +29,7 @@ export const RecipesSections = () => {
         }
     }, [newResipesSortedLikes]);
 
-    if (catsError) return <ErrorNotification />;
+    if (catsError) return <ErrorNotification message='mistake' />;
 
     if (catsLoading && page === 1) return <Loading />;
 

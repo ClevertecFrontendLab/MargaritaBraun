@@ -3,7 +3,7 @@ import { ReactNode, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router';
 
-import ErrorNotification from '~/app/ErrorNotification';
+import { ErrorNotification } from '~/entities/Alert';
 import { useGetAllRecipesQuery } from '~/store/apiQuery/marathonApi';
 import { filtersSelector } from '~/store/filter-slice';
 import { OptionsQuery } from '~/store/model/categoryType';
@@ -76,7 +76,7 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
                 subtitle={subtitle}
                 handleRefresh={handleRefresh}
             />
-            {isError && <ErrorNotification />}
+            {isError && <ErrorNotification message='mistake' />}
             {isLoading === false && showFiltered ? (
                 <OnlyRecipesList
                     searchQuery={searchQuery}

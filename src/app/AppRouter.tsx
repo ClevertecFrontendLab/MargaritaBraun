@@ -13,6 +13,7 @@ import NotFoundPage from '~/pages/NotFoundPage/NotFoundPage';
 import AuthLayout from './Authentication/AuthLayout';
 import Login from './Authentication/Login';
 import Registration from './Authentication/Registration';
+import Verification from './Authentication/Verification';
 import Layout from './layouts/Layout';
 import { AuthUser } from './model/AuthenticationTypes';
 import { ProtectedRoute } from './ProtectedRoute';
@@ -29,6 +30,7 @@ const AppRouter = () => {
             <Route element={<AuthLayout />}>
                 <Route path='registration' element={<Registration />} />
                 <Route path='login' element={<Login />} />
+                <Route path='verification' element={<Verification />} />
             </Route>
             <Route element={<ProtectedRoute user={user} />}>
                 <Route element={<Layout />}>

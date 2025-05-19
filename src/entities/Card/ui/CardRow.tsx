@@ -1,6 +1,6 @@
 import { Button, Card, Image, Text } from '@chakra-ui/react';
 
-import { IMAGE_URL } from '~/store/consts/apiConsts';
+import { IMAGE_URL } from '~/query/constants/apiConsts';
 
 import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
 export interface CardRowProps {

@@ -13,9 +13,9 @@ import {
 import { NavLink as ReachLink } from 'react-router';
 
 import Loading from '~/app/Loading/Loading';
+import { IMAGE_URL } from '~/query/constants/apiConsts';
 import { AccordionIcon } from '~/shared/Icons';
 import { useGetAllCategoriesQuery } from '~/store/apiQuery/marathonApi';
-import { IMAGE_URL } from '~/store/consts/apiConsts';
 
 export const NavMenu = () => {
     const { data: navigationData, isLoading: catsLoading } = useGetAllCategoriesQuery();
