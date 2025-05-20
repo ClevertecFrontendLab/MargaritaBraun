@@ -65,7 +65,7 @@ export const PasswordAssistance: FC<PasswordAssistanceProps> = ({ userEmail }) =
             ) : (
                 <Modal isOpen={customIsOpen} onClose={handleCloseModal}>
                     <ModalOverlay />
-                    <ModalContent p={['8']}>
+                    <ModalContent p={['8']} data-test-id='verification-code-modal'>
                         <ModalBody justifyContent='center' w='100%' display='flex'>
                             <ModalCloseButton
                                 top='20px'
@@ -77,6 +77,7 @@ export const PasswordAssistance: FC<PasswordAssistanceProps> = ({ userEmail }) =
                                     color: 'blackAlpha.600',
                                 }}
                                 _focus={{ boxShadow: 'none' }}
+                                data-test-id='close-button'
                             />
                             <Image src={backgroundPasswordRecovery} boxSize={['100px', '206px']} />
                         </ModalBody>
@@ -123,12 +124,30 @@ export const PasswordAssistance: FC<PasswordAssistanceProps> = ({ userEmail }) =
                                         size={['sm', 'md']}
                                         defaultValue={error && ''}
                                     >
-                                        <PinInputField color='lime.800' />
-                                        <PinInputField color='lime.800' />
-                                        <PinInputField color='lime.800' />
-                                        <PinInputField color='lime.800' />
-                                        <PinInputField color='lime.800' />
-                                        <PinInputField color='lime.800' />
+                                        <PinInputField
+                                            color='lime.800'
+                                            data-test-id='verification-code-input-1'
+                                        />
+                                        <PinInputField
+                                            color='lime.800'
+                                            data-test-id='verification-code-input-2'
+                                        />
+                                        <PinInputField
+                                            color='lime.800'
+                                            data-test-id='verification-code-input-3'
+                                        />
+                                        <PinInputField
+                                            color='lime.800'
+                                            data-test-id='verification-code-input-4'
+                                        />
+                                        <PinInputField
+                                            color='lime.800'
+                                            data-test-id='verification-code-input-5'
+                                        />
+                                        <PinInputField
+                                            color='lime.800'
+                                            data-test-id='verification-code-input-6'
+                                        />
                                     </PinInput>
                                 </HStack>
                             </Flex>

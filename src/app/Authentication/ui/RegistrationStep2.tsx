@@ -11,6 +11,7 @@ export const RegistrationStep2: FC<RegistrationStepProps> = ({ register, errors 
                 Логин для входа на сайт
             </Text>
             <Input
+                data-test-id='login-input'
                 {...register('login')}
                 type='text'
                 placeholder='Введите логин'
@@ -46,6 +47,7 @@ export const RegistrationStep2: FC<RegistrationStepProps> = ({ register, errors 
                 Повторите пароль
             </Text>
             <Input
+                data-test-id='confirm-password-input'
                 {...register('passwordRepeat')}
                 type='password'
                 placeholder='Повторите пароль'

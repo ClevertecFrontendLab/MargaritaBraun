@@ -16,6 +16,7 @@ export const RegistrationStep1: FC<RegistrationStepProps> = ({ register, errors 
                 Ваше имя
             </Text>
             <Input
+                data-test-id='first-name-input'
                 {...register('firstName')}
                 type='text'
                 placeholder='Введите имя'
@@ -36,6 +37,7 @@ export const RegistrationStep1: FC<RegistrationStepProps> = ({ register, errors 
                 Ваша фамилия
             </Text>
             <Input
+                data-test-id='last-name-input'
                 {...register('lastName')}
                 type='text'
                 placeholder='Введите фамилию'
@@ -56,6 +58,7 @@ export const RegistrationStep1: FC<RegistrationStepProps> = ({ register, errors 
                 Ваш e-mail
             </Text>
             <Input
+                data-test-id='email-input'
                 {...register('email')}
                 type='email'
                 placeholder='Введите email'

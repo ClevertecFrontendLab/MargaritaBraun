@@ -8,6 +8,7 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 
@@ -22,9 +23,10 @@ import { PasswordInput } from './ui/PasswordInput';
 
 const Login = () => {
     const navigate = useNavigate();
-    const [loginUser, { error, isLoading }] = useLoginMutation();
+    const [loginUser, { data, error, isLoading }] = useLoginMutation();
 
     const {
+        // watch,
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
@@ -34,39 +36,42 @@ const Login = () => {
     });
 
     const onSubmitHandler = async (data: LoginCredentials) => {
-        try {
-            const response = await loginUser({
-                login: data.login,
-                password: data.password,
-            }).unwrap();
-
-            console.log('Response data:', response);
-            navigate('/');
-        } catch (error) {
-            console.log('error', error);
-        }
+        await loginUser({
+            login: data.login,
+            password: data.password,
+        }).unwrap();
     };
-
+    // const formValues = watch();
     const parseError = () => {
         const typeError = error as DataResponse;
-
+        console.log('typeError', typeError);
+        if (typeError?.statusCode === 500) {
+            return <LoginErrorModal onSubmit={handleSubmit(onSubmitHandler)} />;
+        }
         if (typeError?.message) {
             return <ErrorNotification message={typeError.message} />;
         }
-        return <LoginErrorModal />;
     };
     const { isOpen, onOpen, onClose } = useDisclosure();
+
+    useEffect(() => {
+        if (data) {
+            navigate('/');
+        }
+    }, [data]);
+
     return (
         <>
             {isLoading && <Loading />}
-            {error && parseError}
-            <form onSubmit={handleSubmit(onSubmitHandler)}>
+            {error && parseError()}
+            <form onSubmit={handleSubmit(onSubmitHandler)} data-test-id='sign-in-form'>
                 <Stack spacing={2} direction='column'>
                     <FormControl isInvalid={!!errors.login}>
                         <Text fontWeight='400' fontSize='16px' lineHeight='150%' color='black'>
                             Логин для входа на сайт
                         </Text>
                         <Input
+                            data-test-id='login-input'
                             {...register('login')}
                             type='text'
                             placeholder='Введите логин'
@@ -97,6 +102,7 @@ const Login = () => {
                         _hover={{ background: 'blackAlpha.600' }}
                         isLoading={isSubmitting || isLoading}
                         type='submit'
+                        data-test-id='submit-button'
                     >
                         Войти
                     </Button>
@@ -108,6 +114,7 @@ const Login = () => {
                         lineHeight='150%'
                         color='black'
                         mt='16px'
+                        data-test-id='forgot-password'
                     >
                         Забыли логин или пароль?
                     </Button>

@@ -82,7 +82,7 @@ export const ForgotPasswordModal: FC<ForgotPasswordModalProps> = ({ isOpen, onCl
             ) : (
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
-                    <ModalContent p={['8']}>
+                    <ModalContent p={['8']} data-test-id='sign-up-success-modal'>
                         <ModalBody justifyContent='center' w='100%' display='flex'>
                             <ModalCloseButton
                                 top='20px'
@@ -93,6 +93,7 @@ export const ForgotPasswordModal: FC<ForgotPasswordModalProps> = ({ isOpen, onCl
                                     borderColor: 'blackAlpha.600',
                                     color: 'blackAlpha.600',
                                 }}
+                                data-test-id='close-button'
                             />
                             <Image src={fpasswordBackground} boxSize={['100px', '206px']} />
                         </ModalBody>
@@ -115,6 +116,7 @@ export const ForgotPasswordModal: FC<ForgotPasswordModalProps> = ({ isOpen, onCl
                                 <FormControl isInvalid={!!errors.email || !!error}>
                                     <FormLabel>Ваш e-mail</FormLabel>
                                     <Input
+                                        data-test-id='email-input'
                                         type='email'
                                         placeholder='e-mail'
                                         {...register('email')}
@@ -132,6 +134,7 @@ export const ForgotPasswordModal: FC<ForgotPasswordModalProps> = ({ isOpen, onCl
                                 </FormControl>
                             </Flex>
                             <Button
+                                data-test-id='submit-button'
                                 colorScheme='black'
                                 mr={3}
                                 type='submit'

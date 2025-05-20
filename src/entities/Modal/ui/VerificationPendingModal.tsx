@@ -28,7 +28,7 @@ export const VerificationPendingModal = () => {
         <>
             <Modal isOpen={customIsOpen} onClose={handleCloseModal}>
                 <ModalOverlay />
-                <ModalContent p={['8']}>
+                <ModalContent p={['8']} data-test-id='sign-up-success-modal'>
                     <ModalBody justifyContent='center' w='100%' display='flex'>
                         <ModalCloseButton
                             top='20px'
@@ -39,6 +39,7 @@ export const VerificationPendingModal = () => {
                                 borderColor: 'blackAlpha.600',
                                 color: 'blackAlpha.600',
                             }}
+                            data-test-id='close-button'
                         />
                         <Image src={backgroundVerification} boxSize={['100px', '206px']} />
                     </ModalBody>

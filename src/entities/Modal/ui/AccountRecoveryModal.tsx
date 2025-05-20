@@ -79,7 +79,7 @@ export const AccountRecoveryModal: FC = () => {
             {error && parseError()}
             <Modal isOpen={customIsOpen} onClose={handleCloseModal}>
                 <ModalOverlay />
-                <ModalContent p={['8']}>
+                <ModalContent p={['8']} data-test-id='reset-credentials-modal'>
                     <ModalHeader>
                         <Heading fontWeight='400' fontSize='16px' lineHeight='150%' color='black'>
                             Восстановление аккаунта
@@ -94,6 +94,7 @@ export const AccountRecoveryModal: FC = () => {
                                 color: 'blackAlpha.600',
                             }}
                             _focus={{ boxShadow: 'none' }}
+                            data-test-id='close-button'
                         />
                     </ModalHeader>
                     <ModalBody justifyContent='center' w='100%' display='flex'>
@@ -109,6 +110,7 @@ export const AccountRecoveryModal: FC = () => {
                                         Логин для входа на сайт
                                     </Text>
                                     <Input
+                                        data-test-id='login-input'
                                         {...register('login')}
                                         type='text'
                                         placeholder='Введите логин'
@@ -153,6 +155,7 @@ export const AccountRecoveryModal: FC = () => {
                                         Повторите пароль
                                     </Text>
                                     <Input
+                                        data-test-id='confirm-password-input'
                                         {...register('passwordConfirm')}
                                         type='password'
                                         placeholder='Повторите пароль'
@@ -191,6 +194,7 @@ export const AccountRecoveryModal: FC = () => {
                             type='submit'
                             onClick={handleSubmit(handlerResetForm)}
                             mt={4}
+                            data-test-id='submit-button'
                         >
                             Зарегистрироваться
                         </Button>

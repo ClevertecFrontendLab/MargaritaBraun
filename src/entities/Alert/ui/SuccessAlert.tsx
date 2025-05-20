@@ -23,6 +23,7 @@ export const SuccessAlert: FC<SuccessAlertProps> = ({ message }) => {
             left='50%'
             transform='translateX(-50%)'
             zIndex='modal'
+            data-test-id='error-notification'
         >
             <CloseButton
                 alignSelf='flex-start'
@@ -31,6 +32,7 @@ export const SuccessAlert: FC<SuccessAlertProps> = ({ message }) => {
                 right={2}
                 top={1}
                 onClick={handleClose}
+                data-test-id='close-alert-button'
             />
             <AlertIcon />
             <Box>

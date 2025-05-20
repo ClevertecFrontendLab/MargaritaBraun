@@ -66,11 +66,11 @@ const Registration = () => {
 
     const onSubmitHandler = async (data: DataRegistrationForm) => {
         const { passwordRepeat, ...dataWithoutRepeatPassword } = data as DataRegistrationForm;
-        try {
-            await signup(dataWithoutRepeatPassword).unwrap();
-        } catch (error) {
-            console.error('Error during signup:', error);
-        }
+        // try {
+        await signup(dataWithoutRepeatPassword).unwrap();
+        // } catch (error) {
+        //     console.error('Error during signup:', error);
+        // }
     };
 
     const handlerButtonForm = () => {
@@ -95,7 +95,7 @@ const Registration = () => {
             {isLoading && <Loading />}
             {error && parseError()}
             {data && <VerificationPendingModal />}
-            <form onSubmit={handleSubmit(onSubmitHandler)}>
+            <form onSubmit={handleSubmit(onSubmitHandler)} data-test-id='sign-up-form'>
                 <Text>
                     {stepRegistration === 1 ? 'Шаг 1. Личная информация' : 'Шаг 2. Логин и пароль'}
                 </Text>
@@ -104,6 +104,7 @@ const Registration = () => {
                     value={progressValue}
                     colorScheme='lime'
                     background='rgba(0, 0, 0, 0.06)'
+                    data-test-id='sign-up-progress'
                 />
 
                 <Stack spacing={4}>
@@ -115,6 +116,7 @@ const Registration = () => {
                 </Stack>
 
                 <Button
+                    data-test-id='submit-button'
                     w='100%'
                     size={['lg']}
                     fontWeight='600'

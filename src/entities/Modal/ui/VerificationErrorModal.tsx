@@ -26,7 +26,7 @@ export const VerificationErrorModal = () => {
         <>
             <Modal isOpen={customIsOpen} onClose={handleCloseModal}>
                 <ModalOverlay />
-                <ModalContent p={['8']}>
+                <ModalContent p={['8']} data-test-id='email-verification-failed-modal'>
                     <ModalBody justifyContent='center' w='100%' display='flex'>
                         <ModalCloseButton
                             top='20px'
@@ -37,6 +37,7 @@ export const VerificationErrorModal = () => {
                                 borderColor: 'blackAlpha.600',
                                 color: 'blackAlpha.600',
                             }}
+                            data-test-id='close-button'
                         />
                         <Image src={badVerification} boxSize={['100px', '206px']} />
                     </ModalBody>
