@@ -11,16 +11,19 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import badVerification from '~/assets/bad-verification.png';
 
 export const VerificationErrorModal = () => {
     const { onClose } = useDisclosure();
     const [customIsOpen, setCustomIsOpen] = useState(true);
+    const navigation = useNavigate();
 
     const handleCloseModal = () => {
         setCustomIsOpen(false);
         onClose();
+        navigation('/registration');
     };
     return (
         <>

@@ -8,25 +8,27 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 
+import { useUser } from '~/context/UserContext';
 import { ErrorNotification } from '~/entities/Alert';
 import { ForgotPasswordModal, LoginErrorModal } from '~/entities/Modal';
-import { DataResponse, LoginCredentials } from '~/query/constants/types';
+import { LoginCredentials, ServerResponseTypes } from '~/query/constants/types';
 import { useLoginMutation } from '~/query/services/auth';
 
 import Loading from '../Loading/Loading';
 import { loginSchema } from './consts/YupScheme';
 import { PasswordInput } from './ui/PasswordInput';
 
-const Login = () => {
+const Login: FC = () => {
+    const { setUser } = useUser();
     const navigate = useNavigate();
     const [loginUser, { data, error, isLoading }] = useLoginMutation();
+    const [loginValue, setLoginValue] = useState<string>('');
 
     const {
-        // watch,
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
@@ -35,30 +37,54 @@ const Login = () => {
         resolver: yupResolver(loginSchema),
     });
 
-    const onSubmitHandler = async (data: LoginCredentials) => {
+    const onSubmitHandler = async (formData: LoginCredentials) => {
+        setLoginValue(formData.login);
+
         await loginUser({
-            login: data.login,
-            password: data.password,
+            login: formData.login.trim(),
+            password: formData.password,
         }).unwrap();
     };
-    // const formValues = watch();
+
     const parseError = () => {
-        const typeError = error as DataResponse;
-        console.log('typeError', typeError);
-        if (typeError?.statusCode === 500) {
+        const typeError = error as ServerResponseTypes;
+        if (typeError?.status === 500) {
             return <LoginErrorModal onSubmit={handleSubmit(onSubmitHandler)} />;
         }
-        if (typeError?.message) {
-            return <ErrorNotification message={typeError.message} />;
+
+        if (typeError?.status === 401) {
+            return (
+                <ErrorNotification
+                    message='Неверный логин или пароль'
+                    submessage='Попробуйте снова'
+                />
+            );
+        }
+
+        if (typeError?.status === 403) {
+            return (
+                <ErrorNotification
+                    message='E-mail не верифицирован'
+                    submessage='Проверьте почту и перейдите по ссылке'
+                />
+            );
         }
     };
+
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     useEffect(() => {
         if (data) {
+            setUser({
+                login: loginValue,
+            });
             navigate('/');
         }
     }, [data]);
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        e.target.value = e.target.value.trim();
+    };
 
     return (
         <>
@@ -83,6 +109,7 @@ const Login = () => {
                             size='sm'
                             background='white'
                             border='2px solid lime.150'
+                            onBlur={handleBlur}
                         />
                         <FormErrorMessage>{errors.login?.message}</FormErrorMessage>
                     </FormControl>
@@ -115,6 +142,7 @@ const Login = () => {
                         color='black'
                         mt='16px'
                         data-test-id='forgot-password'
+                        size={['md', 'lg']}
                     >
                         Забыли логин или пароль?
                     </Button>

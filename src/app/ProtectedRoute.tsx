@@ -1,19 +1,17 @@
 import { ReactNode } from 'react';
 import { Navigate, Outlet } from 'react-router';
 
-import { AuthUser } from './model/AuthenticationTypes';
-
 type ProtectedRouteProps = {
-    user: AuthUser | null;
     redirectPath?: string;
     children?: ReactNode;
 };
 
-export const ProtectedRoute = ({ user, redirectPath = '/', children }: ProtectedRouteProps) => {
-    if (!user) {
+export const ProtectedRoute = ({ redirectPath = '/login', children }: ProtectedRouteProps) => {
+    const testToken = localStorage.getItem('accessToken');
+
+    if (!testToken) {
         return <Navigate to={redirectPath} replace />;
     }
 
     return children ? children : <Outlet />;
-    // return children;
 };

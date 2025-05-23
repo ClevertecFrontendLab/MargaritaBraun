@@ -17,8 +17,6 @@ import { FC, useState } from 'react';
 
 import background from '~/assets/fpasswordBackground.png';
 interface LoginErrorModalProps {
-    // isOpen: boolean;
-    // onClose: () => void;
     onSubmit: () => void;
 }
 export const LoginErrorModal: FC<LoginErrorModalProps> = ({ onSubmit }) => {
@@ -60,12 +58,7 @@ export const LoginErrorModal: FC<LoginErrorModalProps> = ({ onSubmit }) => {
                         <Image src={background} boxSize={['100px', '206px']} />
                     </ModalBody>
 
-                    <ModalFooter
-                        flexDirection='column'
-                        p='0'
-                        // display='flex'
-                        w='100%'
-                    >
+                    <ModalFooter flexDirection='column' p='0' w='100%'>
                         <Flex direction='column' gap='4' p={['32px 0']} w='100%'>
                             <Box>
                                 <Text
@@ -102,7 +95,7 @@ export const LoginErrorModal: FC<LoginErrorModalProps> = ({ onSubmit }) => {
                             _hover={{ background: 'blackAlpha.600' }}
                             type='submit'
                             data-test-id='repeat-button'
-                            onSubmit={onSubmit}
+                            onClick={onSubmit}
                         >
                             Повторить
                         </Button>

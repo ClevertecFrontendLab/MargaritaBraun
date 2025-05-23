@@ -12,18 +12,25 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 import backgroundVerification from '~/assets/verification-background.png';
+import { userSelector } from '~/store/user-slice';
 
 export const VerificationPendingModal = () => {
     const emailUser = 'ekaterinabaker@gmail.ru';
+    const user = useSelector(userSelector);
     const { onClose } = useDisclosure();
     const [customIsOpen, setCustomIsOpen] = useState(true);
+    const navigation = useNavigate();
 
     const handleCloseModal = () => {
         setCustomIsOpen(false);
         onClose();
+        navigation('/login');
     };
+
     return (
         <>
             <Modal isOpen={customIsOpen} onClose={handleCloseModal}>
@@ -89,7 +96,7 @@ export const VerificationPendingModal = () => {
                                     textAlign='center'
                                     color='black'
                                 >
-                                    {emailUser}
+                                    {user ? user.email : emailUser}
                                 </Text>
                                 <Text
                                     fontFamily='Inter'

@@ -14,23 +14,24 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import { FC, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import Loading from '~/app/Loading/Loading';
 import backgroundPasswordRecovery from '~/assets/passwordRecovery.png';
 import { ErrorNotification } from '~/entities/Alert';
-import { DataResponse } from '~/query/constants/types';
+import { ServerResponseTypes } from '~/query/constants/types';
 import { useVerifyOtpMutation } from '~/query/services/auth';
+import { userSelector } from '~/store/user-slice';
 
 import { AccountRecoveryModal } from './AccountRecoveryModal';
 
-interface PasswordAssistanceProps {
-    userEmail: string;
-}
-export const PasswordAssistance: FC<PasswordAssistanceProps> = ({ userEmail }) => {
+export const PasswordAssistance: FC = () => {
     const [valueCode, setValueCode] = useState<string>('');
     const [verifyOtp, { data, error, isLoading }] = useVerifyOtpMutation();
     const { onClose } = useDisclosure();
     const [customIsOpen, setCustomIsOpen] = useState(true);
+    const user = useSelector(userSelector);
+    const userEmail = user.email === '' ? user.email : 'vano666@mail.com';
 
     useEffect(() => {
         if (valueCode !== '') {
@@ -38,22 +39,39 @@ export const PasswordAssistance: FC<PasswordAssistanceProps> = ({ userEmail }) =
         }
     }, [valueCode]);
 
+    useEffect(() => {
+        if (error) {
+            setValueCode('');
+        }
+    }, [error]);
+
     const handleCloseModal = () => {
         setCustomIsOpen(false);
         onClose();
     };
 
     const handlerComplete = (value: string) => {
-        setValueCode(() => value);
+        setValueCode(value);
     };
 
     const parseError = () => {
-        const typeError = error as DataResponse;
+        const typeError = error as ServerResponseTypes;
 
-        if (typeError?.message) {
-            return <ErrorNotification message={typeError.message} />;
+        if (typeError.status === 403) {
+            return <ErrorNotification message='Неверный код' />;
         }
-        return <ErrorNotification message='Такого e-mail нет' />;
+
+        if (typeError.status === 500) {
+            return (
+                <ErrorNotification message='Ошибка сервера' submessage='Попробуйте немного позже' />
+            );
+        }
+
+        if (typeError?.data.message) {
+            return <ErrorNotification message={typeError.data.message} />;
+        }
+
+        return <ErrorNotification message='Неверный код' />;
     };
 
     return (
@@ -84,6 +102,18 @@ export const PasswordAssistance: FC<PasswordAssistanceProps> = ({ userEmail }) =
 
                         <ModalFooter flexDirection='column' p='0'>
                             <Flex direction='column' gap='4' p={['32px 0']}>
+                                {error && (
+                                    <Text
+                                        fontFamily='Inter'
+                                        fontWeight='700'
+                                        fontSize='24px'
+                                        lineHeight='133%'
+                                        textAlign='center'
+                                        color='blackAlpha.700'
+                                    >
+                                        Неверный код
+                                    </Text>
+                                )}
                                 <Flex direction='column'>
                                     <Text
                                         fontFamily='Inter'
@@ -122,7 +152,8 @@ export const PasswordAssistance: FC<PasswordAssistanceProps> = ({ userEmail }) =
                                         otp
                                         onComplete={handlerComplete}
                                         size={['sm', 'md']}
-                                        defaultValue={error && ''}
+                                        errorBorderColor='red'
+                                        value={error && ''}
                                     >
                                         <PinInputField
                                             color='lime.800'

@@ -10,7 +10,6 @@ import {
     ModalBody,
     ModalCloseButton,
     ModalContent,
-    ModalFooter,
     ModalHeader,
     ModalOverlay,
     Text,
@@ -25,7 +24,7 @@ import { accountRecoverySchema } from '~/app/Authentication/consts/YupScheme';
 import { PasswordInput } from '~/app/Authentication/ui/PasswordInput';
 import Loading from '~/app/Loading/Loading';
 import { ErrorNotification, SuccessAlert } from '~/entities/Alert';
-import { DataResponse } from '~/query/constants/types';
+import { ServerResponseTypes } from '~/query/constants/types';
 import { useResetPasswordMutation } from '~/query/services/auth';
 import { userSelector } from '~/store/user-slice';
 
@@ -52,6 +51,7 @@ export const AccountRecoveryModal: FC = () => {
         password: string;
         passwordConfirm: string;
     }) => {
+        data.login = data.login.trim();
         await resetPassword({ email: userEmail, ...data });
     };
 
@@ -64,12 +64,21 @@ export const AccountRecoveryModal: FC = () => {
     };
 
     const parseError = () => {
-        const typeError = error as DataResponse;
+        const typeError = error as ServerResponseTypes;
 
-        if (typeError?.message) {
-            return <ErrorNotification message={typeError.message} />;
+        if (typeError?.data.message) {
+            return <ErrorNotification message={typeError.data.message} />;
         }
-        return <ErrorNotification message='Ошибка сервера' />;
+
+        if (typeError.status === 500) {
+            return (
+                <ErrorNotification message='Ошибка сервера' submessage='Попробуйте немного позже' />
+            );
+        }
+    };
+
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        e.target.value = e.target.value.trim();
     };
 
     return (
@@ -99,7 +108,7 @@ export const AccountRecoveryModal: FC = () => {
                     </ModalHeader>
                     <ModalBody justifyContent='center' w='100%' display='flex'>
                         <Flex direction='column' gap='4' p={['32px 0']}>
-                            <form>
+                            <form onSubmit={handleSubmit(handlerResetForm)}>
                                 <FormControl isInvalid={!!errors.login}>
                                     <Text
                                         fontWeight='400'
@@ -122,6 +131,7 @@ export const AccountRecoveryModal: FC = () => {
                                         size='sm'
                                         background='white'
                                         border='2px solid lime.150'
+                                        onBlur={handleBlur}
                                     />
                                     {errors.login?.message ? (
                                         <FormErrorMessage>{errors.login?.message}</FormErrorMessage>
@@ -168,37 +178,31 @@ export const AccountRecoveryModal: FC = () => {
                                         background='white'
                                         border='2px solid lime.150'
                                     />
-                                    {errors.passwordConfirm?.message ? (
+                                    {errors.passwordConfirm?.message && (
                                         <FormErrorMessage>
                                             {errors.passwordConfirm?.message}
                                         </FormErrorMessage>
-                                    ) : (
-                                        <FormHelperText>Пароли должны совпадать</FormHelperText>
                                     )}
                                 </FormControl>
+                                <Button
+                                    w='100%'
+                                    size={['lg']}
+                                    fontWeight='600'
+                                    fontSize='18px'
+                                    lineHeight='156%'
+                                    variant='solid'
+                                    background='black'
+                                    color='white'
+                                    _hover={{ background: 'blackAlpha.600' }}
+                                    type='submit'
+                                    mt={4}
+                                    data-test-id='submit-button'
+                                >
+                                    Зарегистрироваться
+                                </Button>
                             </form>
                         </Flex>
                     </ModalBody>
-
-                    <ModalFooter flexDirection='column' p='0'>
-                        <Button
-                            w='100%'
-                            size={['lg']}
-                            fontWeight='600'
-                            fontSize='18px'
-                            lineHeight='156%'
-                            variant='solid'
-                            background='black'
-                            color='white'
-                            _hover={{ background: 'blackAlpha.600' }}
-                            type='submit'
-                            onClick={handleSubmit(handlerResetForm)}
-                            mt={4}
-                            data-test-id='submit-button'
-                        >
-                            Зарегистрироваться
-                        </Button>
-                    </ModalFooter>
                 </ModalContent>
             </Modal>
         </>

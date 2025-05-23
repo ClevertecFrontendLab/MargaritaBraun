@@ -1,5 +1,5 @@
 import { FormControl, FormErrorMessage, Input, Text } from '@chakra-ui/react';
-import { FC } from 'react';
+import { FC, FocusEvent } from 'react';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { DataRegistrationForm } from '../Registration';
@@ -7,9 +7,10 @@ import { DataRegistrationForm } from '../Registration';
 export interface RegistrationStepProps {
     register: UseFormRegister<DataRegistrationForm>;
     errors: FieldErrors<DataRegistrationForm>;
+    handleBlur: (e: FocusEvent<HTMLInputElement, Element>) => void;
 }
 
-export const RegistrationStep1: FC<RegistrationStepProps> = ({ register, errors }) => (
+export const RegistrationStep1: FC<RegistrationStepProps> = ({ register, errors, handleBlur }) => (
     <>
         <FormControl isInvalid={!!errors.firstName}>
             <Text fontWeight='400' fontSize='16px' lineHeight='150%' color='black'>
@@ -28,8 +29,11 @@ export const RegistrationStep1: FC<RegistrationStepProps> = ({ register, errors 
                 size='sm'
                 background='white'
                 border='2px solid lime.150'
+                onBlur={handleBlur}
             />
-            <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
+            {errors.firstName?.message && (
+                <FormErrorMessage>{errors.firstName?.message}</FormErrorMessage>
+            )}
         </FormControl>
 
         <FormControl isInvalid={!!errors.lastName}>
@@ -49,8 +53,11 @@ export const RegistrationStep1: FC<RegistrationStepProps> = ({ register, errors 
                 size='sm'
                 background='white'
                 border='2px solid lime.150'
+                onBlur={handleBlur}
             />
-            <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
+            {errors.lastName?.message && (
+                <FormErrorMessage>{errors.lastName?.message}</FormErrorMessage>
+            )}
         </FormControl>
 
         <FormControl isInvalid={!!errors.email}>
@@ -70,8 +77,9 @@ export const RegistrationStep1: FC<RegistrationStepProps> = ({ register, errors 
                 size='sm'
                 background='white'
                 border='2px solid lime.150'
+                onBlur={handleBlur}
             />
-            <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
+            {errors.email?.message && <FormErrorMessage>{errors.email?.message}</FormErrorMessage>}
         </FormControl>
     </>
 );

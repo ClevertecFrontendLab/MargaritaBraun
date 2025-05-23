@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { PasswordInput } from './PasswordInput';
 import { RegistrationStepProps } from './RegistrationStep1';
 
-export const RegistrationStep2: FC<RegistrationStepProps> = ({ register, errors }) => (
+export const RegistrationStep2: FC<RegistrationStepProps> = ({ register, errors, handleBlur }) => (
     <>
         <FormControl isInvalid={!!errors.login}>
             <Text fontWeight='400' fontSize='16px' lineHeight='150%' color='black'>
@@ -23,22 +23,17 @@ export const RegistrationStep2: FC<RegistrationStepProps> = ({ register, errors 
                 size='sm'
                 background='white'
                 border='2px solid lime.150'
+                onBlur={handleBlur}
             />
-            {errors.login?.message ? (
-                <FormErrorMessage>{errors.login?.message}</FormErrorMessage>
-            ) : (
-                <FormHelperText>Логин не менее 5 символов, только латиница</FormHelperText>
-            )}
+            <FormHelperText>Логин не менее 5 символов, только латиница</FormHelperText>
+            {errors.login?.message && <FormErrorMessage>{errors.login?.message}</FormErrorMessage>}
         </FormControl>
 
         <FormControl isInvalid={!!errors.password}>
             <PasswordInput passwordRegister={register('password')} />
-            {errors.password?.message ? (
+            <FormHelperText>Пароль не менее 8 символов, с заглавной буквой и цифрой</FormHelperText>
+            {errors.password?.message && (
                 <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-            ) : (
-                <FormHelperText>
-                    Пароль не менее 8 символов, с заглавной буквой и цифрой
-                </FormHelperText>
             )}
         </FormControl>
 
@@ -60,10 +55,8 @@ export const RegistrationStep2: FC<RegistrationStepProps> = ({ register, errors 
                 background='white'
                 border='2px solid lime.150'
             />
-            {errors.passwordRepeat?.message ? (
+            {errors.passwordRepeat?.message && (
                 <FormErrorMessage>{errors.passwordRepeat?.message}</FormErrorMessage>
-            ) : (
-                <FormHelperText>Пароли должны совпадать</FormHelperText>
             )}
         </FormControl>
     </>

@@ -8,7 +8,6 @@ import { apiSlice } from '~/query/create-api.ts';
 
 import {
     DataForResetPassword,
-    DataResponse,
     LoginCredentials,
     ServerResponseTypes,
     UserRegistrationData,
@@ -43,8 +42,6 @@ export const authApiSlice = apiSlice
                     }
                     return response;
                 },
-                transformErrorResponse: (response: ServerResponseTypes): DataResponse =>
-                    response.data,
             }),
             refresh: builder.query<void, void>({
                 query: () => ({

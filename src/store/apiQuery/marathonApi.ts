@@ -9,9 +9,21 @@ import {
     RecipesListResponce,
 } from '../model/categoryType';
 
+const baseQuery = fetchBaseQuery({
+    baseUrl: API_URL,
+    credentials: 'include',
+    prepareHeaders: (headers) => {
+        const token = localStorage.getItem('accessToken');
+        if (token) {
+            headers.set('Authorization', `Bearer ${token}`);
+        }
+        return headers;
+    },
+});
+
 export const marathonApi = createApi({
     reducerPath: 'marathonApi',
-    baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+    baseQuery,
     tagTypes: ['Categories', 'Recipes'],
     endpoints: (build) => ({
         getAllCategoriesWithSubcategory: build.query<AllCategoryInterface[], void>({
@@ -101,15 +113,6 @@ export const marathonApi = createApi({
                     sortOrder: 'desc',
                 },
             }),
-            transformResponse: (response: RecipesListResponce): RecipesListResponce => {
-                const sortedData = [...response.data].sort(
-                    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-                );
-                return {
-                    data: sortedData,
-                    meta: response.meta,
-                };
-            },
             providesTags: ['Recipes'],
         }),
 

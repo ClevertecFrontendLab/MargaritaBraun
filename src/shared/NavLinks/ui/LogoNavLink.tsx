@@ -1,9 +1,14 @@
 import { Button, Hide } from '@chakra-ui/react';
+import { FC } from 'react';
 import { Link as ReachLink } from 'react-router';
 
 import { PotLogoIcon, TextLogoIcon } from '~/shared/Icons';
 
-export const LogoNavLink = () => (
+interface LogoNavLinkProps {
+    hideText?: boolean;
+}
+
+export const LogoNavLink: FC<LogoNavLinkProps> = ({ hideText = true }) => (
     <Button
         as={ReachLink}
         to='/'
@@ -16,8 +21,13 @@ export const LogoNavLink = () => (
         alignItems='flex-end'
     >
         <PotLogoIcon />
-        <Hide breakpoint='(max-width: 450px)'>
+
+        {hideText ? (
+            <Hide breakpoint='(max-width: 450px)'>
+                <TextLogoIcon />
+            </Hide>
+        ) : (
             <TextLogoIcon />
-        </Hide>
+        )}
     </Button>
 );

@@ -1,12 +1,15 @@
 import { Button, Progress, Stack, Text } from '@chakra-ui/react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect, useState } from 'react';
+import { FocusEvent, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 import { ErrorNotification } from '~/entities/Alert';
 import { VerificationPendingModal } from '~/entities/Modal';
-import { DataResponse, UserRegistrationData } from '~/query/constants/types';
+import { ServerResponseTypes, UserRegistrationData } from '~/query/constants/types';
 import { useSignupMutation } from '~/query/services/auth';
+import { setEmailUser } from '~/store/user-slice';
 
 import Loading from '../Loading/Loading';
 import { registrationSchema } from './consts/YupScheme';
@@ -21,15 +24,18 @@ const Registration = () => {
     const [signup, { data, error, isLoading }] = useSignupMutation();
     const [stepRegistration, setStepRegistry] = useState(1);
     const [progressValue, setProgressValue] = useState(0);
-
+    const dispatch = useDispatch();
+    const navigation = useNavigate();
     const {
         watch,
         register,
+        trigger,
         handleSubmit,
         formState: { errors, isSubmitting },
     } = useForm<DataRegistrationForm>({
+        reValidateMode: 'onChange',
         resolver: yupResolver(registrationSchema),
-        mode: 'onChange',
+        mode: 'all',
     });
 
     const formValues = watch();
@@ -64,30 +70,45 @@ const Registration = () => {
         return validFields !== currentArrayFields.length;
     };
 
-    const onSubmitHandler = async (data: DataRegistrationForm) => {
-        const { passwordRepeat, ...dataWithoutRepeatPassword } = data as DataRegistrationForm;
-        // try {
+    const onSubmitHandler = async (result: DataRegistrationForm) => {
+        dispatch(setEmailUser(result.email));
+        const { passwordRepeat, ...dataWithoutRepeatPassword } = result as DataRegistrationForm;
         await signup(dataWithoutRepeatPassword).unwrap();
-        // } catch (error) {
-        //     console.error('Error during signup:', error);
-        // }
+        if (data) {
+            navigation('/login');
+        }
     };
 
     const handlerButtonForm = () => {
-        if (stepRegistration === 1) {
-            setStepRegistry(2);
-        } else if (stepRegistration === 2) {
-            handleSubmit(onSubmitHandler)();
+        const validate = checkButtonDisabled();
+        if (!validate) {
+            if (stepRegistration === 1) {
+                setStepRegistry(2);
+            } else if (stepRegistration === 2) {
+                handleSubmit(onSubmitHandler)();
+            }
+        } else {
+            handleSubmit((_data) => {})();
         }
     };
 
     const parseError = () => {
-        const typeError = error as DataResponse;
+        const typeError = error as ServerResponseTypes;
 
-        if (typeError?.message) {
-            return <ErrorNotification message={typeError.message} />;
+        if (typeError.status === 500) {
+            return (
+                <ErrorNotification message='Ошибка сервера' submessage='Попробуйте немного позже' />
+            );
         }
-        return <ErrorNotification message='Нет ответа' />;
+        if (typeError.data.message) {
+            return <ErrorNotification message={typeError.data.message} />;
+        }
+    };
+
+    const handleBlur = async (e: FocusEvent<HTMLInputElement>) => {
+        const { name } = e.target;
+        e.target.value = e.target.value.trim();
+        await trigger(name as keyof DataRegistrationForm);
     };
 
     return (
@@ -95,7 +116,16 @@ const Registration = () => {
             {isLoading && <Loading />}
             {error && parseError()}
             {data && <VerificationPendingModal />}
-            <form onSubmit={handleSubmit(onSubmitHandler)} data-test-id='sign-up-form'>
+            <form
+                onSubmit={handleSubmit(onSubmitHandler)}
+                data-test-id='sign-up-form'
+                onKeyDown={(e) => {
+                    console.log('enter');
+                    if (e.key === 'Enter') {
+                        handlerButtonForm();
+                    }
+                }}
+            >
                 <Text>
                     {stepRegistration === 1 ? 'Шаг 1. Личная информация' : 'Шаг 2. Логин и пароль'}
                 </Text>
@@ -109,9 +139,17 @@ const Registration = () => {
 
                 <Stack spacing={4}>
                     {stepRegistration === 1 ? (
-                        <RegistrationStep1 register={register} errors={errors} />
+                        <RegistrationStep1
+                            register={register}
+                            errors={errors}
+                            handleBlur={handleBlur}
+                        />
                     ) : (
-                        <RegistrationStep2 register={register} errors={errors} />
+                        <RegistrationStep2
+                            register={register}
+                            errors={errors}
+                            handleBlur={handleBlur}
+                        />
                     )}
                 </Stack>
 

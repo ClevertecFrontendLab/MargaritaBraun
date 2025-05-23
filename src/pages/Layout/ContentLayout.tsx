@@ -29,28 +29,6 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
 
     const objectQuery: OptionsQuery = useQueryParams(page, searchQuery, categoriesIDS);
 
-    // if (page > 1) {
-    //     objectQuery.page = page;
-    // }
-
-    // if (filters.allergyFilter.length > 0) {
-    //     objectQuery.allergens = filters.allergyFilter.join(',');
-    // }
-    // if (searchQuery) {
-    //     objectQuery.searchString = searchQuery;
-    // }
-    // if (filters.meatTypeFilter.length > 0) {
-    //     objectQuery.meat = filters.meatTypeFilter.join(',');
-    // }
-
-    // if (filters.sideDishFilter.length > 0) {
-    //     objectQuery.garnish = filters.sideDishFilter.join(',');
-    // }
-
-    // if (categoriesIDS !== '') {
-    //     objectQuery.subcategoriesIds = categoriesIDS;
-    // }
-
     const handleRefresh = () => {
         refetch();
     };
