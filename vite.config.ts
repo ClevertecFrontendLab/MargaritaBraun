@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(({ command }) => ({
     plugins: [react()],
-    base: command === 'build' ? '/MargaritaBraun/' : '/',
+    base: command === 'build' ? '/ClevertecFrontendLab/MargaritaBraun/' : '/',
     server: {
         host: true,
         port: 3000,
