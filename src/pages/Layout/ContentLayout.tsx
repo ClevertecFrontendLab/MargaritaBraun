@@ -3,7 +3,7 @@ import { ReactNode, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router';
 
-import ErrorNotification from '~/app/ErrorNotification';
+import { ErrorNotification } from '~/entities/Alert';
 import { useGetAllRecipesQuery } from '~/store/apiQuery/marathonApi';
 import { filtersSelector } from '~/store/filter-slice';
 import { OptionsQuery } from '~/store/model/categoryType';
@@ -29,28 +29,6 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
 
     const objectQuery: OptionsQuery = useQueryParams(page, searchQuery, categoriesIDS);
 
-    // if (page > 1) {
-    //     objectQuery.page = page;
-    // }
-
-    // if (filters.allergyFilter.length > 0) {
-    //     objectQuery.allergens = filters.allergyFilter.join(',');
-    // }
-    // if (searchQuery) {
-    //     objectQuery.searchString = searchQuery;
-    // }
-    // if (filters.meatTypeFilter.length > 0) {
-    //     objectQuery.meat = filters.meatTypeFilter.join(',');
-    // }
-
-    // if (filters.sideDishFilter.length > 0) {
-    //     objectQuery.garnish = filters.sideDishFilter.join(',');
-    // }
-
-    // if (categoriesIDS !== '') {
-    //     objectQuery.subcategoriesIds = categoriesIDS;
-    // }
-
     const handleRefresh = () => {
         refetch();
     };
@@ -61,6 +39,7 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
         setPage((prevPage: number) => prevPage + 1);
     };
 
+    console.log('ContentLayout recipesData', recipesData);
     if (recipesData?.data.length === 0) {
         showFiltered = false;
     }
@@ -76,7 +55,7 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
                 subtitle={subtitle}
                 handleRefresh={handleRefresh}
             />
-            {isError && <ErrorNotification />}
+            {isError && <ErrorNotification message='mistake' />}
             {isLoading === false && showFiltered ? (
                 <OnlyRecipesList
                     searchQuery={searchQuery}

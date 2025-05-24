@@ -9,7 +9,7 @@ const Loading = () => (
         bottom={0}
         background='var(--blackAlpha-300, rgba(0, 0, 0, 0.16))'
         backdropFilter='blur(2px)'
-        zIndex='modal'
+        zIndex='tooltip'
         display='flex'
         alignItems='center'
         justifyContent='center'

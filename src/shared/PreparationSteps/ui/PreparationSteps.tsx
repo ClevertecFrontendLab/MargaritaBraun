@@ -1,8 +1,8 @@
 import { Badge, Card, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
+import { IMAGE_URL } from '~/query/constants/apiConsts';
 import { PreparationStep } from '~/shared/consts/dataAllCategory';
-import { IMAGE_URL } from '~/store/consts/apiConsts';
 
 export const PreparationSteps: FC<{ steps: PreparationStep[] }> = ({ steps }) => (
     <>

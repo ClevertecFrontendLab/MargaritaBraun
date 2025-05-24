@@ -1,8 +1,8 @@
 import { Box, Card, CardBody, CardFooter, Flex, Image, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router';
 
+import { IMAGE_URL } from '~/query/constants/apiConsts';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
-import { IMAGE_URL } from '~/store/consts/apiConsts';
 import { Recipe } from '~/store/model/categoryType';
 
 import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';

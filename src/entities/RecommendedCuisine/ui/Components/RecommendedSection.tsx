@@ -1,6 +1,6 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
 
-import ErrorNotification from '~/app/ErrorNotification';
+import { ErrorNotification } from '~/entities/Alert';
 import { useGetRecipesBySubCategoryQuery } from '~/store/apiQuery/marathonApi';
 import { Recipe } from '~/store/model/categoryType';
 
@@ -26,7 +26,7 @@ export const RecommendedSection = ({
     });
 
     if (isError) {
-        return <ErrorNotification />;
+        return <ErrorNotification message='mistake' />;
     }
 
     const currentRecipes: Recipe[] = allRecipes ? allRecipes.data : [];

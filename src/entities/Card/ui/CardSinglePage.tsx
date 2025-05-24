@@ -1,8 +1,8 @@
 import { Badge, Button, Flex, Heading, HStack, Image, Text, VStack } from '@chakra-ui/react';
 import { FC } from 'react';
 
+import { IMAGE_URL } from '~/query/constants/apiConsts';
 import { ClocksIcon, FavoritesIcon, LikeyIcon } from '~/shared/Icons';
-import { IMAGE_URL } from '~/store/consts/apiConsts';
 import { Recipe } from '~/store/model/categoryType';
 
 import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';

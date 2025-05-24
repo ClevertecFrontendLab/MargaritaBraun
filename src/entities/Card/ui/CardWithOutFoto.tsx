@@ -1,7 +1,7 @@
 import { Card, CardBody, CardFooter, Flex, Image, Text } from '@chakra-ui/react';
 
+import { IMAGE_URL } from '~/query/constants/apiConsts';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
-import { IMAGE_URL } from '~/store/consts/apiConsts';
 
 import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
 
