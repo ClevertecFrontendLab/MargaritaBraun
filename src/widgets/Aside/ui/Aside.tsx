@@ -10,7 +10,7 @@ export const Aside = () => (
             justify='space-between'
             w='280px'
             position='sticky'
-            top='10px'
+            top='80px'
             height='calc(100vh - 80px)'
         >
             <Flex direction='column' alignItems='center' gap='30px' p={['16px 56px']}>

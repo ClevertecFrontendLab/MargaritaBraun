@@ -1,6 +1,6 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
 
-import ErrorNotification from '~/app/ErrorNotification';
+import { ErrorNotification } from '~/entities/Alert';
 import { useGetRecipesBySubCategoryQuery } from '~/store/apiQuery/marathonApi';
 import { Recipe } from '~/store/model/categoryType';
 
@@ -26,7 +26,7 @@ export const RecommendedSection = ({
     });
 
     if (isError) {
-        return <ErrorNotification />;
+        return <ErrorNotification message='mistake' />;
     }
 
     const currentRecipes: Recipe[] = allRecipes ? allRecipes.data : [];
@@ -37,6 +37,7 @@ export const RecommendedSection = ({
                     direction={['column', null, null, 'row']}
                     gap={['3', null, null, '0']}
                     justify='space-between'
+                    alignItems='center'
                 >
                     <Heading
                         as='h3'
@@ -44,6 +45,7 @@ export const RecommendedSection = ({
                         fontWeight='500'
                         fontSize={['20px', '24px', '24px', '30px', '36px', '48px']}
                         lineHeight={['30px', '32px', '32px', '38px', '40px', '48px']}
+                        pr='10px'
                     >
                         {title}
                     </Heading>

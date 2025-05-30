@@ -1,8 +1,8 @@
 import { Box, Card, CardBody, CardFooter, Flex, Image, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router';
 
+import { IMAGE_URL } from '~/query/constants/apiConsts';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
-import { IMAGE_URL } from '~/store/consts/apiConsts';
 import { Recipe } from '~/store/model/categoryType';
 
 import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
@@ -79,7 +79,7 @@ export const CardSlider = ({
                     <Flex
                         direction='column'
                         gap={[1]}
-                        position={['absolute', null, null, 'static']}
+                        position={['absolute', null, null, null, 'static']}
                         top='5px'
                     >
                         {associatedCategories &&
@@ -107,35 +107,30 @@ export const CardSlider = ({
                                 </Flex>
                             ))}
                     </Flex>
-                    <Flex gap={{ base: '2' }}>
-                        {bookmarks && (
-                            <Flex align='center' gap={{ base: '1.5', md: '2' }}>
-                                <FavoritesIcon />
+                    <Flex gap='2' flexWrap='wrap'>
+                        <Flex align='center' gap={{ base: '1.5', md: '2' }}>
+                            <FavoritesIcon />
+                            <Text
+                                fontSize='12px'
+                                fontWeight='600'
+                                lineHeight='16px'
+                                color='lime.600'
+                            >
+                                {bookmarks}
+                            </Text>
+                        </Flex>
+                        <Flex align='center' gap='2' padding='0px 4px' justify='center'>
+                            <LikeyIcon />
 
-                                <Text
-                                    fontSize='12px'
-                                    fontWeight='600'
-                                    lineHeight='16px'
-                                    color='lime.600'
-                                >
-                                    {bookmarks}
-                                </Text>
-                            </Flex>
-                        )}
-                        {likes && (
-                            <Flex align='center' gap='2' padding='0px 4px' justify='center'>
-                                <LikeyIcon />
-
-                                <Text
-                                    fontSize='12px'
-                                    fontWeight='600'
-                                    lineHeight='16px'
-                                    color='lime.600'
-                                >
-                                    {likes}
-                                </Text>
-                            </Flex>
-                        )}
+                            <Text
+                                fontSize='12px'
+                                fontWeight='600'
+                                lineHeight='16px'
+                                color='lime.600'
+                            >
+                                {likes}
+                            </Text>
+                        </Flex>
                     </Flex>
                 </CardFooter>
             </Flex>

@@ -1,18 +1,28 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, CloseButton } from '@chakra-ui/react';
+import { Alert, AlertIcon, AlertTitle, Box, CloseButton } from '@chakra-ui/react';
 import { FC, useState } from 'react';
+import { useNavigate } from 'react-router';
 
-const ErrorNotification: FC = () => {
+interface SuccessAlertProps {
+    message: string;
+    redirect?: string;
+}
+// redirect={'/login'}
+export const SuccessAlert: FC<SuccessAlertProps> = ({ message, redirect }) => {
     const [isVisible, setIsVisible] = useState(true);
+    const navigation = useNavigate();
 
     const handleClose = () => {
         setIsVisible(false);
+        if (redirect) {
+            navigation(redirect);
+        }
     };
 
     if (!isVisible) return null;
 
     return (
         <Alert
-            status='error'
+            status='success'
             variant='solid'
             w={['320px', null, '400px']}
             position='fixed'
@@ -33,11 +43,8 @@ const ErrorNotification: FC = () => {
             />
             <AlertIcon />
             <Box>
-                <AlertTitle color='white'>Ошибка сервера</AlertTitle>
-                <AlertDescription color='white'>Попробуйте поискать снова попозже</AlertDescription>
+                <AlertTitle color='white'>{message}</AlertTitle>
             </Box>
         </Alert>
     );
 };
-
-export default ErrorNotification;

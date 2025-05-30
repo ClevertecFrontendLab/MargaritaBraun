@@ -28,6 +28,7 @@ export const FooterMenu = () => {
                 w='100px'
                 alignItems='center'
                 size='xs'
+                _hover={{ color: 'lime.300', backgroundColor: 'grey' }}
             >
                 {out}
             </Button>

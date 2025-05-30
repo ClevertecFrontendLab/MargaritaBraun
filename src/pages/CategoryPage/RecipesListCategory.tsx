@@ -1,7 +1,7 @@
 import { SimpleGrid } from '@chakra-ui/react';
 
-import ErrorNotification from '~/app/ErrorNotification';
 import Loading from '~/app/Loading/Loading';
+import { ErrorNotification } from '~/entities/Alert';
 import { CardRecipe } from '~/entities/Card';
 import { EmptyRecipesBlock } from '~/shared/helpers/EmptyRecipesBlock';
 import { useGetRecipesBySubCategoryQuery } from '~/store/apiQuery/marathonApi';
@@ -24,7 +24,7 @@ export const RecipesListCategory = ({ idSubcategory }: RecipesListCategoryProps)
 
     if (isLoading) return <Loading />;
 
-    if (isError) return <ErrorNotification />;
+    if (isError) return <ErrorNotification message='mistake' />;
     return (
         <>
             {filteredRecipes && filteredRecipes.length > 0 ? (

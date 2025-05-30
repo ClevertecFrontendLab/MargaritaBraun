@@ -9,16 +9,19 @@ import { BrowserRouter } from 'react-router';
 import { store } from '~/store/configure-store.ts';
 
 import AppRouter from './app/AppRouter';
+import { UserProvider } from './context/UserContext';
 import theme from './shared/config/extendThemeChakra';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <Provider store={store}>
-            <ChakraProvider theme={theme}>
-                <BrowserRouter>
-                    <AppRouter />
-                </BrowserRouter>
-            </ChakraProvider>
-        </Provider>
+        <UserProvider>
+            <Provider store={store}>
+                <ChakraProvider theme={theme}>
+                    <BrowserRouter>
+                        <AppRouter />
+                    </BrowserRouter>
+                </ChakraProvider>
+            </Provider>
+        </UserProvider>
     </StrictMode>,
 );

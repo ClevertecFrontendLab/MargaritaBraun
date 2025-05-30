@@ -5,14 +5,16 @@ import { Swiper as SwiperType } from 'swiper';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import Loading from '~/app/Loading/Loading';
 import { CardSlider } from '~/entities/Card';
 import { useGetRecipesForSliderQuery } from '~/store/apiQuery/marathonApi';
 
 export const SliderNewRecipes = () => {
-    const { data: dataRecipes } = useGetRecipesForSliderQuery();
+    const { data: dataRecipes, isLoading } = useGetRecipesForSliderQuery();
     const dataForSlidersCards = dataRecipes?.data;
     const swiperRef = useRef<SwiperType | null>(null);
 
+    if (isLoading) return <Loading />;
     return (
         <Flex as='section' direction='column' gap='6' pt={[0, 5]} w='100%' position='relative'>
             <Heading

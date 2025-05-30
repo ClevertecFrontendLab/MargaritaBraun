@@ -10,10 +10,10 @@ import {
     Image,
     Text,
 } from '@chakra-ui/react';
-import { NavLink as ReachLink } from 'react-router';
+import { NavLink as ReachLink, useLocation } from 'react-router';
 
+import { IMAGE_URL } from '~/query/constants/apiConsts';
 import { FavoritesIcon, LikeyIcon } from '~/shared/Icons';
-import { IMAGE_URL } from '~/store/consts/apiConsts';
 import { Recipe } from '~/store/model/categoryType';
 
 import { useCategoryAtSubCategID } from '../hooks/useCategoryAtSubCategID';
@@ -34,23 +34,22 @@ export const CardRecipe = ({
     searchQuery,
     index,
 }: CardRecipeProps) => {
+    const location = useLocation();
     const btnSave = 'Сохранить';
     const btnCooking = 'Готовить';
     const associatedCategories = useCategoryAtSubCategID(categoriesIds);
-
+    const linkToCurrentCategory = `${associatedCategories[0]?.category}/${associatedCategories[0]?.subCategories[0]?.category}/${_id}`;
+    const pathToRecipe =
+        location.pathname.split('/').length > 2
+            ? location.pathname + '/' + _id
+            : linkToCurrentCategory;
     return (
-        <Card
-            direction='row'
-            variant='outline'
-            data-test-id={`food-card-${index}`}
-            h={['128px', null, null, '244px']}
-            w='100%'
-        >
-            <Flex w='50%'>
+        <Card direction='row' variant='outline' data-test-id={`food-card-${index}`} w='100%'>
+            <Flex w='50%' h={['120px', null, null, '200px', '250px']}>
                 <Image
                     objectFit='cover'
                     w='100%'
-                    h='auto'
+                    h='100%'
                     src={`${IMAGE_URL}${image}`}
                     alt={title}
                     borderLeftRadius='8px'
@@ -60,13 +59,13 @@ export const CardRecipe = ({
                 w='45%'
                 direction='column'
                 justify='space-between'
-                padding={['8px 8px 4px 8px', null, null, '20px 24px']}
+                padding={['8px 8px 4px 8px', null, null, null, '20px 24px']}
                 gap={['0', null, null, null, null, '6']}
             >
                 <CardHeader display='flex' justifyContent='space-between' p='0'>
                     <Flex
                         gap={['0.5', null, '2']}
-                        position={['absolute', null, null, 'static']}
+                        position={['absolute', null, null, null, 'static']}
                         zIndex='2'
                         top='2'
                         left='2'
@@ -158,7 +157,7 @@ export const CardRecipe = ({
                         size={['xs', null, null, 'sm']}
                     >
                         <FavoritesIcon />
-                        <Text as='span' display={{ base: 'none', md: 'block' }}>
+                        <Text as='span' display={['none', null, null, null, 'block']}>
                             {btnSave}
                         </Text>
                     </Button>
@@ -169,9 +168,10 @@ export const CardRecipe = ({
                         colorScheme='blackAlpha'
                         size={['xs', null, null, 'sm']}
                         as={ReachLink}
-                        to={`${associatedCategories[0]?.category}/${associatedCategories[0]?.subCategories[0]?.category}/${_id}`}
+                        to={pathToRecipe}
                         data-test-id={`card-link-${index}`}
-                        fontSize='14px'
+                        fontSize={['12px', null, null, null, '14px']}
+                        p='0 4px'
                     >
                         {btnCooking}
                     </Button>

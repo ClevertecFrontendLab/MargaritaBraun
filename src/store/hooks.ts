@@ -4,3 +4,5 @@ import { ApplicationState, store } from './configure-store';
 type AppDispatch = typeof store.dispatch;
 export const useAppSelector: TypedUseSelectorHook<ApplicationState> = useSelector;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+// export const userEmailSelector = (state: ApplicationState): string => state.user.email || 'dd';

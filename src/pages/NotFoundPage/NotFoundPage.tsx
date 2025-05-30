@@ -1,4 +1,4 @@
-import { Flex, Heading, Image, Link, Text } from '@chakra-ui/react';
+import { Button, Flex, Heading, Image, Text } from '@chakra-ui/react';
 import { Link as ReachLink } from 'react-router';
 
 import notFoundImage from '~/assets/notFoundImage.png';
@@ -23,9 +23,15 @@ const NotFoundPage = () => (
             </Heading>
             <Text>
                 Можете поискать другой рецепт{' '}
-                <Link color='teal.500' as={ReachLink} to='/' data-test-id='error-page-go-home'>
+                <Button
+                    variant='link'
+                    color='teal.500'
+                    as={ReachLink}
+                    to='/'
+                    data-test-id='error-page-go-home'
+                >
                     здесь.
-                </Link>
+                </Button>
             </Text>
         </Flex>
         <Footer />
