@@ -8,7 +8,7 @@ interface BlockRowRecipeProps {
 }
 
 export const BlockRowRecipe = ({ dataForCardRow }: BlockRowRecipeProps) => (
-    <Flex direction='column' gap='3' flexBasis={['30%', '50%']} justify='space-around'>
+    <Flex direction='column' gap='3' flexBasis={['30%', '40%']} justify='space-around'>
         {dataForCardRow && dataForCardRow.map((item) => <CardRow key={item.title} {...item} />)}
     </Flex>
 );

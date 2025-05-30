@@ -79,7 +79,7 @@ export const CardSlider = ({
                     <Flex
                         direction='column'
                         gap={[1]}
-                        position={['absolute', null, null, 'static']}
+                        position={['absolute', null, null, null, 'static']}
                         top='5px'
                     >
                         {associatedCategories &&
@@ -107,35 +107,30 @@ export const CardSlider = ({
                                 </Flex>
                             ))}
                     </Flex>
-                    <Flex gap={{ base: '2' }}>
-                        {bookmarks && (
-                            <Flex align='center' gap={{ base: '1.5', md: '2' }}>
-                                <FavoritesIcon />
+                    <Flex gap='2' flexWrap='wrap'>
+                        <Flex align='center' gap={{ base: '1.5', md: '2' }}>
+                            <FavoritesIcon />
+                            <Text
+                                fontSize='12px'
+                                fontWeight='600'
+                                lineHeight='16px'
+                                color='lime.600'
+                            >
+                                {bookmarks}
+                            </Text>
+                        </Flex>
+                        <Flex align='center' gap='2' padding='0px 4px' justify='center'>
+                            <LikeyIcon />
 
-                                <Text
-                                    fontSize='12px'
-                                    fontWeight='600'
-                                    lineHeight='16px'
-                                    color='lime.600'
-                                >
-                                    {bookmarks}
-                                </Text>
-                            </Flex>
-                        )}
-                        {likes && (
-                            <Flex align='center' gap='2' padding='0px 4px' justify='center'>
-                                <LikeyIcon />
-
-                                <Text
-                                    fontSize='12px'
-                                    fontWeight='600'
-                                    lineHeight='16px'
-                                    color='lime.600'
-                                >
-                                    {likes}
-                                </Text>
-                            </Flex>
-                        )}
+                            <Text
+                                fontSize='12px'
+                                fontWeight='600'
+                                lineHeight='16px'
+                                color='lime.600'
+                            >
+                                {likes}
+                            </Text>
+                        </Flex>
                     </Flex>
                 </CardFooter>
             </Flex>

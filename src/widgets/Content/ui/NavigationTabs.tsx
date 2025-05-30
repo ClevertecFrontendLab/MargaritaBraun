@@ -11,7 +11,7 @@ interface NavigationTabsProps {
 export const NavigationTabs = ({ categoryObject, handleRefresh }: NavigationTabsProps) => (
     <>
         {categoryObject && categoryObject.subCategories.length > 0 && (
-            <Flex align='center' justify='center' pb='12px'>
+            <Flex align='center' justify='center' pb='12px' p='20px 0'>
                 <Tabs variant='unstyled' onChange={handleRefresh}>
                     <TabList flexWrap='wrap' justifyContent='center'>
                         {categoryObject.subCategories.map((item, index) => {

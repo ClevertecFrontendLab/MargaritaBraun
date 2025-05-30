@@ -22,7 +22,7 @@ export const CardWithOutFoto = ({
 }: CardWithOutFotoProps) => {
     const associatedCategories = useCategoryAtSubCategID(categoriesIds);
     return (
-        <Card variant='outline' w='100%' flexBasis={[null, null, '40%', '30%', '22%']}>
+        <Card variant='outline' w='100%' flexBasis={[null, null, '40%', '30%']}>
             <Flex
                 direction='column'
                 justify='space-between'
@@ -45,9 +45,14 @@ export const CardWithOutFoto = ({
                     </Text>
                 </CardBody>
 
-                <CardFooter display='flex' justifyContent='space-between' p='0' alignItems='center'>
+                <CardFooter
+                    display='flex'
+                    justifyContent='space-between'
+                    p='0'
+                    alignItems='center'
+                    flexWrap='wrap'
+                >
                     <Flex
-                        bg='lime.50'
                         borderRadius='md'
                         px='2'
                         py={['0', null, null, '0.5']}
@@ -81,34 +86,36 @@ export const CardWithOutFoto = ({
                                 </Flex>
                             ))}
                     </Flex>
+                    {/* {bookmarks > 0 && likes > 0 && ( */}
                     <Flex gap='2'>
-                        {bookmarks && (
-                            <Flex align='center' gap='2'>
-                                <FavoritesIcon size='40px' />
-                                <Text
-                                    fontSize='12px'
-                                    fontWeight='600'
-                                    lineHeight='16px'
-                                    color='lime.600'
-                                >
-                                    {bookmarks}
-                                </Text>
-                            </Flex>
-                        )}
-                        {likes && (
-                            <Flex align='center' gap='2' padding='0px 4px' justify='center'>
-                                <LikeyIcon />
-                                <Text
-                                    fontSize='12px'
-                                    fontWeight='600'
-                                    lineHeight='16px'
-                                    color='lime.600'
-                                >
-                                    {likes}
-                                </Text>
-                            </Flex>
-                        )}
+                        {/* {bookmarks && bookmarks > 0 && ( */}
+                        <Flex align='center' gap='2'>
+                            <FavoritesIcon size='40px' />
+                            <Text
+                                fontSize='12px'
+                                fontWeight='600'
+                                lineHeight='16px'
+                                color='lime.600'
+                            >
+                                {bookmarks}
+                            </Text>
+                        </Flex>
+                        {/* )} */}
+                        {/* {likes && likes > 0 && ( */}
+                        <Flex align='center' gap='2' padding='0px 4px' justify='center'>
+                            <LikeyIcon />
+                            <Text
+                                fontSize='12px'
+                                fontWeight='600'
+                                lineHeight='16px'
+                                color='lime.600'
+                            >
+                                {likes}
+                            </Text>
+                        </Flex>
+                        {/* )} */}
                     </Flex>
+                    {/* )} */}
                 </CardFooter>
             </Flex>
         </Card>

@@ -20,6 +20,7 @@ export const WriteRecipeBlock = () => {
                 icon={<WriteRecipeIcon />}
                 color='white'
                 bg='black'
+                _hover={{ color: 'lime.300', backgroundColor: 'grey' }}
             />
             <Text
                 color='blackAlpha.700'

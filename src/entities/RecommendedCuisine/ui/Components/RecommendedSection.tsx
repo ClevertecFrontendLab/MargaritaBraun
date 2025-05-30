@@ -37,6 +37,7 @@ export const RecommendedSection = ({
                     direction={['column', null, null, 'row']}
                     gap={['3', null, null, '0']}
                     justify='space-between'
+                    alignItems='center'
                 >
                     <Heading
                         as='h3'
@@ -44,6 +45,7 @@ export const RecommendedSection = ({
                         fontWeight='500'
                         fontSize={['20px', '24px', '24px', '30px', '36px', '48px']}
                         lineHeight={['30px', '32px', '32px', '38px', '40px', '48px']}
+                        pr='10px'
                     >
                         {title}
                     </Heading>

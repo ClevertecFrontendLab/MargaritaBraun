@@ -11,6 +11,7 @@ export const HomeJuiciest = () => {
         page: 1,
         sortBy: 'likes',
         sortOrder: 'desc',
+        limit: 8,
     });
 
     const sortedRecipes = allResipesSortedLikes ? allResipesSortedLikes.data : [];
@@ -37,6 +38,7 @@ export const HomeJuiciest = () => {
                         data-test-id='juiciest-link'
                         as={ReachLink}
                         to='/the-juiciest'
+                        _hover={{ color: 'lime.300', backgroundColor: 'grey' }}
                     >
                         Вся подборка
                     </Button>
@@ -58,6 +60,7 @@ export const HomeJuiciest = () => {
                     data-test-id='juiciest-link-mobile'
                     as={ReachLink}
                     to='/the-juiciest'
+                    _hover={{ color: 'lime.300', backgroundColor: 'grey' }}
                 >
                     Вся подборка
                 </Button>

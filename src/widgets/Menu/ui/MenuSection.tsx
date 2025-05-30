@@ -12,8 +12,9 @@ export const MenuSection = () => (
             direction='column'
             justify='space-between'
             position={['static', null, null, 'sticky']}
-            top='10px'
+            top='80px'
             height={['100%', null, null, 'calc(100vh - 80px)']}
+            minW='290px'
         >
             <NavMenu />
             <FooterMenu />

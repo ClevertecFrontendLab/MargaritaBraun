@@ -30,14 +30,15 @@ export const Header = () => {
 
     return (
         <>
-            <Flex as='header' h={['64px', null, null, null, '80px']} w='100%'>
+            <Flex as='header' h={['64px', null, null, null, '80px']} w='100%' p='0 10px'>
                 <Flex
+                    maxW={['100%', null, '90rem', '120rem']}
                     h={['64px', null, null, null, '80px']}
                     data-test-id='header'
                     w='100%'
-                    position={['fixed', null, null, 'absolute', null]}
+                    position='fixed'
+                    // position={['fixed', null, null, 'absolute', null]}
                     top='0'
-                    left='0'
                     alignItems='center'
                     justifyContent='space-between'
                     p={['8px 16px', null, null, null, '16px 56px 16px 16px', null]}

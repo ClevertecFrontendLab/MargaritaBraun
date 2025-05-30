@@ -20,13 +20,14 @@ export const CardSinglePage: FC<Recipe> = ({
     return (
         <>
             <HStack
+                h='100%'
                 w='100%'
                 gap={['4', null, null, '6']}
                 flexDirection={['column', 'row', null, null]}
             >
                 <Flex
                     w={['100%', null, '40%']}
-                    h={['224px', null, null, '410px']}
+                    h='100%'
                     position='relative'
                     overflow='hidden'
                     alignItems='center'
@@ -34,7 +35,7 @@ export const CardSinglePage: FC<Recipe> = ({
                 >
                     <Image
                         w='100%'
-                        h='auto'
+                        h='100%'
                         objectFit='cover'
                         src={`${IMAGE_URL}${image}`}
                         alt={title}
@@ -48,6 +49,8 @@ export const CardSinglePage: FC<Recipe> = ({
                             zIndex='2'
                             top='2'
                             left='2'
+                            p='5px 10px'
+                            flexWrap='wrap'
                         >
                             {associatedCategories &&
                                 associatedCategories.map((currentCategory) => (
@@ -142,10 +145,11 @@ export const CardSinglePage: FC<Recipe> = ({
                             alignItems='center'
                             fontFamily='Inter'
                             bg='blackAlpha.100'
+                            size={['xs', null, null, 'sm', 'lg']}
                         >
                             <ClocksIcon />
                             <Text fontSize='sm' fontFamily='Inter' fontWeight='400' lineHeight='5'>
-                                {time}
+                                {time + ' минут'}
                             </Text>
                         </Badge>
                         <Flex gap={['4']}>

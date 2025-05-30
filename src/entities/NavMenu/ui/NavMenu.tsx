@@ -26,7 +26,7 @@ export const NavMenu = () => {
         <Flex
             direction='column'
             overflow='auto'
-            p={['0', null, null, '10px 16px 10px 10px']}
+            // p={['0', null, null, '10px 16px 10px 10px']}
             h='100%'
             w='100%'
             zIndex='10'

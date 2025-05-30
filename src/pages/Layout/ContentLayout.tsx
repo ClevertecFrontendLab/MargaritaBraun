@@ -39,8 +39,11 @@ const ContentLayout = ({ title, subtitle, showFiltered, children }: ContentLayou
         setPage((prevPage: number) => prevPage + 1);
     };
 
-    console.log('ContentLayout recipesData', recipesData);
-    if (recipesData?.data.length === 0) {
+    if (
+        !recipesData ||
+        Object.keys(recipesData.data).length === 0 ||
+        recipesData?.data.length === 0
+    ) {
         showFiltered = false;
     }
 
